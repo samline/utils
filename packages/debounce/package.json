@@ -1,6 +1,6 @@
 {
   "name": "@samline/debounce",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Tiny debounce, throttle and rafThrottle with cancel, flush and pending, for vanilla JavaScript, React, Vue, Svelte and plain HTML.",
   "keywords": [
     "debounce",
