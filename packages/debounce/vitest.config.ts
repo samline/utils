@@ -1,6 +1,13 @@
+import { fileURLToPath } from 'node:url'
+
 import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
+  resolve: {
+    alias: {
+      '@samline/internal': fileURLToPath(new URL('../internal/src/index.ts', import.meta.url)),
+    },
+  },
   test: {
     environment: 'jsdom',
     include: ['test/**/*.test.{ts,tsx}'],

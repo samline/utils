@@ -17,6 +17,9 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "jsx": "react-jsx",
-    "noEmit": true
+    "noEmit": true,
+    "paths": {
+      "@samline/internal": ["./packages/internal/src/index.ts"]
+    }
   }
 }

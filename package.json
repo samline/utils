@@ -24,7 +24,8 @@
     "site:build": "bun run build && bun run --filter @samline/utils-site build",
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "release": "bun run check && changeset publish"
+    "release": "bun run check && changeset publish",
+    "release:status": "changeset status --verbose"
   },
   "devDependencies": {
     "@changesets/cli": "^2.29.7",

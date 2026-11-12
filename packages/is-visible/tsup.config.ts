@@ -1,4 +1,12 @@
+import { fileURLToPath } from 'node:url'
+
 import { defineConfig } from 'tsup'
+
+// Shared private helpers are inlined into every build: published packages
+// never depend on @samline/internal.
+const alias = {
+  '@samline/internal': fileURLToPath(new URL('../internal/src/index.ts', import.meta.url)),
+}
 
 const external = ['react', 'vue', 'svelte', 'svelte/store']
 
@@ -12,13 +20,22 @@ export default defineConfig([
       'svelte/index': 'src/svelte/index.ts',
     },
     format: ['esm', 'cjs'],
-    dts: true,
+    // Inline @samline/internal's types too: it is never published.
+    dts: {
+      resolve: [/^@samline\/internal/],
+      compilerOptions: {
+        baseUrl: '.',
+        paths: { '@samline/internal': ['../internal/src/index.ts'] },
+      },
+    },
     sourcemap: true,
     clean: true,
     target: 'es2020',
     treeshake: true,
     external,
-    noExternal: [/^@samline\/internal/],
+    esbuildOptions: options => {
+      options.alias = alias
+    },
   },
   {
     entry: { 'browser/is-visible': 'src/browser/global.ts' },
@@ -28,7 +45,9 @@ export default defineConfig([
     clean: false,
     target: 'es2020',
     platform: 'browser',
-    noExternal: [/^@samline\/internal/],
+    esbuildOptions: options => {
+      options.alias = alias
+    },
     outExtension: () => ({ js: '.global.js' }),
   },
 ])

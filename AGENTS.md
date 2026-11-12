@@ -24,6 +24,6 @@ Operating rules for AI agents working in this monorepo. Public documentation (RE
 ## Releases
 
 - Every user-facing change needs a changeset (`bun run changeset`) with the correct semver bump.
-- Publishing runs in CI with `NPM_TOKEN`. Do not add `--provenance` unless trusted publishing is configured end to end.
+- Publishing to npm is manual (the maintainer runs `bun run release` locally). CI never publishes. Do not add `--provenance`.
 - Before a release, update pinned CDN URLs in READMEs to the new versions.
 - Never add AI attribution to commits, tags or pull requests.

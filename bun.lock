@@ -19,7 +19,7 @@
     },
     "packages/debounce": {
       "name": "@samline/debounce",
-      "version": "0.1.0",
+      "version": "1.0.0",
       "devDependencies": {
         "@testing-library/react": "^16.3.0",
         "@types/react": "^19.1.0",
@@ -45,9 +45,8 @@
     },
     "packages/is-visible": {
       "name": "@samline/is-visible",
-      "version": "0.5.1",
+      "version": "1.0.0",
       "devDependencies": {
-        "@samline/internal": "workspace:*",
         "@testing-library/react": "^16.3.0",
         "@types/react": "^19.1.0",
         "react": "^19.1.0",

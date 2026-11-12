@@ -56,11 +56,13 @@ The first e2e run needs the browsers: `bunx playwright install chromium firefox 
 
 ## Releasing
 
-1. Add a changeset with every user-facing change: `bun run changeset`.
-2. Merging to `main` opens or updates a **Version Packages** pull request.
-3. Merging that pull request publishes the new versions to npm (it needs the `NPM_TOKEN` secret) and deploys the site.
+Publishing to npm is manual, as in the other `@samline` packages. CI only verifies the code and deploys the site.
 
-Before merging the Version Packages pull request, check that every pinned CDN URL in the READMEs matches the new versions.
+1. Add a changeset with every user-facing change: `bun run changeset`.
+2. Apply pending changesets: `bun run version-packages`. This bumps versions and writes each `CHANGELOG.md`.
+3. Update pinned CDN URLs in the READMEs to the new versions, then commit and push. Pushing to `main` deploys the site.
+4. Publish from your machine, logged in to npm: `bun run release`. It runs every check, then `changeset publish` publishes each package whose version is not on npm yet and creates its git tag (`@samline/<name>@<version>`).
+5. Push the tags: `git push --follow-tags`.
 
 ## License
 
