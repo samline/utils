@@ -1,0 +1,41 @@
+{
+  "name": "@samline/utils-monorepo",
+  "private": true,
+  "type": "module",
+  "packageManager": "bun@1.4.4",
+  "engines": {
+    "node": ">=20"
+  },
+  "workspaces": [
+    "packages/*",
+    "site"
+  ],
+  "scripts": {
+    "build": "bun run --filter './packages/*' build",
+    "typecheck": "bun run --filter './packages/*' typecheck",
+    "test": "bun run --filter './packages/*' test",
+    "test:coverage": "bun run --filter './packages/*' test:coverage",
+    "test:e2e": "playwright test",
+    "size": "node scripts/check-size.mjs",
+    "check": "bun run typecheck && bun run test:coverage && bun run build && bun run size && bun run test:e2e",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "site:dev": "bun run --filter @samline/utils-site dev",
+    "site:build": "bun run build && bun run --filter @samline/utils-site build",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "bun run check && changeset publish"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.29.7",
+    "@playwright/test": "^1.65.0",
+    "@types/node": "^24.13.5",
+    "@vitest/coverage-v8": "^5.0.1",
+    "esbuild": "^0.28.2",
+    "jsdom": "^26.1.0",
+    "prettier": "^3.9.0",
+    "tsup": "^8.5.0",
+    "typescript": "^5.9.3",
+    "vitest": "^5.0.1"
+  }
+}

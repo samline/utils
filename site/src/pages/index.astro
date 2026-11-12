@@ -1,0 +1,95 @@
+---
+import Base from '../layouts/Base.astro'
+import { catalog, categories, withBase } from '../lib/packages'
+---
+
+<Base
+  title="Samline Utils"
+  description="Small, framework-agnostic JavaScript, CSS and HTML utilities: browse them, compare them and read their documentation in one place."
+>
+  <h1>Samline Utils</h1>
+  <p class="lead">
+    Small, framework-agnostic utilities built on JavaScript, CSS and HTML. Each one is published on
+    its own, so you install only what you need.
+  </p>
+
+  <div class="toolbar" role="search">
+    <label class="visually-hidden" for="filter-text">Search utilities</label>
+    <input id="filter-text" type="search" placeholder="Search utilities" autocomplete="off" />
+    <label class="visually-hidden" for="filter-category">Category</label>
+    <select id="filter-category">
+      <option value="">All categories</option>
+      {categories.map(category => <option value={category}>{category}</option>)}
+    </select>
+  </div>
+
+  <p id="results" class="visually-hidden" aria-live="polite"></p>
+
+  <ul class="grid" id="catalog">
+    {
+      catalog.map(entry => (
+        <li
+          data-category={entry.category}
+          data-search={[entry.title, entry.npm, entry.summary, entry.category, ...entry.tags]
+            .join(' ')
+            .toLowerCase()}
+        >
+          <article class="card">
+            <h2>
+              <a href={withBase(`${entry.slug}/`)}>{entry.title}</a>
+            </h2>
+            <p>{entry.summary}</p>
+            <ul class="meta" aria-label="Details">
+              <li>{entry.category}</li>
+              <li>
+                <code>{entry.npm}</code>
+              </li>
+              <li>v{entry.version}</li>
+            </ul>
+          </article>
+        </li>
+      ))
+    }
+  </ul>
+  <p class="empty" id="empty" hidden>No utility matches your search.</p>
+</Base>
+
+<style>
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+</style>
+
+<script>
+  // Progressive enhancement: without JavaScript the full catalog stays visible.
+  import { debounce } from '@samline/debounce'
+
+  const text = document.getElementById('filter-text') as HTMLInputElement
+  const category = document.getElementById('filter-category') as HTMLSelectElement
+  const items = Array.from(document.querySelectorAll<HTMLElement>('#catalog > li'))
+  const empty = document.getElementById('empty')!
+  const results = document.getElementById('results')!
+
+  const apply = () => {
+    const query = text.value.trim().toLowerCase()
+    const selected = category.value
+    let shown = 0
+    for (const item of items) {
+      const match =
+        (!query || item.dataset.search!.includes(query)) &&
+        (!selected || item.dataset.category === selected)
+      item.hidden = !match
+      if (match) shown++
+    }
+    empty.hidden = shown > 0
+    results.textContent = `${shown} ${shown === 1 ? 'utility' : 'utilities'} shown`
+  }
+
+  text.addEventListener('input', debounce(apply, 120))
+  category.addEventListener('change', apply)
+</script>

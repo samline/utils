@@ -1,0 +1,8 @@
+dist
+coverage
+node_modules
+.astro
+bun.lock
+CHANGELOG.md
+test-results
+playwright-report

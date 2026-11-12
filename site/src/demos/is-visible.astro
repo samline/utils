@@ -1,0 +1,49 @@
+<p>Scroll the box. Each card reports when it enters and leaves.</p>
+<div class="scroller" tabindex="0" aria-label="Scrollable example">
+  {
+    Array.from({ length: 6 }, (_, i) => (
+      <div class="item" data-demo-item>
+        Card {i + 1}: <output>hidden</output>
+      </div>
+    ))
+  }
+</div>
+
+<style>
+  .scroller {
+    height: 14rem;
+    overflow-y: auto;
+    display: grid;
+    gap: 6rem;
+    padding: 1rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+  .item {
+    padding: 1.5rem;
+    border-radius: 8px;
+    background: var(--code-bg);
+  }
+  .item[data-state='visible'] {
+    outline: 2px solid var(--accent);
+  }
+</style>
+
+<script>
+  import isVisible from '@samline/is-visible'
+
+  const scroller = document.querySelector<HTMLElement>('.scroller')!
+  isVisible(scroller.querySelectorAll('[data-demo-item]'), {
+    root: scroller,
+    inOut: true,
+    threshold: 0.5,
+    visible: (_entry, item) => {
+      ;(item as HTMLElement).dataset.state = 'visible'
+      item.querySelector('output')!.textContent = 'visible'
+    },
+    notVisible: (_entry, item) => {
+      ;(item as HTMLElement).dataset.state = 'hidden'
+      item.querySelector('output')!.textContent = 'hidden'
+    },
+  })
+</script>

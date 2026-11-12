@@ -1,0 +1,113 @@
+{
+  "name": "@samline/is-visible",
+  "version": "0.5.1",
+  "description": "Visibility callbacks for one or many elements on shared IntersectionObservers, for vanilla JavaScript, React, Vue, Svelte and plain HTML.",
+  "keywords": [
+    "intersection-observer",
+    "visibility",
+    "in-view",
+    "lazy",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "author": "Samuel Olvera (samline)",
+  "license": "MIT",
+  "homepage": "https://samline.github.io/utils/is-visible/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samline/utils.git",
+    "directory": "packages/is-visible"
+  },
+  "bugs": {
+    "url": "https://github.com/samline/utils/issues"
+  },
+  "type": "module",
+  "sideEffects": [
+    "./dist/browser/is-visible.global.js"
+  ],
+  "files": [
+    "dist",
+    "CHANGELOG.md"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "unpkg": "./dist/browser/is-visible.global.js",
+  "jsdelivr": "./dist/browser/is-visible.global.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./vanilla": {
+      "types": "./dist/vanilla/index.d.ts",
+      "import": "./dist/vanilla/index.js",
+      "require": "./dist/vanilla/index.cjs"
+    },
+    "./react": {
+      "types": "./dist/react/index.d.ts",
+      "import": "./dist/react/index.js",
+      "require": "./dist/react/index.cjs"
+    },
+    "./vue": {
+      "types": "./dist/vue/index.d.ts",
+      "import": "./dist/vue/index.js",
+      "require": "./dist/vue/index.cjs"
+    },
+    "./svelte": {
+      "types": "./dist/svelte/index.d.ts",
+      "import": "./dist/svelte/index.js",
+      "require": "./dist/svelte/index.cjs"
+    },
+    "./browser": "./dist/browser/is-visible.global.js",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "clean": "rm -rf dist coverage",
+    "build": "tsup",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "prepublishOnly": "bun run clean && bun run build && bun run typecheck && bun run test:coverage"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "svelte": ">=4",
+    "vue": ">=3.3"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    },
+    "svelte": {
+      "optional": true
+    },
+    "vue": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@samline/internal": "workspace:*",
+    "@testing-library/react": "^16.3.0",
+    "@types/react": "^19.1.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "svelte": "^5.28.2",
+    "vue": "^3.5.13"
+  },
+  "size": {
+    "./dist/index.js": 1400,
+    "./dist/browser/is-visible.global.js": 1400,
+    "./dist/react/index.js": 2000,
+    "./dist/vue/index.js": 2000,
+    "./dist/svelte/index.js": 1800
+  }
+}
