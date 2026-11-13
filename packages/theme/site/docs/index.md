@@ -1,0 +1,54 @@
+---
+title: Theme
+description: What @samline/theme does, how a theme is chosen, applied before the first paint, remembered and kept in sync with the system and other tabs.
+locale: en
+sidebar:
+  group: start
+  order: 1
+  label: Overview
+---
+
+`@samline/theme` manages light, dark and system themes, or any themes you name. Load it in `<head>` and the stored theme is on the page before it paints, so a dark page never flashes light. Buttons, radios and selects with `data-theme-*` attributes switch it without code.
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@samline/theme@1.0.0/dist/browser/theme.global.js"></script>
+
+<button type="button" data-theme-toggle>Dark mode</button>
+```
+
+```css
+:root {
+  --bg: #fff;
+  --fg: #111;
+}
+[data-theme='dark'] {
+  --bg: #111;
+  --fg: #eee;
+}
+```
+
+## How it works
+
+1. The **mode** is read from `localStorage`, or `defaultMode` (`'system'`) when nothing is stored. It is a theme name or `'system'`.
+2. The mode is resolved to a **theme**: `'system'` becomes `'light'` or `'dark'` from `prefers-color-scheme`.
+3. The theme is written on `<html>` as `data-theme` (or a class), with `color-scheme` for native controls and an optional `<meta name="theme-color">`.
+4. A new choice is stored, applied without CSS transitions and reported to listeners and a `themechange` event.
+5. While in system mode, a change in the operating system updates the page. A choice made in another tab updates this one.
+
+## Pieces
+
+| Job                   | How                                                              |
+| --------------------- | ---------------------------------------------------------------- |
+| No flash on load      | The CDN script in `<head>`, or `themeScript()` inlined there     |
+| A dark mode button    | `data-theme-toggle`                                              |
+| Light, dark or system | `data-theme-set="light"`, radios, or `select[data-theme-select]` |
+| From code             | `createTheme()`, then `set()`, `toggle()`, `subscribe()`         |
+| More themes           | `themes: ['light', 'dark', 'sepia']`                             |
+| Browser UI color      | `themeColor`                                                     |
+| Theme a widget only   | `target` and `scope`                                             |
+
+- [Installation](getting-started/) — npm, CDN and the first toggle.
+- [API reference](reference/api/) — `createTheme`, `themeScript`, the controller and `window.Theme`.
+- [Options](reference/configuration/) — options, controls and script attributes.
+- [Layouts](guides/layouts/) — CSS, custom themes, server rendering, widgets and transitions.
+- [Frameworks](guides/frameworks/) — React, Vue, Svelte, Astro and Next.js.

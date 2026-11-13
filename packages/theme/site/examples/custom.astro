@@ -1,0 +1,70 @@
+---
+import './_shared.css'
+---
+
+<div class="preview" data-preview="custom">
+  <div class="stage themed">
+    <fieldset>
+      <legend>Theme</legend>
+      <label>
+        <input type="radio" name="utils-theme-custom" data-theme-set="light" /> Light
+      </label>
+      <label>
+        <input type="radio" name="utils-theme-custom" data-theme-set="dark" /> Dark
+      </label>
+      <label>
+        <input type="radio" name="utils-theme-custom" data-theme-set="sepia" /> Sepia
+      </label>
+    </fieldset>
+    <div class="card">
+      <p>Written as a class, with a palette of its own for each theme.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { createTheme } from '@samline/theme'
+
+  const root = document.querySelector<HTMLElement>('[data-preview="custom"]')!
+  createTheme({
+    target: root.querySelector('.stage')!,
+    scope: root,
+    themes: ['light', 'dark', 'sepia'],
+    defaultMode: 'light',
+    attribute: 'class',
+    storageKey: 'utils-theme-example-custom',
+  })
+</script>
+
+<style>
+  .themed {
+    --custom-bg: #ffffff;
+    --custom-fg: #18181b;
+    --custom-card: #f4f4f5;
+    background: var(--custom-bg);
+    color: var(--custom-fg);
+    font-family: Georgia, serif;
+  }
+  .themed.dark {
+    --custom-bg: #18181b;
+    --custom-fg: #f4f4f5;
+    --custom-card: #27272a;
+  }
+  .themed.sepia {
+    --custom-bg: #f4ecd8;
+    --custom-fg: #433422;
+    --custom-card: #eadfc4;
+  }
+  .themed .card {
+    background: var(--custom-card);
+    border-color: transparent;
+  }
+  fieldset {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    border: 0.0625rem solid currentColor;
+    border-radius: var(--radius-control);
+    font-size: 0.875rem;
+  }
+</style>

@@ -1,0 +1,78 @@
+---
+import './_shared.css'
+---
+
+<div class="preview" data-preview="picker">
+  <div class="stage">
+    <div class="group" role="group" aria-label="Theme">
+      <button type="button" data-theme-set="light">
+        Light
+      </button>
+      <button type="button" data-theme-set="system">
+        System
+      </button>
+      <button type="button" data-theme-set="dark">
+        Dark
+      </button>
+    </div>
+    <label class="field">
+      Theme
+      <select data-theme-select>
+        <option value="system">System</option>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+      </select>
+    </label>
+    <p class="card" aria-live="polite">
+      <output></output>
+    </p>
+  </div>
+</div>
+
+<script>
+  import { createTheme, type ThemeState } from '@samline/theme'
+
+  const root = document.querySelector<HTMLElement>('[data-preview="picker"]')!
+  const output = root.querySelector('output')!
+  const show = ({ mode, theme }: ThemeState) =>
+    (output.value = mode === 'system' ? `Following the system: ${theme}` : `Chosen: ${theme}`)
+  const theme = createTheme({
+    target: root.querySelector('.stage')!,
+    scope: root,
+    storageKey: 'utils-theme-example-picker',
+    onChange: show,
+  })
+  show(theme)
+</script>
+
+<style>
+  .group {
+    display: inline-flex;
+    justify-self: start;
+    border: 0.0625rem solid var(--color-border);
+    border-radius: 999rem;
+    overflow: hidden;
+  }
+  .group button {
+    padding: 0.375rem 0.875rem;
+    border: 0;
+    background: transparent;
+    color: var(--color-text);
+    font: inherit;
+    font-size: 0.875rem;
+    cursor: pointer;
+  }
+  .group [aria-pressed='true'] {
+    background: var(--color-accent);
+    color: var(--color-bg);
+  }
+  .field {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    font-size: 0.875rem;
+  }
+  select {
+    font: inherit;
+  }
+</style>

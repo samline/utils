@@ -19,7 +19,8 @@
       "reveal",
       "scroll-spy",
       "scroll-to",
-      "string"
+      "string",
+      "theme"
     ]
   },
   "site": {

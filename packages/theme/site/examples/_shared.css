@@ -1,0 +1,40 @@
+.preview {
+  display: grid;
+  gap: 0.75rem;
+  color: var(--color-text);
+}
+/* The box carries its own data-theme, so the site's tokens follow it. */
+.preview .stage {
+  display: grid;
+  gap: 1rem;
+  padding: 1.25rem;
+  border: 0.0625rem solid var(--color-border);
+  border-radius: var(--radius-control);
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+.preview .card {
+  padding: 1rem;
+  border: 0.0625rem solid var(--color-border);
+  border-radius: var(--radius-control);
+  font-size: 0.875rem;
+}
+.preview .card p {
+  margin: 0;
+}
+.preview .pill {
+  justify-self: start;
+  padding: 0.375rem 0.875rem;
+  border: 0.0625rem solid var(--color-border);
+  border-radius: 999rem;
+  background: transparent;
+  color: var(--color-text);
+  font: inherit;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+.preview .pill[aria-pressed='true'] {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-bg);
+}

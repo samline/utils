@@ -1171,6 +1171,139 @@
           "reviewed": true
         }
       ]
+    },
+    "theme": {
+      "status": "verified",
+      "packageVersion": "1.0.0",
+      "capabilityReview": {
+        "status": "verified",
+        "integrations": [
+          {
+            "name": "Package / ESM and CommonJS",
+            "evidence": "package.json exports",
+            "destination": "../packages/theme/site/docs/getting-started.md",
+            "reviewed": true
+          },
+          {
+            "name": "HTML / CDN (window.Theme)",
+            "evidence": "src/browser/global.ts",
+            "destination": "../packages/theme/site/docs/getting-started.md",
+            "reviewed": true
+          },
+          {
+            "name": "React, Next.js, Vue, Svelte and Astro",
+            "evidence": "createTheme subscribe and themeScript",
+            "destination": "../packages/theme/site/docs/guides/frameworks.md",
+            "reviewed": true
+          }
+        ],
+        "scenarios": [
+          {
+            "name": "Dark mode toggle",
+            "evidence": "test/theme.test.ts, tests/e2e/theme.spec.ts, tests/e2e/examples.spec.ts",
+            "destination": "../packages/theme/site/examples/toggle.astro",
+            "reviewed": true
+          },
+          {
+            "name": "Light, dark or system picker",
+            "evidence": "test/theme.test.ts (controls, system, themechange), tests/e2e/examples.spec.ts",
+            "destination": "../packages/theme/site/examples/picker.astro",
+            "reviewed": true
+          },
+          {
+            "name": "Custom themes as a class with theme-color",
+            "evidence": "test/theme.test.ts (attribute class, themeColor), tests/e2e/examples.spec.ts",
+            "destination": "../packages/theme/site/examples/custom.astro",
+            "reviewed": true
+          }
+        ],
+        "onboarding": {
+          "equivalentModes": true
+        }
+      },
+      "sources": [
+        {
+          "source": "packages/theme/README.md",
+          "sha256": "ed97feb3c03cfba3142683136749beaed58084d65f2861af5c4151b084f3bdda",
+          "destination": "../packages/theme/site/docs/index.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/theme/src/browser/global.ts",
+          "sha256": "36686a1aaccc807417bee727042546a815f2760c0fef73300fe4aecea5ad5d0d",
+          "destination": "../packages/theme/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/theme/src/core/theme.ts",
+          "sha256": "87f8a5a93e6e386acd508e314828cb40c0ba1a15031c1793f5a0ddf5e831b875",
+          "destination": "../packages/theme/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/theme/src/core/index.ts",
+          "sha256": "51860afa7a79946dbc62e8eaedb5f9234129e4b66b86111b131d0f3f512f6917",
+          "destination": "../packages/theme/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/theme/src/index.ts",
+          "sha256": "c6ec0d5a44f999e2d0e3568ee26639e5459c1c72fc8493dad372a642dca97e25",
+          "destination": "../packages/theme/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/theme/src/vanilla/index.ts",
+          "sha256": "164e5483d913df9da1fece240f3213d3b42d26a04dd5c70b9d91dc1c069c4cb5",
+          "destination": "../packages/theme/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/theme/src/core/theme.ts",
+          "sha256": "87f8a5a93e6e386acd508e314828cb40c0ba1a15031c1793f5a0ddf5e831b875",
+          "destination": "../packages/theme/site/docs/reference/configuration.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/theme/src/core/theme.ts",
+          "sha256": "87f8a5a93e6e386acd508e314828cb40c0ba1a15031c1793f5a0ddf5e831b875",
+          "destination": "../packages/theme/site/docs/guides/layouts.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/theme/src/core/theme.ts",
+          "sha256": "87f8a5a93e6e386acd508e314828cb40c0ba1a15031c1793f5a0ddf5e831b875",
+          "destination": "../packages/theme/site/docs/guides/frameworks.md",
+          "reviewed": true
+        }
+      ],
+      "publicExports": [
+        {
+          "source": "createTheme, themeScript, SYSTEM, EVENT",
+          "destination": "../packages/theme/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "Theme, ThemeState, ThemeMode",
+          "destination": "../packages/theme/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "ThemeOptions",
+          "destination": "../packages/theme/site/docs/reference/configuration.md",
+          "reviewed": true
+        },
+        {
+          "source": "data-theme-* controls",
+          "destination": "../packages/theme/site/docs/reference/configuration.md",
+          "reviewed": true
+        },
+        {
+          "source": "window.Theme",
+          "destination": "../packages/theme/site/docs/reference/api.md",
+          "reviewed": true
+        }
+      ]
     }
   }
 }

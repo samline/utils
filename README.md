@@ -20,15 +20,15 @@ Small, framework-agnostic JavaScript, CSS and HTML utilities. Each one is publis
 Install only the packages you need:
 
 ```sh
-npm install @samline/counter @samline/debounce @samline/horizontal-scroll @samline/is-visible @samline/reveal @samline/scroll-spy @samline/scroll-to @samline/string
+npm install @samline/counter @samline/debounce @samline/horizontal-scroll @samline/is-visible @samline/reveal @samline/scroll-spy @samline/scroll-to @samline/string @samline/theme
 ```
 
 ```sh
-pnpm add @samline/counter @samline/debounce @samline/horizontal-scroll @samline/is-visible @samline/reveal @samline/scroll-spy @samline/scroll-to @samline/string
+pnpm add @samline/counter @samline/debounce @samline/horizontal-scroll @samline/is-visible @samline/reveal @samline/scroll-spy @samline/scroll-to @samline/string @samline/theme
 ```
 
 ```sh
-bun add @samline/counter @samline/debounce @samline/horizontal-scroll @samline/is-visible @samline/reveal @samline/scroll-spy @samline/scroll-to @samline/string
+bun add @samline/counter @samline/debounce @samline/horizontal-scroll @samline/is-visible @samline/reveal @samline/scroll-spy @samline/scroll-to @samline/string @samline/theme
 ```
 
 Every package works in modern browsers and Node 20 or newer, has no runtime dependencies and ships a classic browser script for pages without a build step.
@@ -92,6 +92,7 @@ Every entry point has a gzip size budget enforced in CI. Shared helpers from `pa
 | [`@samline/scroll-spy`](packages/scroll-spy)               | Highlights the navigation link of the section in view, with aria-current.      |
 | [`@samline/scroll-to`](packages/scroll-to)                 | Smooth scrolling to anchors and elements with offsets, focus and history.      |
 | [`@samline/string`](packages/string)                       | Case conversion, slugify, accents, truncate and initials on one word splitter. |
+| [`@samline/theme`](packages/theme)                         | Light, dark and system themes without a flash, with accessible controls.       |
 
 ### Entrypoints
 
@@ -116,6 +117,7 @@ The [website](https://samline.github.io/utils/) has a Home, live examples and co
 | [Scroll Spy docs](https://samline.github.io/utils/docs/scroll-spy/)               | Installation, options, layouts and frameworks of `@samline/scroll-spy`.          |
 | [Scroll To docs](https://samline.github.io/utils/docs/scroll-to/)                 | Installation, options, layouts and frameworks of `@samline/scroll-to`.           |
 | [String docs](https://samline.github.io/utils/docs/string/)                       | Every function, the options and how words are split in `@samline/string`.        |
+| [Theme docs](https://samline.github.io/utils/docs/theme/)                         | Installation, controls, options and the no-flash script of `@samline/theme`.     |
 | [Examples](https://samline.github.io/utils/examples/)                             | Live previews with complete and separate source files.                           |
 
 ### Repository map
@@ -131,6 +133,7 @@ packages/
   scroll-spy/    @samline/scroll-spy: src, tests, README, CHANGELOG and site/ content
   scroll-to/     @samline/scroll-to: src, tests, README, CHANGELOG and site/ content
   string/        @samline/string: src, tests, README, CHANGELOG and site/ content
+  theme/         @samline/theme: src, tests, README, CHANGELOG and site/ content
 site/            Website from package-landing-docs in collection mode
 tests/e2e/       Playwright tests in Chromium, Firefox and WebKit against the built bundles
 scripts/         Size budgets and repository checks
@@ -141,7 +144,7 @@ Each package's `site/` folder holds its catalog metadata, Home copy, live demo, 
 
 ## Changelog
 
-Each package keeps its own `CHANGELOG.md`, generated from changesets: [counter](packages/counter/CHANGELOG.md), [debounce](packages/debounce/CHANGELOG.md), [horizontal-scroll](packages/horizontal-scroll/CHANGELOG.md), [is-visible](packages/is-visible/CHANGELOG.md), [reveal](packages/reveal/CHANGELOG.md), [scroll-spy](packages/scroll-spy/CHANGELOG.md), [scroll-to](packages/scroll-to/CHANGELOG.md) and [string](packages/string/CHANGELOG.md). This repository's [CHANGELOG.md](CHANGELOG.md) records changes to the monorepo itself.
+Each package keeps its own `CHANGELOG.md`, generated from changesets: [counter](packages/counter/CHANGELOG.md), [debounce](packages/debounce/CHANGELOG.md), [horizontal-scroll](packages/horizontal-scroll/CHANGELOG.md), [is-visible](packages/is-visible/CHANGELOG.md), [reveal](packages/reveal/CHANGELOG.md), [scroll-spy](packages/scroll-spy/CHANGELOG.md), [scroll-to](packages/scroll-to/CHANGELOG.md), [string](packages/string/CHANGELOG.md) and [theme](packages/theme/CHANGELOG.md). This repository's [CHANGELOG.md](CHANGELOG.md) records changes to the monorepo itself.
 
 ### Releasing
 
@@ -165,6 +168,7 @@ Each package has an integration skill for AI agents, maintained in its `site/SKI
 - [Scroll Spy skill](https://samline.github.io/utils/skills/scroll-spy/SKILL.md) — source: [packages/scroll-spy/site/SKILL.md](packages/scroll-spy/site/SKILL.md)
 - [Scroll To skill](https://samline.github.io/utils/skills/scroll-to/SKILL.md) — source: [packages/scroll-to/site/SKILL.md](packages/scroll-to/site/SKILL.md)
 - [String skill](https://samline.github.io/utils/skills/string/SKILL.md) — source: [packages/string/site/SKILL.md](packages/string/site/SKILL.md)
+- [Theme skill](https://samline.github.io/utils/skills/theme/SKILL.md) — source: [packages/theme/site/SKILL.md](packages/theme/site/SKILL.md)
 
 Download a `SKILL.md` into a folder with the package name in your agent's supported skill directory, for example `.agents/skills/debounce/SKILL.md`. Discovery paths and invocation syntax depend on the agent.
 

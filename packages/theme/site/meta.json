@@ -1,0 +1,16 @@
+{
+  "title": "Theme",
+  "category": "Interface",
+  "summary": "Light, dark and system themes without a flash, with a remembered choice, live system changes, other tabs and accessible controls.",
+  "tags": [
+    "theme",
+    "dark-mode",
+    "color-scheme",
+    "prefers-color-scheme",
+    "theme-toggle",
+    "no-flash"
+  ],
+  "delivery": {
+    "cdnScript": "https://cdn.jsdelivr.net/npm/@samline/theme@1.0.0/dist/browser/theme.global.js"
+  }
+}

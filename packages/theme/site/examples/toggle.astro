@@ -1,0 +1,27 @@
+---
+import './_shared.css'
+---
+
+<div class="preview" data-preview="toggle">
+  <div class="stage">
+    <button type="button" class="pill" data-theme-toggle>
+      <span aria-hidden="true">◐</span> Dark mode
+    </button>
+    <div class="card">
+      <p>This box remembers its own theme. Reload the page: it stays.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { createTheme } from '@samline/theme'
+
+  const root = document.querySelector<HTMLElement>('[data-preview="toggle"]')!
+  // Theme this box only, with its own storage and controls.
+  createTheme({
+    target: root.querySelector('.stage')!,
+    scope: root,
+    storageKey: 'utils-theme-example-toggle',
+    defaultMode: 'light',
+  })
+</script>
