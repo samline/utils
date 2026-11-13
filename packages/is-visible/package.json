@@ -1,6 +1,6 @@
 {
   "name": "@samline/is-visible",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Visibility callbacks for one or many elements on shared IntersectionObservers, for vanilla JavaScript, React, Vue, Svelte and plain HTML.",
   "keywords": [
     "intersection-observer",

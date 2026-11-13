@@ -56,7 +56,7 @@ window.addEventListener('scroll', measure, { passive: true })
 For Shopify, WordPress or plain HTML pages without a build step, load the browser bundle with a classic script tag. Pin the version in production.
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@samline/debounce@1.0.0/dist/browser/debounce.global.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@samline/debounce@1.0.1/dist/browser/debounce.global.js"></script>
 <script>
   const { debounce, throttle, rafThrottle } = window.Debounce
   const search = debounce(query => console.log('search', query), 250)

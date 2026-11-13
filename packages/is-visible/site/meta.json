@@ -11,6 +11,6 @@
     "svelte"
   ],
   "delivery": {
-    "cdnScript": "https://cdn.jsdelivr.net/npm/@samline/is-visible@1.0.0/dist/browser/is-visible.global.js"
+    "cdnScript": "https://cdn.jsdelivr.net/npm/@samline/is-visible@1.0.1/dist/browser/is-visible.global.js"
   }
 }

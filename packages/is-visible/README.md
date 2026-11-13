@@ -62,7 +62,7 @@ stop() // stops observing every element of this call
 For Shopify, WordPress or plain HTML pages without a build step, load the browser bundle with a classic script tag. Pin the version in production.
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@samline/is-visible@1.0.0/dist/browser/is-visible.global.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@samline/is-visible@1.0.1/dist/browser/is-visible.global.js"></script>
 <script>
   window.isVisible('[data-track]', {
     once: true,

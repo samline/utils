@@ -15,7 +15,7 @@
   "packages": {
     "debounce": {
       "status": "verified",
-      "packageVersion": "1.0.0",
+      "packageVersion": "1.0.1",
       "capabilityReview": {
         "status": "verified",
         "integrations": [
@@ -65,13 +65,13 @@
       "sources": [
         {
           "source": "packages/debounce/README.md",
-          "sha256": "1d336cdcb84c3cd86b6bcb2131dd18494f414b6edb093265a6b25bc60ba59913",
+          "sha256": "b8480a39795162561d6084d6fd09b84b32b8e2fc306df8605d74ee58b86eb2e1",
           "destination": "../packages/debounce/site/docs/index.md",
           "reviewed": true
         },
         {
           "source": "packages/debounce/CHANGELOG.md",
-          "sha256": "87bd61d14a17ad1de82826890f42651ad92316d4a81a960df3d9cf9e7a8cc147",
+          "sha256": "40b2a7a15f3bf6389e1d91d8c7d57011cfe639129a3de635b5e29e2398b5b24a",
           "destination": "../packages/debounce/CHANGELOG.md",
           "reviewed": true
         },
@@ -186,7 +186,7 @@
     },
     "is-visible": {
       "status": "verified",
-      "packageVersion": "1.0.0",
+      "packageVersion": "1.0.1",
       "capabilityReview": {
         "status": "verified",
         "integrations": [
@@ -236,13 +236,13 @@
       "sources": [
         {
           "source": "packages/is-visible/README.md",
-          "sha256": "37b5e0bbf25205951795142097fecf2f67fe2c74c3b33ed14e119e416461aece",
+          "sha256": "66db8a5002b0a7dc0f0ee854e3c36bddcc2124b4bedee3344d5dc070cc7c799f",
           "destination": "../packages/is-visible/site/docs/index.md",
           "reviewed": true
         },
         {
           "source": "packages/is-visible/CHANGELOG.md",
-          "sha256": "2ec76579af15f81957147b05a17909e7610303a85c93be276b94d1a9ec25305b",
+          "sha256": "64850c6af504bb9078665e560a22ad6c54645e7ee64a0f679cd07dc00039051a",
           "destination": "../packages/is-visible/CHANGELOG.md",
           "reviewed": true
         },
