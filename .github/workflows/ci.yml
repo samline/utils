@@ -36,4 +36,4 @@ jobs:
       - run: npm --prefix site test
       - run: npm --prefix site run build
       - run: npm --prefix site run check:identity
-      - run: npm --prefix site run check:content
+      - run: npm --prefix site run check:release

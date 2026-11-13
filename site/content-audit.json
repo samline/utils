@@ -3,8 +3,8 @@
   "packageVersion": "1.0.0",
   "notes": "Collection mode audit (see .agents/collection-mode.md). Reviewed 2026-11-12 against the package sources at the listed hashes.",
   "themeReview": {
-    "status": "pending",
-    "source": "Accent pair carried over from the first utils site; awaiting maintainer confirmation.",
+    "status": "verified",
+    "source": "Confirmed by the maintainer in chat on 2026-11-12.",
     "accentLight": "#5b4b8a",
     "accentDark": "#b9aee0"
   },
