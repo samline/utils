@@ -6,6 +6,7 @@
 import { format, resolveConfig } from 'prettier'
 import controls from '../i18n/translations/en/controls'
 import { findPackage } from './identity'
+import { project } from './project.mjs'
 
 export interface PackageExample {
   readonly id: string
@@ -17,22 +18,33 @@ export interface PackageExample {
   readonly files: { readonly html: string; readonly css?: string; readonly js: string }
 }
 
-const records = import.meta.glob<readonly PackageExample[]>('@collection/*/site/examples.ts', {
-  eager: true,
-  import: 'default',
-})
-const previews = import.meta.glob<{ default: unknown }>('@collection/*/site/examples/*.astro', {
-  eager: true,
-})
+const records = {
+  ...import.meta.glob<readonly PackageExample[]>('@collection/*/site/examples.ts', {
+    eager: true,
+    import: 'default',
+  }),
+  // Package mode: <site root>/site/examples.ts (see collection-mode.md).
+  ...import.meta.glob<readonly PackageExample[]>('@package-site/examples.ts', {
+    eager: true,
+    import: 'default',
+  }),
+}
+const previews = {
+  ...import.meta.glob<{ default: unknown }>('@collection/*/site/examples/*.astro', { eager: true }),
+  ...import.meta.glob<{ default: unknown }>('@package-site/examples/*.astro', { eager: true }),
+}
+
+/** Path prefix of a package's site folder: `/<slug>/site/` or, in package mode, `/site/`. */
+const folder = (slug?: string | null) => (slug ? `/${slug}/site/` : '/site/')
 
 const options = await resolveConfig(process.cwd())
 
 const keyFor = <T>(map: Record<string, T>, suffix: string) =>
   Object.keys(map).find(path => path.endsWith(suffix))
 
-/** The examples a collection package declares, validated. */
-export const examplesFor = (slug: string): readonly PackageExample[] => {
-  const key = keyFor(records, `/${slug}/site/examples.ts`)
+/** The examples a collection package (or, without a slug, the site's package) declares. */
+export const examplesFor = (slug?: string | null): readonly PackageExample[] => {
+  const key = keyFor(records, `${folder(slug)}examples.ts`)
   if (!key) return []
   const list = records[key]!
   const ids = new Set<string>()
@@ -41,20 +53,24 @@ export const examplesFor = (slug: string): readonly PackageExample[] => {
       throw new Error(`${slug} example ids must be lowercase slugs: "${item.id}"`)
     if (ids.has(item.id)) throw new Error(`${slug} repeats the example id "${item.id}"`)
     ids.add(item.id)
-    if (!keyFor(previews, `/${slug}/site/examples/${item.id}.astro`))
-      throw new Error(`${slug} example "${item.id}" needs site/examples/${item.id}.astro`)
+    if (!keyFor(previews, `${folder(slug)}examples/${item.id}.astro`))
+      throw new Error(`${slug ?? 'site'} example "${item.id}" needs site/examples/${item.id}.astro`)
   }
   return list
 }
 
 /** The live preview component of one example. */
-export const previewFor = (slug: string, id: string) =>
-  previews[keyFor(previews, `/${slug}/site/examples/${id}.astro`)!]!.default as (
+export const previewFor = (slug: string | null | undefined, id: string) =>
+  previews[keyFor(previews, `${folder(slug)}examples/${id}.astro`)!]!.default as (
     props: Record<string, unknown>
   ) => unknown
 
-const documentFor = (slug: string, example: PackageExample, separate: boolean) => {
-  const { cdnScript, cdnStylesheet } = findPackage(slug).delivery
+const documentFor = (
+  slug: string | null | undefined,
+  example: PackageExample,
+  separate: boolean
+) => {
+  const { cdnScript, cdnStylesheet } = slug ? findPackage(slug).delivery : project.delivery
   const css = example.files.css?.trim()
   const head = [
     '<meta charset="utf-8">',
@@ -77,7 +93,7 @@ const documentFor = (slug: string, example: PackageExample, separate: boolean) =
 }
 
 /** Formatted, copyable files for one example: separate files plus one complete document. */
-export const filesFor = async (slug: string, example: PackageExample) => {
+export const filesFor = async (slug: string | null | undefined, example: PackageExample) => {
   const files = [
     {
       id: 'html',

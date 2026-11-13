@@ -71,3 +71,14 @@ The package `CHANGELOG.md` and `README.md` stay the release and npm sources.
 - `/examples/` lists the packages that have examples.
 - `scripts/test-collection.mjs` builds `tests/fixtures/collection` (alpha with
   examples and docs, beta minimal) and runs the combined link check.
+
+## Custom previews in package mode (2026-11-13)
+
+The same `site/` contract works for a single package: when the site root has
+`site/Demo.astro`, Home shows it instead of the scenario tabs; when it has
+`site/examples.ts` with `site/examples/*.astro`, Examples (and a docs guide via
+`examplesFor()`) render `PackagePreview` items with their copyable files. An
+embedded package imports itself by npm name (Vite alias to the site root, which
+resolves through its exports: build it first). Scenario-only browser specs skip
+themselves through `e2e/custom-previews.ts`; such a package tests its copied
+files in its own spec. First consumer: samline/autocomplete.

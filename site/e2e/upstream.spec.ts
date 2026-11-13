@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test'
+import { customPreviews, customPreviewsReason } from './custom-previews'
 
 test('all destinations load only local WOFF2 faces and two heading preloads', async ({ page }) => {
   for (const path of ['./', 'examples/', 'docs/']) {
@@ -43,6 +44,7 @@ test('icon-only header controls keep square icons on narrow screens', async ({ p
 })
 
 test('delayed scripts reserve command and tab geometry without hiding source', async ({ page }) => {
+  test.skip(customPreviews, customPreviewsReason)
   await page.setViewportSize({ width: 390, height: 900 })
   let release!: () => void
   const ready = new Promise<void>(resolve => (release = resolve))
@@ -79,6 +81,7 @@ test('delayed scripts reserve command and tab geometry without hiding source', a
 test('initial tab selection has no color transition, with normal keyboard interaction intact', async ({
   page,
 }) => {
+  test.skip(customPreviews, customPreviewsReason)
   await page.addInitScript(() => {
     const transitions: string[] = []
     Object.assign(window, { initialTabTransitions: transitions })
@@ -140,6 +143,7 @@ test('copy reads live highlighted source and falls back to selecting it when den
 test('scopes reconnect once and an open drawer releases its lock on same-batch reinsertion', async ({
   page,
 }) => {
+  test.skip(customPreviews, customPreviewsReason)
   await page.setViewportSize({ width: 390, height: 900 })
   await page.goto('./')
   const demo = page.locator('package-site-demo').first()

@@ -11,6 +11,7 @@ import {
 import { localBuilds } from './demo-builds'
 import { readBuild, routeExample } from './demo-routing'
 import type { Page } from '@playwright/test'
+import { customPreviews, customPreviewsReason } from './custom-previews'
 const articles = (
   await readdir(new URL('../docs/src/content/docs/', import.meta.url), { recursive: true })
 )
@@ -96,6 +97,7 @@ test('all routes share readable metadata and fit both themes and enlarged mobile
 test('Home, Examples and Docs share the title font pairing and actual preview', async ({
   page,
 }) => {
+  test.skip(customPreviews, customPreviewsReason)
   for (const path of ['', 'examples/', 'docs/getting-started/']) {
     await page.goto(path || './')
     const styles = await page.locator('h1').evaluate(el => ({
@@ -144,6 +146,7 @@ test('file tabs copy exact highlighted source and feedback resets independently'
   page,
   context,
 }) => {
+  test.skip(customPreviews, customPreviewsReason)
   await context.grantPermissions(['clipboard-read', 'clipboard-write'])
   await page.goto('examples/')
   const section = page.locator(`#${presetIds[0]}`)
@@ -165,6 +168,7 @@ test("every scenario's copied files and complete document run in each loading mo
   page,
   context,
 }) => {
+  test.skip(customPreviews, customPreviewsReason)
   test.setTimeout(120000)
   const builds = {
     cdnScript: project.delivery.cdnScript,
@@ -232,6 +236,7 @@ test("every scenario's copied files and complete document run in each loading mo
   }
 })
 test('every native select uses the shared Select styling', async ({ page }) => {
+  test.skip(customPreviews, customPreviewsReason)
   let total = 0
   for (const path of paths) {
     await page.goto(path || './')
@@ -273,8 +278,9 @@ test('production Pagefind search returns meaningful links in a compact top drawe
   await page.goto('docs/')
   await page.getByRole('button', { name: 'Search documentation', exact: true }).click()
   const input = page.getByRole('searchbox')
-  await input.fill('configuration')
-  await expect(page.getByRole('link', { name: /Configuration/ }).last()).toBeVisible()
+  // Every package site documents installation, whatever its article titles are.
+  await input.fill('install')
+  await expect(page.locator('a[href*="getting-started"]').last()).toBeVisible()
   await page.keyboard.press('Escape')
   await expect(input).not.toBeVisible()
   await expect(
@@ -340,6 +346,7 @@ test('all pages pass automated accessibility checks in both themes', async ({ pa
 })
 
 test('highlighting has the same computed palette across all three routes', async ({ page }) => {
+  test.skip(customPreviews, customPreviewsReason)
   for (const theme of ['dark', 'light']) {
     let reference: unknown
     for (const path of ['', 'examples/', 'docs/getting-started/']) {

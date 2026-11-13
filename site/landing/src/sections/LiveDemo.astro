@@ -7,13 +7,17 @@ import DemoPanel from '../../../shared/components/DemoPanel.astro'
 import { identityFor, packageSlug } from '../../../shared/lib/identity'
 const { id = 'demo' } = Astro.props
 // Collection mode: a package Home shows its own site/Demo.astro preview.
-const demos = import.meta.glob<{ default: unknown }>('@collection/*/site/Demo.astro', {
-  eager: true,
-})
+const demos = {
+  ...import.meta.glob<{ default: unknown }>('@collection/*/site/Demo.astro', { eager: true }),
+  // Package mode: an optional site/Demo.astro replaces the scenario tabs.
+  ...import.meta.glob<{ default: unknown }>('@package-site/Demo.astro', { eager: true }),
+}
 const slug = packageSlug(Astro)
-const demoKey = slug && Object.keys(demos).find(path => path.endsWith(`/${slug}/site/Demo.astro`))
+const demoKey = Object.keys(demos).find(path =>
+  path.endsWith(slug ? `/${slug}/site/Demo.astro` : '/site/Demo.astro')
+)
 const PackageDemo = demoKey ? (demos[demoKey]!.default as any) : null
-const label = slug ? `${identityFor(Astro).name} preview` : t.label
+const label = PackageDemo ? `${identityFor(Astro).name} preview` : t.label
 ---
 
 <div id={id} class:list={['live-demo']}>

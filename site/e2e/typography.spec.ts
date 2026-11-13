@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test'
+import { customPreviews, customPreviewsReason } from './custom-previews'
 
 test('long API page titles and descriptions wrap at enlarged mobile text without clipping', async ({
   page,
@@ -34,6 +35,7 @@ test('long API page titles and descriptions wrap at enlarged mobile text without
 })
 
 test('expanded source files stay inside mobile gutters with enlarged text', async ({ page }) => {
+  test.skip(customPreviews, customPreviewsReason)
   await page.setViewportSize({ width: 320, height: 900 })
   await page.goto('examples/')
   await page.locator('.playground > details > summary').first().click()

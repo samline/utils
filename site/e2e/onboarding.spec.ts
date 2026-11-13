@@ -1,6 +1,8 @@
 import { test, expect } from '@playwright/test'
+import { customPreviews, customPreviewsReason } from './custom-previews'
 
 test('compact Home initialization links to the actual complete starter files', async ({ page }) => {
+  test.skip(customPreviews, customPreviewsReason)
   await page.goto('./')
   const card = page.locator('#how article').last()
   expect(await card.locator('code').textContent()).not.toContain('<!doctype')

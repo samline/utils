@@ -7,7 +7,8 @@ import CodeFiles from './CodeFiles.astro'
 import demo from '../i18n/translations/en/demo'
 import { filesFor, previewFor, type PackageExample } from '../lib/package-examples'
 interface Props {
-  slug: string
+  /** Collection package slug; omit in package mode. */
+  slug?: string | null
   example: PackageExample
   showCode?: boolean
 }
@@ -16,7 +17,11 @@ const Preview = previewFor(slug, example.id) as any
 const source = showCode ? await filesFor(slug, example) : null
 ---
 
-<div data-ui class:list={['package-preview']} data-package-example={`${slug}/${example.id}`}>
+<div
+  data-ui
+  class:list={['package-preview']}
+  data-package-example={`${slug ?? 'site'}/${example.id}`}
+>
   <DemoStudio>
     <DemoPanel label={example.tab} tagline={demo.previewTagline}>
       <p class:list={['description']}>{example.description}</p>

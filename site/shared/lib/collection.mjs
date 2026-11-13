@@ -101,13 +101,43 @@ export const readCollection = () => (project.collection?.packages ?? []).map(rea
  * - each package's npm name resolves to its directory, so previews import the
  *   real package through its package.json exports. Build the packages first.
  */
+const escapeName = name => name.replace(/[.*+?^${}()|[\]\\/]/g, '\\$&')
+
+/** True when the site root is the documented package itself (embedded site). */
+const embeddedPackage = () => {
+  const manifest = fileURLToPath(new URL('package.json', siteRoot))
+  if (!existsSync(manifest)) return false
+  return JSON.parse(readFileSync(manifest, 'utf8')).name === project.npmName
+}
+
+const packageSite = fileURLToPath(new URL('site/', siteRoot)).replace(/\/$/, '')
+
 export const collectionAlias = [
+  // Package mode: optional custom previews in <site root>/site/ (Demo.astro,
+  // examples.ts, examples/*.astro), the same contract as a collection package.
+  {
+    find: '@package-site',
+    replacement:
+      project.mode === 'package' && existsSync(packageSite)
+        ? packageSite
+        : fileURLToPath(new URL('../generated/no-packages', import.meta.url)),
+  },
   {
     find: '@collection',
     replacement: packagesDir ?? fileURLToPath(new URL('../generated/no-packages', import.meta.url)),
   },
+  // An embedded package site (the package's own repository) imports itself by
+  // npm name; Vite resolves it through the package's exports. Build it first.
+  ...(project.mode === 'package' && embeddedPackage()
+    ? [
+        {
+          find: new RegExp(`^${escapeName(project.npmName)}$`),
+          replacement: fileURLToPath(siteRoot).replace(/\/$/, ''),
+        },
+      ]
+    : []),
   ...readCollection().map(item => ({
-    find: new RegExp(`^${item.npmName.replace(/[.*+?^${}()|[\]\\/]/g, '\\$&')}$`),
+    find: new RegExp(`^${escapeName(item.npmName)}$`),
     replacement: `${packagesDir}/${item.slug}`,
   })),
 ]
