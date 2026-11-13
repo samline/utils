@@ -1,0 +1,43 @@
+---
+import './_shared.css'
+
+const chapters = Array.from({ length: 12 }, (_, i) => i + 1)
+---
+
+<div class="preview">
+  <div class="layout" data-preview="long">
+    <nav class="side chapters" aria-label="Chapters">
+      {chapters.map(n => (
+        <a href={`#spy-long-${n}`}>Chapter {n}</a>
+      ))}
+    </nav>
+    <div class="box" tabindex="0" aria-label="Scrollable book">
+      {chapters.map(n => (
+        <section id={`spy-long-${n}`}>
+          <h4>Chapter {n}</h4>
+        </section>
+      ))}
+    </div>
+  </div>
+</div>
+
+<script>
+  import { scrollSpy } from '@samline/scroll-spy'
+  import { scrollInBox } from './_scroll-in-box'
+
+  const layout = document.querySelector('[data-preview="long"]')!
+  const nav = layout.querySelector('nav')!
+  const box = layout.querySelector<HTMLElement>('.box')!
+  scrollSpy(nav, { root: box })
+  scrollInBox(nav, box)
+</script>
+
+<style>
+  .chapters {
+    height: 16rem;
+    overflow-y: auto;
+  }
+  section {
+    min-height: 10rem;
+  }
+</style>

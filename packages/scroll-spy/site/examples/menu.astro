@@ -1,0 +1,83 @@
+---
+import './_shared.css'
+
+const parts = ['home', 'work', 'about', 'contact']
+---
+
+<div class="preview">
+  <div class="box page" data-preview="menu" tabindex="0" aria-label="Scrollable one-page site">
+    <nav class="menu">
+      {parts.map(id => (
+        <a href={`#spy-menu-${id}`}>
+          {id[0]!.toUpperCase()}
+          {id.slice(1)}
+        </a>
+      ))}
+    </nav>
+    {parts.map(id => (
+      <section id={`spy-menu-${id}`}>
+        <h4>
+          {id[0]!.toUpperCase()}
+          {id.slice(1)}
+        </h4>
+      </section>
+    ))}
+  </div>
+  <p class="hash">
+    URL hash: <output data-hash>none</output>
+  </p>
+</div>
+
+<script>
+  import { scrollSpy } from '@samline/scroll-spy'
+  import { scrollInBox } from './_scroll-in-box'
+
+  const box = document.querySelector<HTMLElement>('[data-preview="menu"]')!
+  const nav = box.querySelector('nav')!
+  const hash = document.querySelector('[data-hash]')!
+  // On this site the preview shows the hash instead of changing the address;
+  // the copied files use updateHash: true.
+  scrollSpy(nav, {
+    root: box,
+    activeClass: 'is-active',
+    onChange: ({ id }) => (hash.textContent = id ? `#${id.replace('spy-menu-', '')}` : 'none'),
+  })
+  scrollInBox(nav, box, 48)
+</script>
+
+<style>
+  .page {
+    padding: 0;
+  }
+  .menu {
+    position: sticky;
+    top: 0;
+    display: flex;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    border-bottom: 0.0625rem solid var(--color-border);
+    background: var(--color-bg);
+  }
+  .menu a {
+    color: var(--color-text-subtle);
+    font-size: 0.875rem;
+    text-decoration: none;
+  }
+  .menu a.is-active {
+    color: var(--color-text);
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
+  }
+  section {
+    min-height: 14rem;
+    padding: 0 1rem;
+  }
+  .hash {
+    margin: 0;
+    font-size: 0.875rem;
+    color: var(--palette-specimen-text);
+  }
+  output {
+    font-family: var(--font-mono);
+  }
+</style>

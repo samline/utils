@@ -1,0 +1,45 @@
+---
+title: Scroll Spy
+description: What @samline/scroll-spy does, when a section is active, and how links, clicks and scroll containers fit together.
+locale: en
+sidebar:
+  group: start
+  order: 1
+  label: Overview
+---
+
+`@samline/scroll-spy` highlights the navigation link of the section being read. Put `data-scroll-spy` on a navigation of plain `#id` links and call `autoScrollSpy()` (or load the CDN script).
+
+```html
+<nav data-scroll-spy aria-label="On this page">
+  <a href="#install">Install</a>
+  <a href="#usage">Usage</a>
+</nav>
+```
+
+## When a section is active
+
+1. An activation line sits 25% down the viewport (or the scroll container). Change it with `offset`.
+2. The active section is the last one whose top has crossed the line. Before the first section, nothing is active.
+3. At the very bottom of the page, the last section in view is active, so a short final section can still be reached.
+4. A clicked link becomes active at once and stays active until scrolling settles, so smooth scrolling never flickers through the sections in between.
+
+The active link gets `aria-current="true"` and, if you set one, `activeClass`. Every link pointing to the same section is marked.
+
+## Pieces
+
+| Job | How |
+| --- | --- |
+| Watch a navigation | `data-scroll-spy`, or `scrollSpy(nav, options)` |
+| Move the line | `offset` / `data-scroll-spy-offset`: pixels or a percentage |
+| Style the active link | `[aria-current]` in CSS, or `activeClass` |
+| Sections in a panel | `root` |
+| Long navigations | `followActive` (on by default) |
+| Shareable URL | `updateHash` |
+| React to changes | `onChange({ id, section, links, previous })` |
+
+- [Installation](getting-started/) — npm, CDN and the first navigation.
+- [API reference](reference/api/) — `scrollSpy`, `autoScrollSpy` and `window.ScrollSpy`.
+- [Options](reference/configuration/) — attributes and options.
+- [Layouts](guides/layouts/) — sticky headers, scroll containers, smooth scrolling and nested lists.
+- [Frameworks](guides/frameworks/) — React, Vue, Svelte, Astro and page swaps.

@@ -629,6 +629,139 @@
         }
       ]
     },
+    "scroll-spy": {
+      "status": "verified",
+      "packageVersion": "1.0.0",
+      "capabilityReview": {
+        "status": "verified",
+        "integrations": [
+          {
+            "name": "Package / ESM and CommonJS",
+            "evidence": "package.json exports",
+            "destination": "../packages/scroll-spy/site/docs/getting-started.md",
+            "reviewed": true
+          },
+          {
+            "name": "HTML / CDN (window.ScrollSpy)",
+            "evidence": "src/browser/global.ts",
+            "destination": "../packages/scroll-spy/site/docs/getting-started.md",
+            "reviewed": true
+          },
+          {
+            "name": "React, Vue, Svelte and Astro",
+            "evidence": "scrollSpy().destroy and autoScrollSpy observe",
+            "destination": "../packages/scroll-spy/site/docs/guides/frameworks.md",
+            "reviewed": true
+          }
+        ],
+        "scenarios": [
+          {
+            "name": "Table of contents",
+            "evidence": "test/scroll-spy.test.ts, tests/e2e/scroll-spy.spec.ts, tests/e2e/examples.spec.ts",
+            "destination": "../packages/scroll-spy/site/examples/toc.astro",
+            "reviewed": true
+          },
+          {
+            "name": "One-page menu with class and hash",
+            "evidence": "test/scroll-spy.test.ts (updateHash), tests/e2e/examples.spec.ts",
+            "destination": "../packages/scroll-spy/site/examples/menu.astro",
+            "reviewed": true
+          },
+          {
+            "name": "Long navigation that follows",
+            "evidence": "test/scroll-spy.test.ts (followActive), tests/e2e/examples.spec.ts",
+            "destination": "../packages/scroll-spy/site/examples/long.astro",
+            "reviewed": true
+          }
+        ],
+        "onboarding": {
+          "equivalentModes": true
+        }
+      },
+      "sources": [
+        {
+          "source": "packages/scroll-spy/README.md",
+          "sha256": "a68ce2d72b49797e8efa24aa337a461f91a66403323bf18c099217b15b44d3fb",
+          "destination": "../packages/scroll-spy/site/docs/index.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/scroll-spy/src/browser/global.ts",
+          "sha256": "4f85888240357be9f9459f865390fa2315af73522a5a20c6be1898584c920f33",
+          "destination": "../packages/scroll-spy/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/scroll-spy/src/core/scroll-spy.ts",
+          "sha256": "099dbde094223bbbf27c82a68e4c94935980a6d7908a810581879dd9d742393e",
+          "destination": "../packages/scroll-spy/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/scroll-spy/src/core/index.ts",
+          "sha256": "67af14468a3156a2ca8fc20b68bca48bc56d9ef9f7d385cc56aeeb82c3c7b496",
+          "destination": "../packages/scroll-spy/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/scroll-spy/src/index.ts",
+          "sha256": "7dc6be86c10b81013aa5f78b85758afcaac8f781fd4f04ea566a090ba5211018",
+          "destination": "../packages/scroll-spy/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/scroll-spy/src/vanilla/index.ts",
+          "sha256": "ad8c0a4a5fb44849d7907aa44177bead69267782dd089a2c2e517236caf55f77",
+          "destination": "../packages/scroll-spy/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/scroll-spy/src/core/scroll-spy.ts",
+          "sha256": "099dbde094223bbbf27c82a68e4c94935980a6d7908a810581879dd9d742393e",
+          "destination": "../packages/scroll-spy/site/docs/reference/configuration.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/scroll-spy/src/core/scroll-spy.ts",
+          "sha256": "099dbde094223bbbf27c82a68e4c94935980a6d7908a810581879dd9d742393e",
+          "destination": "../packages/scroll-spy/site/docs/guides/layouts.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/scroll-spy/src/core/scroll-spy.ts",
+          "sha256": "099dbde094223bbbf27c82a68e4c94935980a6d7908a810581879dd9d742393e",
+          "destination": "../packages/scroll-spy/site/docs/guides/frameworks.md",
+          "reviewed": true
+        }
+      ],
+      "publicExports": [
+        {
+          "source": "scrollSpy, autoScrollSpy",
+          "destination": "../packages/scroll-spy/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "ScrollSpy, ScrollSpyChange",
+          "destination": "../packages/scroll-spy/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "ScrollSpyOptions, AutoScrollSpyOptions",
+          "destination": "../packages/scroll-spy/site/docs/reference/configuration.md",
+          "reviewed": true
+        },
+        {
+          "source": "data-scroll-spy attributes",
+          "destination": "../packages/scroll-spy/site/docs/reference/configuration.md",
+          "reviewed": true
+        },
+        {
+          "source": "window.ScrollSpy",
+          "destination": "../packages/scroll-spy/site/docs/reference/api.md",
+          "reviewed": true
+        }
+      ]
+    },
     "string": {
       "status": "verified",
       "packageVersion": "1.0.0",

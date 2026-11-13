@@ -1,0 +1,44 @@
+.preview {
+  display: grid;
+  gap: 1rem;
+  color: var(--color-text);
+}
+.preview .layout {
+  display: grid;
+  grid-template-columns: minmax(8rem, 10rem) 1fr;
+  gap: 1rem;
+}
+.preview .box {
+  height: 16rem;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  padding: 0 1rem;
+  border: 0.0625rem solid var(--color-border);
+  border-radius: var(--radius-control);
+}
+@media (prefers-reduced-motion: reduce) {
+  .preview .box {
+    scroll-behavior: auto;
+  }
+}
+.preview section h4 {
+  margin: 0;
+  padding: 1rem 0 0.5rem;
+  font-size: 1rem;
+}
+.preview .side {
+  display: grid;
+  align-content: start;
+  gap: 0.125rem;
+}
+.preview .side a {
+  padding: 0.375rem 0.75rem;
+  border-left: 0.125rem solid var(--color-border);
+  color: var(--color-text-subtle);
+  font-size: 0.875rem;
+  text-decoration: none;
+}
+.preview .side a[aria-current] {
+  border-color: var(--color-accent);
+  color: var(--color-text);
+}
