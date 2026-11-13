@@ -1,0 +1,10 @@
+{
+  "title": "Reveal",
+  "category": "Motion",
+  "summary": "Reveal elements as they scroll into view with CSS effects, cascades, repeat and a CSS-only scrub mode, without hiding what is already on screen.",
+  "tags": ["reveal", "scroll", "animation", "fade-in", "stagger", "scroll-driven"],
+  "delivery": {
+    "cdnScript": "https://cdn.jsdelivr.net/npm/@samline/reveal@1.0.0/dist/browser/reveal.global.js",
+    "cdnStylesheet": "https://cdn.jsdelivr.net/npm/@samline/reveal@1.0.0/dist/style.css"
+  }
+}

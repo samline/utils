@@ -65,9 +65,13 @@
         "vue",
       ],
     },
+    "packages/reveal": {
+      "name": "@samline/reveal",
+      "version": "1.0.0",
+    },
     "packages/string": {
       "name": "@samline/string",
-      "version": "0.0.0",
+      "version": "1.0.0",
     },
   },
   "packages": {
@@ -308,6 +312,8 @@
     "@samline/internal": ["@samline/internal@workspace:packages/internal"],
 
     "@samline/is-visible": ["@samline/is-visible@workspace:packages/is-visible"],
+
+    "@samline/reveal": ["@samline/reveal@workspace:packages/reveal"],
 
     "@samline/string": ["@samline/string@workspace:packages/string"],
 

@@ -11,7 +11,7 @@
   },
   "collection": {
     "packagesDir": "../packages",
-    "packages": ["debounce", "is-visible", "string"]
+    "packages": ["debounce", "is-visible", "reveal", "string"]
   },
   "site": {
     "url": "https://samline.github.io/utils/",

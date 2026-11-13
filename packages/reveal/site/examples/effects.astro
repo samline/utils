@@ -1,0 +1,33 @@
+---
+import '../../src/style.css'
+import './_shared.css'
+
+const effects = ['up', 'down', 'left', 'right', 'fade', 'zoom'] as const
+---
+
+<div class="preview">
+  <div class="box" data-preview="effects" tabindex="0" aria-label="Scrollable effects">
+    <p class="spacer">Scroll down, then back up</p>
+    {effects.map(effect => (
+      <div class="item" data-reveal={effect} data-reveal-repeat>
+        {effect}
+      </div>
+    ))}
+    <div class="item" data-reveal="blur" data-reveal-repeat data-reveal-duration="900">
+      blur, 900ms
+    </div>
+  </div>
+</div>
+
+<script>
+  import { autoReveal } from '@samline/reveal'
+
+  const box = document.querySelector<HTMLElement>('[data-preview="effects"]')!
+  autoReveal({ scope: box, root: box })
+</script>
+
+<style>
+  .item {
+    --reveal-distance: 1.5rem;
+  }
+</style>

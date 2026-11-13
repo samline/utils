@@ -345,6 +345,157 @@
         }
       ]
     },
+    "reveal": {
+      "status": "verified",
+      "packageVersion": "1.0.0",
+      "capabilityReview": {
+        "status": "verified",
+        "integrations": [
+          {
+            "name": "Package / ESM and CommonJS",
+            "evidence": "package.json exports",
+            "destination": "../packages/reveal/site/docs/getting-started.md",
+            "reviewed": true
+          },
+          {
+            "name": "HTML / CDN (window.Reveal)",
+            "evidence": "src/browser/global.ts",
+            "destination": "../packages/reveal/site/docs/getting-started.md",
+            "reviewed": true
+          },
+          {
+            "name": "Stylesheet (@samline/reveal/style.css)",
+            "evidence": "src/style.css",
+            "destination": "../packages/reveal/site/docs/reference/configuration.md",
+            "reviewed": true
+          },
+          {
+            "name": "React, Vue, Svelte and Astro",
+            "evidence": "reveal() cleanup and autoReveal observe",
+            "destination": "../packages/reveal/site/docs/guides/frameworks.md",
+            "reviewed": true
+          }
+        ],
+        "scenarios": [
+          {
+            "name": "Cascade a grid",
+            "evidence": "test/reveal.test.ts (stagger), tests/e2e/examples.spec.ts",
+            "destination": "../packages/reveal/site/examples/cascade.astro",
+            "reviewed": true
+          },
+          {
+            "name": "Effects on every entry",
+            "evidence": "test/reveal.test.ts (repeat), tests/e2e/reveal.spec.ts",
+            "destination": "../packages/reveal/site/examples/effects.astro",
+            "reviewed": true
+          },
+          {
+            "name": "CSS-only scrub",
+            "evidence": "tests/e2e/reveal.spec.ts (scrub)",
+            "destination": "../packages/reveal/site/examples/scrub.astro",
+            "reviewed": true
+          }
+        ],
+        "onboarding": {
+          "equivalentModes": true
+        }
+      },
+      "sources": [
+        {
+          "source": "packages/reveal/README.md",
+          "sha256": "2c530a6306faab8b5d4c157480f3dadb931c0163440a8a378e55ed22b7a881cf",
+          "destination": "../packages/reveal/site/docs/index.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/reveal/src/browser/global.ts",
+          "sha256": "0222b5ec96ffe945f360eb0040171994e3df53c465d05286c673fa950a7717c3",
+          "destination": "../packages/reveal/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/reveal/src/core/index.ts",
+          "sha256": "7d958905f3c8cd58166a02b0211b035f0a63efd669271206a0cefdbe0a2045f4",
+          "destination": "../packages/reveal/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/reveal/src/core/reveal.ts",
+          "sha256": "aa4e43d2436d56a99267a6f6aef09d50379e4ca47bacf2dac1bbf5f0ebd05a91",
+          "destination": "../packages/reveal/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/reveal/src/index.ts",
+          "sha256": "be05fb4a21ddb9f1437d79ebf23041a6c2a57d1ade3f85c7178009cac2deb177",
+          "destination": "../packages/reveal/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/reveal/src/vanilla/index.ts",
+          "sha256": "5a7498a6f6b8ba10593bf9d3e4bdd896a43e6c8ca8bce81f5effafa38baf264b",
+          "destination": "../packages/reveal/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/reveal/src/core/reveal.ts",
+          "sha256": "aa4e43d2436d56a99267a6f6aef09d50379e4ca47bacf2dac1bbf5f0ebd05a91",
+          "destination": "../packages/reveal/site/docs/reference/configuration.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/reveal/src/style.css",
+          "sha256": "1d0477ae1caa8a2885f2cd150f79410b1a423456faf19fdf0cd8363c42ccbcdb",
+          "destination": "../packages/reveal/site/docs/reference/configuration.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/reveal/src/style.css",
+          "sha256": "1d0477ae1caa8a2885f2cd150f79410b1a423456faf19fdf0cd8363c42ccbcdb",
+          "destination": "../packages/reveal/site/docs/guides/effects.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/reveal/src/style.css",
+          "sha256": "1d0477ae1caa8a2885f2cd150f79410b1a423456faf19fdf0cd8363c42ccbcdb",
+          "destination": "../packages/reveal/site/docs/guides/scrub.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/reveal/src/core/reveal.ts",
+          "sha256": "aa4e43d2436d56a99267a6f6aef09d50379e4ca47bacf2dac1bbf5f0ebd05a91",
+          "destination": "../packages/reveal/site/docs/guides/frameworks.md",
+          "reviewed": true
+        }
+      ],
+      "publicExports": [
+        {
+          "source": "reveal, autoReveal",
+          "destination": "../packages/reveal/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "REVEAL_EFFECTS, RevealEffect, RevealState",
+          "destination": "../packages/reveal/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "RevealOptions, AutoRevealOptions",
+          "destination": "../packages/reveal/site/docs/reference/configuration.md",
+          "reviewed": true
+        },
+        {
+          "source": "data-reveal attributes and --reveal custom properties",
+          "destination": "../packages/reveal/site/docs/reference/configuration.md",
+          "reviewed": true
+        },
+        {
+          "source": "window.Reveal",
+          "destination": "../packages/reveal/site/docs/reference/api.md",
+          "reviewed": true
+        }
+      ]
+    },
     "string": {
       "status": "verified",
       "packageVersion": "1.0.0",

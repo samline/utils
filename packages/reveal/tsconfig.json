@@ -1,0 +1,11 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "types": ["node"],
+    "paths": {
+      "@samline/internal": ["../internal/src/index.ts"],
+      "@samline/is-visible/core": ["../is-visible/src/core/index.ts"]
+    }
+  },
+  "include": ["src", "test", "vitest.config.ts", "tsup.config.ts"]
+}
