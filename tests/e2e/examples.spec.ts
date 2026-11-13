@@ -12,6 +12,7 @@ import horizontalScrollExamples from '../../packages/horizontal-scroll/site/exam
 import isVisibleExamples from '../../packages/is-visible/site/examples'
 import revealExamples from '../../packages/reveal/site/examples'
 import scrollSpyExamples from '../../packages/scroll-spy/site/examples'
+import scrollToExamples from '../../packages/scroll-to/site/examples'
 import stringExamples from '../../packages/string/site/examples'
 
 const bundle = (pkg: string) =>
@@ -348,5 +349,54 @@ test.describe('horizontal-scroll copyable examples', () => {
         el.scrollWidth > el.clientWidth,
       ])
     ).toEqual(['x mandatory', true])
+  })
+})
+
+test.describe('scroll-to copyable examples', () => {
+  type Page = import('@playwright/test').Page
+  const openDocument = async (page: Page, example: Example) => {
+    const script = readFileSync(bundle('scroll-to'), 'utf8')
+    await page.setViewportSize({ width: 1000, height: 700 })
+    await page.setContent(
+      `<!doctype html><html lang="en"><head><style>${example.files.css ?? ''}</style></head><body><main>${example.files.html}</main><script>${script}</script><script>${example.files.js}</script></body></html>`
+    )
+  }
+  const top = (page: Page, selector: string) =>
+    page.locator(selector).evaluate(el => Math.round(el.getBoundingClientRect().top))
+
+  test('anchors land below the fixed header and focus their section', async ({ page }) => {
+    await openDocument(page, find(scrollToExamples, 'header'))
+    const header = await page.locator('#header').evaluate(el => el.offsetHeight)
+    await page.getByRole('link', { name: 'Pricing' }).click()
+    await expect.poll(() => top(page, '#pricing')).toBe(header)
+    await expect(page.locator('#pricing')).toBeFocused()
+    await page.getByRole('button', { name: 'Back to top' }).click()
+    await expect.poll(() => page.evaluate(() => scrollY)).toBe(0)
+  })
+
+  test('the selected tab is centered in its strip', async ({ page }) => {
+    await openDocument(page, find(scrollToExamples, 'tabs'))
+    await page.getByRole('tab', { name: 'Topic 7' }).click()
+    await expect(page.getByRole('tab', { name: 'Topic 7' })).toHaveAttribute(
+      'aria-selected',
+      'true'
+    )
+    await expect
+      .poll(() =>
+        page.evaluate(() => {
+          const strip = document.getElementById('tabs')!.getBoundingClientRect()
+          const tab = document.getElementById('tab-7')!.getBoundingClientRect()
+          return Math.abs(tab.left + tab.width / 2 - (strip.left + strip.width / 2)) < 2
+        })
+      )
+      .toBe(true)
+  })
+
+  test('the answer is highlighted once the scroll arrives', async ({ page }) => {
+    await openDocument(page, find(scrollToExamples, 'await'))
+    await page.locator('#show').click()
+    await expect(page.locator('#status')).toHaveText('Arrived')
+    await expect(page.locator('#q4')).toHaveClass(/flash/)
+    expect(await top(page, '#q4')).toBe(16)
   })
 })

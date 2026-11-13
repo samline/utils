@@ -81,6 +81,10 @@
       "name": "@samline/scroll-spy",
       "version": "1.0.0",
     },
+    "packages/scroll-to": {
+      "name": "@samline/scroll-to",
+      "version": "1.0.0",
+    },
     "packages/string": {
       "name": "@samline/string",
       "version": "1.0.0",
@@ -332,6 +336,8 @@
     "@samline/reveal": ["@samline/reveal@workspace:packages/reveal"],
 
     "@samline/scroll-spy": ["@samline/scroll-spy@workspace:packages/scroll-spy"],
+
+    "@samline/scroll-to": ["@samline/scroll-to@workspace:packages/scroll-to"],
 
     "@samline/string": ["@samline/string@workspace:packages/string"],
 

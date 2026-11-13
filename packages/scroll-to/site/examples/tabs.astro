@@ -1,0 +1,40 @@
+---
+import './_shared.css'
+---
+
+<div class="preview">
+  <div class="tabs" data-preview="tabs" role="tablist" aria-label="Topics">
+    {Array.from({ length: 12 }, (_, i) => (
+      <button type="button" class="pill" role="tab" aria-selected={i === 0 ? 'true' : 'false'}>
+        Topic {i + 1}
+      </button>
+    ))}
+  </div>
+</div>
+
+<script>
+  import { scrollTo } from '@samline/scroll-to'
+
+  const tabs = document.querySelector<HTMLElement>('[data-preview="tabs"]')!
+  tabs.addEventListener('click', event => {
+    const tab = (event.target as Element).closest('[role="tab"]')
+    if (!tab) return
+    tabs.querySelector('[aria-selected="true"]')?.setAttribute('aria-selected', 'false')
+    tab.setAttribute('aria-selected', 'true')
+    void scrollTo(tab, { container: tabs, inline: 'center', block: 'nearest' })
+  })
+</script>
+
+<style>
+  .tabs {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding: 0.75rem;
+    border: 0.0625rem solid var(--color-border);
+    border-radius: var(--radius-control);
+  }
+  .tabs .pill {
+    flex: none;
+  }
+</style>

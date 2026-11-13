@@ -1,0 +1,51 @@
+---
+import './_shared.css'
+---
+
+<div class="preview">
+  <div class="controls">
+    <button type="button" class="pill" data-show>Show the answer to question 4</button>
+    <output aria-live="polite"></output>
+  </div>
+  <div class="box" data-preview="await" tabindex="0" aria-label="Questions">
+    {Array.from({ length: 6 }, (_, i) => (
+      <article id={`scroll-to-q${i + 1}`}>
+        <h4>Question {i + 1}</h4>
+        <p>Answer {i + 1}.</p>
+      </article>
+    ))}
+  </div>
+</div>
+
+<script>
+  import { scrollTo } from '@samline/scroll-to'
+
+  const box = document.querySelector<HTMLElement>('[data-preview="await"]')!
+  const preview = box.closest('.preview')!
+  const status = preview.querySelector('output')!
+  preview.querySelector('[data-show]')!.addEventListener('click', async () => {
+    const answer = box.querySelector<HTMLElement>('#scroll-to-q4')!
+    status.value = 'Scrolling…'
+    const arrived = await scrollTo(answer, { container: box, duration: 900 })
+    status.value = arrived ? 'Arrived' : 'Interrupted'
+    if (!arrived) return
+    answer.classList.add('flash')
+    setTimeout(() => answer.classList.remove('flash'), 1200)
+  })
+</script>
+
+<style>
+  .controls {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    font-size: 0.875rem;
+    color: var(--color-text-subtle);
+  }
+  article {
+    transition: background 0.6s;
+  }
+  article.flash {
+    background: color-mix(in srgb, var(--color-accent) 18%, transparent);
+  }
+</style>

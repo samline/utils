@@ -18,6 +18,7 @@
       "is-visible",
       "reveal",
       "scroll-spy",
+      "scroll-to",
       "string"
     ]
   },

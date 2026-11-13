@@ -1,0 +1,183 @@
+---
+// Home preview: a page inside a box with a sticky bar. Links land below the
+// bar; the controls change the easing and duration of the next scroll.
+const parts = [
+  ['Overview', 'Plain #id links, scrolled smoothly.'],
+  ['Offset', 'Each section stops just below the sticky bar.'],
+  ['Focus', 'Keyboard focus follows, so the next Tab starts here.'],
+  ['Interrupt', 'Scroll the box while it moves and it lets go.'],
+  ['Arrival', 'Every scroll is a promise that tells you how it ended.'],
+]
+const easings = ['ease-in-out', 'ease-out', 'linear']
+const durations = [
+  ['auto', 'Auto'],
+  ['300', '300 ms'],
+  ['1200', '1200 ms'],
+]
+---
+
+<scroll-to-demo class="demo">
+  <div class="controls">
+    <fieldset>
+      <legend>Easing</legend>
+      {easings.map((easing, i) => (
+        <label>
+          <input type="radio" name="scroll-to-easing" value={easing} checked={i === 0} />
+          {easing}
+        </label>
+      ))}
+    </fieldset>
+    <fieldset>
+      <legend>Duration</legend>
+      {durations.map(([value, label], i) => (
+        <label>
+          <input type="radio" name="scroll-to-duration" value={value} checked={i === 0} />
+          {label}
+        </label>
+      ))}
+    </fieldset>
+  </div>
+  <div class="box" tabindex="0" aria-label="Scrollable page">
+    <nav class="bar" aria-label="Sections">
+      {parts.map(([title]) => <a href={`#scroll-to-demo-${title.toLowerCase()}`}>{title}</a>)}
+    </nav>
+    {parts.map(([title, text]) => (
+      <section id={`scroll-to-demo-${title.toLowerCase()}`}>
+        <h3>{title}</h3>
+        <p>{text}</p>
+      </section>
+    ))}
+    <section class="last">
+      <button type="button" class="top" data-scroll-to="top">Back to top</button>
+    </section>
+  </div>
+  <p class="status" aria-live="polite"><output>Pick a link</output></p>
+</scroll-to-demo>
+
+<script>
+  import { scrollTo, type ScrollToOptions } from '@samline/scroll-to'
+
+  for (const root of document.querySelectorAll<HTMLElement>('scroll-to-demo')) {
+    const box = root.querySelector<HTMLElement>('.box')!
+    const bar = root.querySelector<HTMLElement>('.bar')!
+    const output = root.querySelector('output')!
+    const picked = (name: string) =>
+      root.querySelector<HTMLInputElement>(`input[name="${name}"]:checked`)!.value
+
+    box.addEventListener('click', async event => {
+      const trigger = (event.target as Element).closest<HTMLElement>('a[href^="#"], [data-scroll-to]')
+      if (!trigger) return
+      event.preventDefault()
+      const target = trigger.getAttribute('data-scroll-to') ?? trigger.getAttribute('href')!
+      const duration = picked('scroll-to-duration')
+      output.value = 'Scrolling…'
+      const arrived = await scrollTo(target, {
+        container: box,
+        offset: bar,
+        focus: true,
+        easing: picked('scroll-to-easing') as ScrollToOptions['easing'],
+        duration: duration === 'auto' ? 'auto' : Number(duration),
+      })
+      output.value = arrived ? `Arrived at ${trigger.textContent?.trim()}` : 'Interrupted'
+    })
+  }
+</script>
+
+<style>
+  .demo {
+    display: grid;
+    gap: 0.75rem;
+  }
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.5rem;
+  }
+  fieldset {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 0.75rem;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 0.8125rem;
+    color: var(--color-text);
+  }
+  legend {
+    float: left;
+    margin-right: 0.5rem;
+    font: 0.65rem/1.9 var(--font-mono);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-subtle);
+  }
+  label {
+    display: inline-flex;
+    gap: 0.375rem;
+    align-items: center;
+  }
+  input {
+    accent-color: var(--color-accent);
+  }
+  .box {
+    height: 18rem;
+    overflow-y: auto;
+    border: 0.0625rem solid var(--color-border);
+    border-radius: var(--radius-control);
+  }
+  .bar {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1rem;
+    padding: 0.75rem 1rem;
+    background: var(--color-bg);
+    border-bottom: 0.0625rem solid var(--color-border);
+  }
+  .bar a {
+    color: var(--color-text-subtle);
+    font-size: 0.875rem;
+  }
+  section {
+    min-height: 12rem;
+    padding: 1rem;
+    border-top: 0.0625rem solid var(--color-border);
+    color: var(--color-text);
+  }
+  section:first-of-type {
+    border-top: 0;
+  }
+  section:focus {
+    outline: none;
+    background: color-mix(in srgb, var(--color-accent) 8%, transparent);
+  }
+  .last {
+    min-height: 0;
+  }
+  h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1rem;
+  }
+  section p {
+    margin: 0;
+    font-size: 0.875rem;
+    color: var(--palette-specimen-text);
+  }
+  .top {
+    padding: 0.375rem 0.875rem;
+    border: 0.0625rem solid var(--color-border);
+    border-radius: 999rem;
+    background: transparent;
+    color: var(--color-text);
+    font: inherit;
+    font-size: 0.875rem;
+    cursor: pointer;
+  }
+  .status {
+    margin: 0;
+    font: 0.75rem/1.6 var(--font-mono);
+    color: var(--color-text-subtle);
+  }
+</style>

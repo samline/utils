@@ -1,0 +1,36 @@
+---
+import './_shared.css'
+
+const parts = ['Features', 'Pricing', 'FAQ']
+---
+
+<div class="preview">
+  <div class="box" data-preview="header" tabindex="0" aria-label="Scrollable page">
+    <nav class="bar">
+      {parts.map(part => <a href={`#scroll-to-header-${part.toLowerCase()}`}>{part}</a>)}
+    </nav>
+    {parts.map(part => (
+      <section id={`scroll-to-header-${part.toLowerCase()}`}>
+        <h4>{part}</h4>
+        <p>Lands just below the bar, and focus moves here.</p>
+      </section>
+    ))}
+    <section>
+      <button type="button" class="pill" data-scroll-to="top">Back to top</button>
+    </section>
+  </div>
+</div>
+
+<script>
+  import { autoScrollTo } from '@samline/scroll-to'
+
+  const box = document.querySelector<HTMLElement>('[data-preview="header"]')!
+  // Scroll this box instead of the page, and leave the URL alone.
+  autoScrollTo({
+    scope: box,
+    container: box,
+    offset: box.querySelector('.bar')!,
+    hash: false,
+    initialHash: false,
+  })
+</script>

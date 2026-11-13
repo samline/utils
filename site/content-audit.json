@@ -895,6 +895,139 @@
         }
       ]
     },
+    "scroll-to": {
+      "status": "verified",
+      "packageVersion": "1.0.0",
+      "capabilityReview": {
+        "status": "verified",
+        "integrations": [
+          {
+            "name": "Package / ESM and CommonJS",
+            "evidence": "package.json exports",
+            "destination": "../packages/scroll-to/site/docs/getting-started.md",
+            "reviewed": true
+          },
+          {
+            "name": "HTML / CDN (window.ScrollTo)",
+            "evidence": "src/browser/global.ts",
+            "destination": "../packages/scroll-to/site/docs/getting-started.md",
+            "reviewed": true
+          },
+          {
+            "name": "React, Vue, Svelte and Astro",
+            "evidence": "scrollTo promise and autoScrollTo().destroy",
+            "destination": "../packages/scroll-to/site/docs/guides/frameworks.md",
+            "reviewed": true
+          }
+        ],
+        "scenarios": [
+          {
+            "name": "Anchors below a fixed header",
+            "evidence": "test/scroll-to.test.ts (offset, focus, hash), tests/e2e/scroll-to.spec.ts, tests/e2e/examples.spec.ts",
+            "destination": "../packages/scroll-to/site/examples/header.astro",
+            "reviewed": true
+          },
+          {
+            "name": "Centered tabs in a strip",
+            "evidence": "test/scroll-to.test.ts (container, inline), tests/e2e/scroll-to.spec.ts, tests/e2e/examples.spec.ts",
+            "destination": "../packages/scroll-to/site/examples/tabs.astro",
+            "reviewed": true
+          },
+          {
+            "name": "Wait for arrival",
+            "evidence": "test/scroll-to.test.ts (promise, interruption), tests/e2e/examples.spec.ts",
+            "destination": "../packages/scroll-to/site/examples/await.astro",
+            "reviewed": true
+          }
+        ],
+        "onboarding": {
+          "equivalentModes": true
+        }
+      },
+      "sources": [
+        {
+          "source": "packages/scroll-to/README.md",
+          "sha256": "28b24915c50422397f65927260654ea96328a4090f1c94d009c90c245e8988cb",
+          "destination": "../packages/scroll-to/site/docs/index.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/scroll-to/src/browser/global.ts",
+          "sha256": "4976496fbfbbb4ce64c3a90e3e24064a3bbada6928ea414f7ebf72d59f8b2876",
+          "destination": "../packages/scroll-to/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/scroll-to/src/core/scroll-to.ts",
+          "sha256": "11ba2d98b0a5a31d99bc7382d89aa2160973674881e5e892c8df5b9f78118480",
+          "destination": "../packages/scroll-to/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/scroll-to/src/core/index.ts",
+          "sha256": "f31bbec70c935cc34fc33d778305597dd0e421fe8234f6978e0e9929975d3f23",
+          "destination": "../packages/scroll-to/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/scroll-to/src/index.ts",
+          "sha256": "b2f13ba061bc35976b7aea8946d77b0a487122361ab437a2032ec041d41aed1a",
+          "destination": "../packages/scroll-to/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/scroll-to/src/vanilla/index.ts",
+          "sha256": "a49543e6235429b447b113523fc77b46fa68d42c55790b7ca5559e975edaf51a",
+          "destination": "../packages/scroll-to/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/scroll-to/src/core/scroll-to.ts",
+          "sha256": "11ba2d98b0a5a31d99bc7382d89aa2160973674881e5e892c8df5b9f78118480",
+          "destination": "../packages/scroll-to/site/docs/reference/configuration.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/scroll-to/src/core/scroll-to.ts",
+          "sha256": "11ba2d98b0a5a31d99bc7382d89aa2160973674881e5e892c8df5b9f78118480",
+          "destination": "../packages/scroll-to/site/docs/guides/layouts.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/scroll-to/src/core/scroll-to.ts",
+          "sha256": "11ba2d98b0a5a31d99bc7382d89aa2160973674881e5e892c8df5b9f78118480",
+          "destination": "../packages/scroll-to/site/docs/guides/frameworks.md",
+          "reviewed": true
+        }
+      ],
+      "publicExports": [
+        {
+          "source": "scrollTo, scrollPosition, cancelScroll, autoScrollTo",
+          "destination": "../packages/scroll-to/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "ScrollTarget, ScrollToController, Align, Easing, EASINGS",
+          "destination": "../packages/scroll-to/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "ScrollToOptions, AutoScrollToOptions",
+          "destination": "../packages/scroll-to/site/docs/reference/configuration.md",
+          "reviewed": true
+        },
+        {
+          "source": "data-scroll-to attributes",
+          "destination": "../packages/scroll-to/site/docs/reference/configuration.md",
+          "reviewed": true
+        },
+        {
+          "source": "window.ScrollTo",
+          "destination": "../packages/scroll-to/site/docs/reference/api.md",
+          "reviewed": true
+        }
+      ]
+    },
     "string": {
       "status": "verified",
       "packageVersion": "1.0.0",
