@@ -1,0 +1,31 @@
+---
+import './_styles.css'
+---
+
+<div class="preview-box lazy-feed" data-preview="lazy" tabindex="0" aria-label="Scrollable feed">
+  <article class="preview-item" data-src="Story 1">Loading…</article>
+  <article class="preview-item" data-src="Story 2">Loading…</article>
+  <article class="preview-item" data-src="Story 3">Loading…</article>
+  <article class="preview-item" data-src="Story 4">Loading…</article>
+  <article class="preview-item" data-src="Story 5">Loading…</article>
+</div>
+
+<script>
+  import { isVisible } from '@samline/is-visible'
+
+  const feed = document.querySelector<HTMLElement>('[data-preview="lazy"]')!
+  isVisible(feed.querySelectorAll<HTMLElement>('[data-src]'), {
+    root: feed,
+    once: true,
+    rootMargin: '0px 0px 200px 0px',
+    visible: (_entry, article) => {
+      article.textContent = `${(article as HTMLElement).dataset.src} loaded`
+    },
+  })
+</script>
+
+<style>
+  .lazy-feed {
+    gap: 10rem;
+  }
+</style>

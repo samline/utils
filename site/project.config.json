@@ -1,0 +1,36 @@
+{
+  "mode": "collection",
+  "package": {
+    "name": "Samline Utils",
+    "npmName": "@samline/utils",
+    "version": "1.0.0",
+    "description": "Small, framework-agnostic JavaScript, CSS and HTML utilities, each published on its own and documented with live examples in one place.",
+    "author": "Samuel Olvera",
+    "license": "MIT",
+    "keywords": ["utilities", "javascript", "debounce", "throttle", "intersection-observer"]
+  },
+  "collection": {
+    "packagesDir": "../packages",
+    "packages": ["debounce", "is-visible"]
+  },
+  "site": {
+    "url": "https://samline.github.io/utils/",
+    "repository": "https://github.com/samline/utils",
+    "namespace": "samline-utils",
+    "template": false,
+    "credit": "samline"
+  },
+  "theme": {
+    "accentLight": "#5b4b8a",
+    "accentDark": "#b9aee0"
+  },
+  "delivery": {
+    "cdnScript": null,
+    "cdnStylesheet": null
+  },
+  "dev": {
+    "landingPort": 4360,
+    "docsPort": 4361,
+    "testPort": 4368
+  }
+}

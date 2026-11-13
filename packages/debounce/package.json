@@ -27,7 +27,8 @@
   ],
   "files": [
     "dist",
-    "CHANGELOG.md"
+    "CHANGELOG.md",
+    "LICENSE.md"
   ],
   "engines": {
     "node": ">=20"

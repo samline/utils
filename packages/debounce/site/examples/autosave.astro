@@ -1,0 +1,25 @@
+---
+import './_styles.css'
+---
+
+<div class="preview" data-preview="autosave">
+  <label for="preview-note">Note</label>
+  <textarea id="preview-note" rows="4"></textarea>
+  <p class="status" aria-live="polite">Not saved yet.</p>
+</div>
+
+<script>
+  import { throttle } from '@samline/debounce'
+
+  const root = document.querySelector<HTMLElement>('[data-preview="autosave"]')!
+  const note = root.querySelector('textarea')!
+  const saved = root.querySelector('.status')!
+  let saves = 0
+
+  const save = throttle(() => {
+    saves += 1
+    saved.textContent = `Saved ${saves} times · ${note.value.length} characters`
+  }, 1000)
+
+  note.addEventListener('input', save)
+</script>

@@ -1,0 +1,213 @@
+---
+// Collection mode Home: every package of the collection, searchable and
+// filterable. Without JavaScript the complete catalog stays visible.
+import Section from '../../../shared/components/Section.astro'
+import Box from '../../../shared/components/Box.astro'
+import PageTitle from '../../../shared/components/PageTitle.astro'
+import Surface from '../../../shared/components/Surface.astro'
+import TextField from '../../../shared/components/TextField.astro'
+import Select from '../../../shared/components/Select.astro'
+import TextLink from '../../../shared/components/TextLink.astro'
+import HeroBackdrop from '../components/HeroBackdrop.astro'
+import { getI18n } from '../i18n/utils'
+import { format } from '../../../shared/i18n/format'
+import { collectionPackages } from '../../../shared/lib/identity'
+interface Props {
+  /** /examples/ lists only packages that have examples. */
+  examplesOnly?: boolean
+}
+const { examplesOnly = false } = Astro.props
+const t = getI18n(Astro).collection
+const packages = examplesOnly
+  ? collectionPackages.filter(item => item.hasExamples)
+  : collectionPackages
+const categories = [...new Set(packages.map(item => item.category))].sort()
+const options: (readonly [value: string, label: string])[] = [
+  ['', t.allCategories],
+  ...categories.map(category => [category, category] as const),
+]
+---
+
+<Section spacing="none" aria-labelledby="catalog-title" class:list={['catalog-hero']}>
+  <HeroBackdrop />
+  <Box size="narrow">
+    <PageTitle
+      headingId="catalog-title"
+      title={examplesOnly ? t.examplesTitle : t.title}
+      accent={examplesOnly ? t.examplesAccent : t.accent}
+      description={examplesOnly ? t.examplesDescription : t.description}
+      eyebrow={t.eyebrow}
+      align="center"
+    />
+  </Box>
+  <Box size="medium">
+    <package-site-catalog id="catalog" class:list={['catalog']}>
+      <div class:list={['filters']} role="search">
+        <TextField
+          id="catalog-search"
+          label={t.search}
+          type="search"
+          placeholder={t.searchPlaceholder}
+          autocomplete="off"
+          data-catalog-search
+        />
+        <Select id="catalog-category" label={t.category} options={options} data-catalog-category />
+      </div>
+      <p
+        class:list={['sr-only']}
+        aria-live="polite"
+        data-catalog-status
+        data-template={t.results}
+      ></p>
+      <ul class:list={['grid']} data-catalog-list>
+        {packages.map(item => (
+          <li
+            data-category={item.category}
+            data-search={[item.name, item.npmName, item.summary, item.category, ...item.tags]
+              .join(' ')
+              .toLowerCase()}
+          >
+            <Surface as="article" class:list={['card']}>
+              <p class:list={['category']}>{item.category}</p>
+              <h2 class:list={['name']}>
+                <a href={item.home}>{item.name}</a>
+              </h2>
+              <p class:list={['summary']}>{item.summary}</p>
+              <code class:list={['npm']}>{item.npmName}</code>
+              <p class:list={['links']}>
+                {item.hasExamples && (
+                  <TextLink href={`${item.home}examples/`}>{t.examples}</TextLink>
+                )}
+                <TextLink href={item.docsHome}>{t.docs}</TextLink>
+                <span class:list={['version']}>{format(t.version, { version: item.version })}</span>
+              </p>
+            </Surface>
+          </li>
+        ))}
+      </ul>
+      <p class:list={['empty']} hidden data-catalog-empty>
+        {t.empty}
+      </p>
+    </package-site-catalog>
+  </Box>
+</Section>
+
+<script>
+  import { mountElements } from '../../../shared/lib/mount-elements'
+
+  mountElements('package-site-catalog', root => {
+    const search = root.querySelector<HTMLInputElement>('[data-catalog-search]')!
+    const category = root.querySelector<HTMLSelectElement>('[data-catalog-category]')!
+    const items = [...root.querySelectorAll<HTMLElement>('[data-catalog-list] > li')]
+    const empty = root.querySelector<HTMLElement>('[data-catalog-empty]')!
+    const status = root.querySelector<HTMLElement>('[data-catalog-status]')!
+    const apply = () => {
+      const query = search.value.trim().toLowerCase()
+      let shown = 0
+      for (const item of items) {
+        const match =
+          (!query || item.dataset.search!.includes(query)) &&
+          (!category.value || item.dataset.category === category.value)
+        item.hidden = !match
+        if (match) shown++
+      }
+      empty.hidden = shown > 0
+      status.textContent = status.dataset.template!.replace('{count}', String(shown))
+    }
+    const controller = new AbortController()
+    search.addEventListener('input', apply, { signal: controller.signal })
+    category.addEventListener('change', apply, { signal: controller.signal })
+    return () => controller.abort()
+  })
+</script>
+
+<style>
+  .catalog-hero {
+    isolation: isolate;
+    position: relative;
+    padding-top: 3.5rem;
+    padding-bottom: 6rem;
+  }
+  .catalog {
+    display: block;
+    margin-top: 2.5rem;
+  }
+  .filters {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 14rem);
+    align-items: end;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
+    gap: var(--space-md);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .grid > li[hidden] {
+    display: none;
+  }
+  .card {
+    position: relative;
+    display: grid;
+    align-content: start;
+    gap: 0.625rem;
+    height: 100%;
+    padding: var(--space-lg);
+  }
+  .category {
+    margin: 0;
+    color: var(--color-text-subtle);
+    font: 0.65rem/1.6 var(--font-mono);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .name {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+  .name a {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+  .name a:hover {
+    color: var(--color-accent);
+  }
+  .summary {
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+  .npm {
+    font-size: var(--text-small);
+    color: var(--color-text-subtle);
+  }
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 1rem;
+    margin: 0.25rem 0 0;
+  }
+  .version {
+    margin-left: auto;
+    color: var(--color-text-subtle);
+    font: 0.7rem var(--font-mono);
+  }
+  .empty {
+    margin-top: var(--space-lg);
+    color: var(--color-text-muted);
+    text-align: center;
+  }
+  @media (width < 40rem) {
+    .filters {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

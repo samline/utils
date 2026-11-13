@@ -1,0 +1,80 @@
+---
+// Home preview: one input, three handlers, so the difference is visible.
+---
+
+<debounce-demo class="demo">
+  <label class="label" for="debounce-demo-input">Type fast</label>
+  <input id="debounce-demo-input" class="field" type="text" autocomplete="off" />
+  <dl class="counts">
+    <div><dt>Every event</dt><dd data-count="raw">0</dd></div>
+    <div><dt>debounce 300 ms</dt><dd data-count="debounce">0</dd></div>
+    <div><dt>throttle 300 ms</dt><dd data-count="throttle">0</dd></div>
+    <div><dt>rafThrottle</dt><dd data-count="raf">0</dd></div>
+  </dl>
+</debounce-demo>
+
+<script>
+  import { debounce, rafThrottle, throttle } from '@samline/debounce'
+
+  for (const root of document.querySelectorAll<HTMLElement>('debounce-demo')) {
+    const input = root.querySelector('input')!
+    const counter = (name: string) => {
+      const node = root.querySelector(`[data-count="${name}"]`)!
+      let count = 0
+      return () => {
+        node.textContent = String(++count)
+      }
+    }
+    const raw = counter('raw')
+    const debounced = debounce(counter('debounce'), 300)
+    const throttled = throttle(counter('throttle'), 300)
+    const framed = rafThrottle(counter('raf'))
+    input.addEventListener('input', () => {
+      raw()
+      debounced()
+      throttled()
+      framed()
+    })
+  }
+</script>
+
+<style>
+  .demo {
+    display: grid;
+    gap: 0.75rem;
+  }
+  .label {
+    font-size: 0.875rem;
+    color: var(--palette-specimen-text);
+  }
+  .field {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 0.0625rem solid var(--color-border);
+    border-radius: var(--radius-control);
+    background: var(--color-bg-soft);
+    color: var(--color-text);
+    font: inherit;
+  }
+  .counts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
+    gap: 0.75rem;
+    margin: 0.5rem 0 0;
+  }
+  .counts div {
+    padding: 0.875rem 1rem;
+    border: 0.0625rem solid var(--color-border);
+    border-radius: var(--radius-control);
+  }
+  dt {
+    font: 0.65rem/1.6 var(--font-mono);
+    letter-spacing: 0.08em;
+    color: var(--color-text-subtle);
+  }
+  dd {
+    margin: 0.25rem 0 0;
+    font: 500 1.5rem/1.2 var(--font-mono);
+    color: var(--color-text);
+  }
+</style>

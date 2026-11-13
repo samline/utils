@@ -1,0 +1,15 @@
+{
+  "title": "Debounce",
+  "category": "Timing",
+  "summary": "debounce, throttle and rafThrottle with cancel, flush and pending.",
+  "tags": [
+    "events",
+    "performance",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "delivery": {
+    "cdnScript": "https://cdn.jsdelivr.net/npm/@samline/debounce@1.0.0/dist/browser/debounce.global.js"
+  }
+}

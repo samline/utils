@@ -1,0 +1,51 @@
+---
+locale: en
+sidebar:
+  group: start
+  order: 2
+title: 'Getting started'
+titleAccent: 'started'
+description: 'Choose a supported installation method, add the required markup and build the smallest real integration of the package.'
+---
+
+import Installer from '../../../../shared/components/Installer.astro'
+import Callout from '../../../../shared/components/Callout.astro'
+import DemoCode from '../../../../shared/components/DemoCode.astro'
+
+The commands below use the npm name from `project.config.json`. In template mode, `your-package` is a placeholder; replace it with an actual package before running an installation command.
+
+## Requirements
+
+List what the package needs, taken from its `engines`, build targets and tests: Node.js for package tooling, browser features such as ES2020 or Pointer Events, and what HTML / CDN usage needs at runtime. Keep the website's own build-tool requirements separate from the published package.
+
+## Install
+
+<Installer />
+
+## Your first integration
+
+Replace this section with the minimum working example verified against the package source. Include required stylesheet imports and cleanup only when the package actually requires them. Prefer direct calls, clear variables and arrow callbacks; do not invent a universal initialization function.
+
+<Callout title="Choose only supported loading modes">
+  A CDN is a delivery service. A global namespace is the API exposed by a standalone script. Explain
+  how these relate to package imports only if the target package supplies those builds. Do not
+  display a CDN tab for an export that does not exist.
+</Callout>
+
+## Working starter files
+
+These files run the first neutral scenario used to preview this theme. They do **not** demonstrate the configured package yet: replace the shared generator and this explanation during adaptation. Save HTML, CSS and JavaScript together, or copy the complete file. The file viewer is separate from Home's compact initialization step.
+
+<DemoCode />
+
+## Ownership and cleanup
+
+Explain who owns the instance, when it must be refreshed or updated, and how it is destroyed. Delegate runtime behavior to the package. Avoid duplicating its gestures, animation or focus management.
+
+## Integrate with your host
+
+Complete the [Framework integrations](../guides/frameworks/) guide for the platforms the actual package supports, with working code and ownership guidance.
+
+## Next steps
+
+Link the next useful pages in learning order: the examples, the configuration options and the API reference.

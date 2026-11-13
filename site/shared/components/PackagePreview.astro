@@ -1,0 +1,52 @@
+---
+// Collection mode: one package example — its live preview (rendered by the
+// package's site/examples/<id>.astro) above its copyable files.
+import DemoStudio from './DemoStudio.astro'
+import DemoPanel from './DemoPanel.astro'
+import CodeFiles from './CodeFiles.astro'
+import demo from '../i18n/translations/en/demo'
+import { filesFor, previewFor, type PackageExample } from '../lib/package-examples'
+interface Props {
+  slug: string
+  example: PackageExample
+  showCode?: boolean
+}
+const { slug, example, showCode = true } = Astro.props
+const Preview = previewFor(slug, example.id) as any
+const source = showCode ? await filesFor(slug, example) : null
+---
+
+<div data-ui class:list={['package-preview']} data-package-example={`${slug}/${example.id}`}>
+  <DemoStudio>
+    <DemoPanel label={example.tab} tagline={demo.previewTagline}>
+      <p class:list={['description']}>{example.description}</p>
+      <div class:list={['stage']}>
+        <Preview />
+      </div>
+    </DemoPanel>
+  </DemoStudio>
+  {source && (
+    <CodeFiles
+      class:list={['files']}
+      files={source.files}
+      complete={{ code: source.complete, copyLabel: demo.copyComplete }}
+    />
+  )}
+</div>
+
+<style>
+  .package-preview {
+    display: grid;
+    gap: var(--space-lg);
+    min-width: 0;
+  }
+  .description {
+    margin-block: 0 var(--space-lg);
+    color: var(--palette-specimen-text);
+    font-size: var(--text-small);
+    line-height: 1.75;
+  }
+  .stage {
+    min-width: 0;
+  }
+</style>

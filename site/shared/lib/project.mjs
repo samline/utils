@@ -1,0 +1,98 @@
+import config from '../../project.config.json' with { type: 'json' }
+
+/** @param {typeof config} [input] */
+export function resolveProject(input = config) {
+  for (const key of ['name', 'npmName', 'version', 'description', 'author', 'license']) {
+    if (typeof input.package[key] !== 'string' || !input.package[key].trim())
+      throw new Error(`package.${key} is required`)
+  }
+  if (!/^(?:@[a-z0-9._-]+\/)?[a-z0-9._-]+$/.test(input.package.npmName))
+    throw new Error('Invalid npm package name')
+  if (!/^\d+\.\d+\.\d+(?:-[a-zA-Z0-9.-]+)?$/.test(input.package.version))
+    throw new Error('Use a full semver version')
+  const site = new URL(input.site.url)
+  const repository = new URL(input.site.repository)
+  if (
+    ![site, repository].every(
+      url =>
+        ['https:', 'http:'].includes(url.protocol) &&
+        !url.username &&
+        !url.password &&
+        !url.search &&
+        !url.hash
+    )
+  )
+    throw new Error(
+      'Use plain HTTP(S) site and repository URLs without credentials, query or fragment'
+    )
+  if (/%2f|%5c|\\/i.test(site.pathname)) throw new Error('Invalid deployment path')
+  site.pathname = site.pathname.replace(/\/+$/, '') + '/'
+  if (!/^[a-z][a-z0-9-]+$/.test(input.site.namespace))
+    throw new Error('Use a unique lowercase namespace')
+  if (typeof input.site.template !== 'boolean') throw new Error('site.template must be a boolean')
+  if (typeof input.site.credit !== 'string' || !input.site.credit.trim())
+    throw new Error(
+      'site.credit is the required public footer identity; do not infer it from npm author.'
+    )
+  for (const color of Object.values(input.theme))
+    if (!/^#[0-9a-f]{6}$/i.test(color))
+      throw new Error('Accent colors must use six-digit hex values')
+  for (const value of Object.values(input.delivery)) {
+    if (value !== null) {
+      const url = new URL(value)
+      if (!['https:', 'http:'].includes(url.protocol) || url.username || url.password)
+        throw new Error('CDN assets require HTTP(S) URLs without credentials')
+    }
+  }
+  // Collection mode documents several packages of a monorepo in one site.
+  // See .agents/collection-mode.md. The default package mode is unchanged.
+  const mode = input.mode ?? 'package'
+  if (!['package', 'collection'].includes(mode))
+    throw new Error('mode must be "package" or "collection"')
+  let collection = null
+  if (mode === 'collection') {
+    const { packagesDir, packages } = input.collection ?? {}
+    if (typeof packagesDir !== 'string' || !packagesDir.trim() || /^[a-z]+:/i.test(packagesDir))
+      throw new Error('collection.packagesDir must be a path relative to the site root')
+    if (
+      !Array.isArray(packages) ||
+      packages.length === 0 ||
+      !packages.every(slug => typeof slug === 'string' && /^[a-z0-9][a-z0-9-]*$/.test(slug))
+    )
+      throw new Error('collection.packages must list package directory names (lowercase slugs)')
+    if (new Set(packages).size !== packages.length)
+      throw new Error('collection.packages must not repeat a package')
+    if (packages.some(slug => ['docs', 'examples', 'skills'].includes(slug)))
+      throw new Error('collection.packages cannot use a reserved route (docs, examples, skills)')
+    collection = { packagesDir: packagesDir.replace(/\/+$/, ''), packages: [...packages] }
+  } else if (input.collection !== undefined) {
+    throw new Error('collection requires mode: "collection"')
+  }
+  const dev = { landingPort: 4330, docsPort: 4331, testPort: 4338, ...input.dev }
+  for (const [key, port] of Object.entries(dev))
+    if (!Number.isInteger(port) || port < 1024 || port > 65535)
+      throw new Error(`dev.${key} must be an unprivileged TCP port`)
+  if (new Set(Object.values(dev)).size !== Object.keys(dev).length)
+    throw new Error('dev ports must be distinct')
+  return {
+    ...input.package,
+    // The package integration skill lives at skills/<skill>/SKILL.md and is
+    // served at the same path; the unscoped npm name keeps sibling conventions.
+    skill: input.package.npmName.replace(/^@[^/]+\//, ''),
+    ...input.site,
+    ...input.theme,
+    delivery: input.delivery,
+    mode,
+    collection,
+    dev,
+    url: site.href,
+    origin: site.origin,
+    base: site.pathname,
+    docsBase: site.pathname + 'docs/',
+    repository: repository.href.replace(/\/$/, ''),
+  }
+}
+export const project = resolveProject()
+export const manifest = { ...project, repository: { url: project.repository } }
+/** @param {string} [path] */
+export const sitePath = (path = '') => project.base + path.replace(/^\//, '')

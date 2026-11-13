@@ -1,6 +1,0 @@
-{
-  "title": "Is Visible",
-  "category": "Viewport",
-  "summary": "Enter and leave callbacks for many elements on shared IntersectionObservers.",
-  "tags": ["intersection-observer", "lazy", "scroll", "react", "vue", "svelte"]
-}

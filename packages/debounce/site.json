@@ -1,6 +1,0 @@
-{
-  "title": "Debounce",
-  "category": "Timing",
-  "summary": "debounce, throttle and rafThrottle with cancel, flush and pending.",
-  "tags": ["events", "performance", "react", "vue", "svelte"]
-}

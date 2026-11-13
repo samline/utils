@@ -1,0 +1,81 @@
+---
+// Home preview: cards inside a scroll box report entering and leaving.
+const cards = ['Alpha', 'Bravo', 'Charlie', 'Delta', 'Echo', 'Foxtrot']
+---
+
+<is-visible-demo class="demo">
+  <p class="hint">Scroll the box. Each card reports when half of it is visible.</p>
+  <div class="scroller" tabindex="0" aria-label="Scrollable cards">
+    {
+      cards.map(name => (
+        <div class="card" data-card>
+          <span>{name}</span>
+          <output>hidden</output>
+        </div>
+      ))
+    }
+  </div>
+  <p class="count" aria-live="polite"><span data-visible>0</span> of {cards.length} visible</p>
+</is-visible-demo>
+
+<script>
+  import { isVisible } from '@samline/is-visible'
+
+  for (const root of document.querySelectorAll<HTMLElement>('is-visible-demo')) {
+    const scroller = root.querySelector<HTMLElement>('.scroller')!
+    const count = root.querySelector('[data-visible]')!
+    const shown = new Set<Element>()
+    const set = (card: Element, visible: boolean) => {
+      card.toggleAttribute('data-visible', visible)
+      card.querySelector('output')!.textContent = visible ? 'visible' : 'hidden'
+      if (visible) shown.add(card)
+      else shown.delete(card)
+      count.textContent = String(shown.size)
+    }
+    isVisible(scroller.querySelectorAll('[data-card]'), {
+      root: scroller,
+      threshold: 0.5,
+      inOut: true,
+      visible: (_entry, card) => set(card, true),
+      notVisible: (_entry, card) => set(card, false),
+    })
+  }
+</script>
+
+<style>
+  .demo {
+    display: grid;
+    gap: 0.75rem;
+  }
+  .hint,
+  .count {
+    margin: 0;
+    font-size: 0.875rem;
+    color: var(--palette-specimen-text);
+  }
+  .scroller {
+    display: grid;
+    gap: 4rem;
+    height: 15rem;
+    overflow-y: auto;
+    padding: 1rem;
+    border: 0.0625rem solid var(--color-border);
+    border-radius: var(--radius-control);
+  }
+  .card {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.25rem;
+    border: 0.0625rem solid var(--color-border);
+    border-radius: var(--radius-control);
+    color: var(--color-text);
+    transition: border-color var(--duration-ui) var(--ease-ui);
+  }
+  .card[data-visible] {
+    border-color: var(--color-accent);
+  }
+  output {
+    font: 0.75rem var(--font-mono);
+    color: var(--color-text-subtle);
+  }
+</style>

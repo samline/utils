@@ -1,0 +1,25 @@
+---
+import { packageLandingHref } from '../lib/routes'
+import { identityFor, packageSlug } from '../../../shared/lib/identity'
+import LinkCard from '../../../shared/components/LinkCard.astro'
+import { getI18n } from '../i18n/utils'
+const t = getI18n(Astro)
+const url = packageLandingHref(packageSlug(Astro), 'examples/')
+// A collection package without examples has no Examples page to link.
+const identity = identityFor(Astro)
+const show = !('hasExamples' in identity) || identity.hasExamples
+---
+
+{show && (
+  <div class:list={['examples-link']} data-pagefind-ignore>
+    <LinkCard href={url} title={t.examples}>
+      <p>{t.examplesDescription}</p>
+    </LinkCard>
+  </div>
+)}
+
+<style>
+  .examples-link {
+    margin-top: var(--space-xl);
+  }
+</style>

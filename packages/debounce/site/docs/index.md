@@ -1,0 +1,24 @@
+---
+title: Debounce
+description: What @samline/debounce does, when to use debounce, throttle or rafThrottle, and where to start.
+locale: en
+sidebar:
+  group: start
+  order: 1
+  label: Overview
+---
+
+`@samline/debounce` controls how often a function runs. It ships three tools with the same returned controls:
+
+| Tool          | Runs                                                        | Use it for                         |
+| ------------- | ----------------------------------------------------------- | ---------------------------------- |
+| `debounce`    | Once the calls stop for `wait` ms                           | Search, validation, resize end     |
+| `throttle`    | At most once every `wait` ms, plus the last call of a burst | Autosave, analytics, progress      |
+| `rafThrottle` | At most once per animation frame                            | Scroll, pointer and layout reads   |
+
+Every returned function forwards `this` and its arguments, returns the last result and has `cancel()`, `flush()` and `pending()`.
+
+- [Installation](getting-started/) — npm, CDN and the first debounced handler.
+- [API reference](reference/api/) — every function and its return value.
+- [Options](reference/configuration/) — `leading`, `trailing` and `maxWait`.
+- [Frameworks](guides/frameworks/) — React, Vue and Svelte adapters.

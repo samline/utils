@@ -1,0 +1,7 @@
+{
+  "title": "Alpha",
+  "category": "Text",
+  "summary": "Uppercase any text.",
+  "tags": ["case", "text"],
+  "delivery": { "cdnScript": "https://cdn.example.com/alpha@1.2.3/alpha.global.js" }
+}

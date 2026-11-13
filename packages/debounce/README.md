@@ -1,69 +1,49 @@
 # @samline/debounce
 
-Tiny `debounce`, `throttle` and `rafThrottle` with `cancel()`, `flush()` and `pending()`. They forward `this`, return the last result and never throw outside the browser. Includes hooks for React, composables for Vue, a store for Svelte and a browser global for plain HTML.
+Tiny `debounce`, `throttle` and `rafThrottle` with `cancel()`, `flush()` and `pending()`, for vanilla JavaScript, React, Vue, Svelte and plain HTML. They forward `this`, return the last result and never throw outside the browser.
+
+[Demo](https://samline.github.io/utils/debounce/) · [Examples](https://samline.github.io/utils/debounce/examples/) · [Documentation](https://samline.github.io/utils/docs/debounce/) · [Changelog](CHANGELOG.md)
 
 ## Table of contents
 
 - [Installation](#installation)
-- [CDN / Browser](#cdn--browser)
-- [Entrypoints](#entrypoints)
 - [Quick start](#quick-start)
-- [API](#api)
-- [Supported locales](#supported-locales)
-- [Migrating from 0.x](#migrating-from-0x)
+- [HTML / CDN](#html--cdn)
+- [Capabilities](#capabilities)
+- [API at a glance](#api-at-a-glance)
 - [Documentation](#documentation)
+- [Changelog](#changelog)
+- [AI agent skill](#ai-agent-skill)
 - [License](#license)
 
 ## Installation
 
 ```sh
 npm install @samline/debounce
+```
+
+```sh
 pnpm add @samline/debounce
-yarn add @samline/debounce
+```
+
+```sh
 bun add @samline/debounce
 ```
 
-## CDN / Browser
-
-For pages without a build step (Shopify, WordPress, plain HTML templates), load the browser bundle with a classic script tag. Pin the version in production.
-
-```html
-<script src="https://cdn.jsdelivr.net/npm/@samline/debounce@1.0.0/dist/browser/debounce.global.js"></script>
-<script>
-  const { debounce, throttle, rafThrottle } = window.Debounce
-
-  const search = debounce(query => console.log('search', query), 250)
-  document.querySelector('input').addEventListener('input', event => search(event.target.value))
-</script>
-```
-
-The bundle defines `window.Debounce` with `debounce`, `throttle`, `rafThrottle` and the deprecated `createDebounce` alias.
-
-## Entrypoints
-
-| Import                      | Exposes                                                                        |
-| --------------------------- | ------------------------------------------------------------------------------ |
-| `@samline/debounce`         | `debounce`, `throttle`, `rafThrottle`                                          |
-| `@samline/debounce/vanilla` | Same as the root, as an explicit subpath                                       |
-| `@samline/debounce/react`   | Root API + `useDebouncedCallback`, `useThrottledCallback`, `useDebouncedValue` |
-| `@samline/debounce/vue`     | Root API + `useDebouncedCallback`, `useThrottledCallback`, `useDebouncedRef`   |
-| `@samline/debounce/svelte`  | Root API + `createDebouncedStore`                                              |
-| `@samline/debounce/browser` | Classic script exposing `window.Debounce`                                      |
-
-React, Vue and Svelte are optional peer dependencies: install only the one you use.
+Works in any modern browser and in Node 20 or newer. No runtime dependencies; React, Vue and Svelte are optional peers, needed only for their adapters.
 
 ## Quick start
 
-```ts
+```js
 import { debounce, rafThrottle, throttle } from '@samline/debounce'
 
 // Search 250 ms after the user stops typing.
-const search = debounce((query: string) => fetchResults(query), 250)
+const search = debounce(query => fetchResults(query), 250)
 input.addEventListener('input', () => search(input.value))
 form.addEventListener('submit', () => search.flush()) // do not wait
 window.addEventListener('pagehide', () => search.cancel())
 
-// Save at most once per second while dragging.
+// Save at most once per second while typing.
 const save = throttle(() => persist(state), 1000)
 
 // Measure once per frame, whatever the event rate.
@@ -71,51 +51,38 @@ const measure = rafThrottle(() => updateLayout(element.getBoundingClientRect()))
 window.addEventListener('scroll', measure, { passive: true })
 ```
 
-## API
+## HTML / CDN
 
-### `debounce(fn, wait?, options?)`
+For Shopify, WordPress or plain HTML pages without a build step, load the browser bundle with a classic script tag. Pin the version in production.
 
-Delays `fn` until `wait` ms have passed without another call.
+```html
+<script src="https://cdn.jsdelivr.net/npm/@samline/debounce@1.0.0/dist/browser/debounce.global.js"></script>
+<script>
+  const { debounce, throttle, rafThrottle } = window.Debounce
+  const search = debounce(query => console.log('search', query), 250)
+  document.querySelector('input').addEventListener('input', event => search(event.target.value))
+</script>
+```
 
-| Option     | Default | Description                                                       |
-| ---------- | ------- | ----------------------------------------------------------------- |
-| `leading`  | `false` | Invoke on the first call of a burst.                              |
-| `trailing` | `true`  | Invoke after the burst with the latest arguments.                 |
-| `maxWait`  | –       | Longest delay under continuous calls. Clamped to at least `wait`. |
+The bundle defines `window.Debounce` with `debounce`, `throttle`, `rafThrottle` and the deprecated `createDebounce` alias.
 
-Invalid or negative `wait` values become `0`. At least one of `leading` or `trailing` must be enabled.
+## Capabilities
 
-### `throttle(fn, wait?, options?)`
+### Three tools, one control surface
 
-Invokes `fn` at most once every `wait` ms. `leading` and `trailing` default to `true`: the first call runs immediately and the latest arguments run at the end of each window.
+`debounce` waits for quiet, `throttle` keeps a steady rate and `rafThrottle` runs once per animation frame. Every returned function has `cancel()`, `flush()` and `pending()`, forwards `this` and returns the last result.
 
-### `rafThrottle(fn)`
+### Predictable options
 
-Invokes `fn` at most once per animation frame with the latest arguments. Use it for scroll, resize, pointer and `ResizeObserver` handlers. Without `requestAnimationFrame` (SSR, tests) it falls back to a ~16 ms timer.
+`leading`, `trailing` and `maxWait` follow the lodash semantics. `maxWait` lower than `wait` is clamped to `wait`, invalid waits become `0`, and a single call with both edges enabled runs once.
 
-### Returned function
+### Framework adapters
 
-Every helper returns a function with the same `this` and parameters as `fn`, plus:
+- **React:** `useDebouncedCallback` and `useThrottledCallback` return a stable function that calls the latest callback, is recreated only when `wait` or an option changes, and is cancelled on unmount. `useDebouncedValue(value, wait)` returns the settled value.
+- **Vue:** `useDebouncedCallback`, `useThrottledCallback` and `useDebouncedRef(source, wait)`, cancelled when the effect scope is disposed.
+- **Svelte:** `createDebouncedStore(initial, wait)` with `flush()` and `cancel()`; chained `update` calls see the latest pending value.
 
-| Method      | Description                                           |
-| ----------- | ----------------------------------------------------- |
-| `cancel()`  | Drop the pending invocation.                          |
-| `flush()`   | Run the pending invocation now and return its result. |
-| `pending()` | `true` while an invocation is scheduled.              |
-
-Calling the debounced or throttled function returns the result of the last invocation (`undefined` before the first one).
-
-### Frameworks
-
-- **React:** `useDebouncedCallback(cb, wait, options)` and `useThrottledCallback(cb, wait, options)` return a stable function that always calls the latest `cb`. It is recreated only when `wait` or an option changes, and cancelled on unmount. `useDebouncedValue(value, wait)` returns the value once it settles.
-- **Vue:** `useDebouncedCallback`, `useThrottledCallback` and `useDebouncedRef(source, wait)`. Pending calls are cancelled when the effect scope is disposed.
-- **Svelte:** `createDebouncedStore(initial, wait)` is a writable store whose `set` and `update` land after `wait`, with `flush()` and `cancel()`. Chained `update` calls see the latest pending value.
-
-## Supported locales
-
-Not applicable: the package has no locale-dependent behaviour.
-
-## Migrating from 0.x
+### Migrating from 0.x
 
 - `createDebounce` still works but is deprecated; use `debounce`.
 - `debounce` now forwards `this`, returns the last result and adds `pending()`.
@@ -124,10 +91,55 @@ Not applicable: the package has no locale-dependent behaviour.
 - React's `useDebouncedCallback` now picks up changes to `wait` and options.
 - New: `throttle`, `rafThrottle`, `useThrottledCallback` and a CommonJS build.
 
+## API at a glance
+
+| API                                                   | Purpose                                          |
+| ----------------------------------------------------- | ------------------------------------------------ |
+| `debounce(fn, wait?, { leading, trailing, maxWait })` | Run `fn` once the calls stop for `wait` ms.      |
+| `throttle(fn, wait?, { leading, trailing })`          | Run `fn` at most once every `wait` ms.           |
+| `rafThrottle(fn)`                                     | Run `fn` at most once per animation frame.       |
+| `.cancel()` / `.flush()` / `.pending()`               | Drop, run now or inspect the pending invocation. |
+
+### Entrypoints
+
+| Entrypoint                  | When to use                                                          |
+| --------------------------- | -------------------------------------------------------------------- |
+| `@samline/debounce`         | ESM or CommonJS: `debounce`, `throttle`, `rafThrottle`.              |
+| `@samline/debounce/vanilla` | The same API as an explicit subpath.                                 |
+| `@samline/debounce/react`   | `useDebouncedCallback`, `useThrottledCallback`, `useDebouncedValue`. |
+| `@samline/debounce/vue`     | `useDebouncedCallback`, `useThrottledCallback`, `useDebouncedRef`.   |
+| `@samline/debounce/svelte`  | `createDebouncedStore`.                                              |
+| `@samline/debounce/browser` | Classic script that defines `window.Debounce`.                       |
+
 ## Documentation
 
-Guides and live examples: [samline.github.io/utils/debounce](https://samline.github.io/utils/debounce/).
+Read the [documentation](https://samline.github.io/utils/docs/debounce/) for the full guides and API contracts, and explore [working examples](https://samline.github.io/utils/debounce/examples/) with complete and separate source files.
+
+| Guide                                                                             | What it covers                                           |
+| --------------------------------------------------------------------------------- | -------------------------------------------------------- |
+| [Installation](https://samline.github.io/utils/docs/debounce/getting-started/)    | npm, CDN and the first debounced handler.                |
+| [API reference](https://samline.github.io/utils/docs/debounce/reference/api/)     | Every function, its return value and the browser global. |
+| [Options](https://samline.github.io/utils/docs/debounce/reference/configuration/) | `leading`, `trailing`, `maxWait` and the lifecycle.      |
+| [Frameworks](https://samline.github.io/utils/docs/debounce/guides/frameworks/)    | React, Vue and Svelte adapters.                          |
+
+## Changelog
+
+Read [CHANGELOG.md](CHANGELOG.md) or the [published changelog](https://samline.github.io/utils/docs/debounce/changelog/) for release history and explicitly marked breaking and behavior changes. Review the notes before upgrading.
+
+## AI agent skill
+
+The [Debounce skill](https://samline.github.io/utils/skills/debounce/SKILL.md) teaches verified package integration. Its maintained [repository source](site/SKILL.md) and website download are the same file. Verify the installed package version before applying its guidance.
+
+Download [SKILL.md](https://samline.github.io/utils/skills/debounce/SKILL.md) into a `debounce/` folder in your agent's supported skill directory. For agents that discover project skills from `.agents/skills/`:
+
+```sh
+mkdir -p .agents/skills/debounce
+curl --fail --location https://samline.github.io/utils/skills/debounce/SKILL.md \
+  --output .agents/skills/debounce/SKILL.md
+```
+
+Keep the filename `SKILL.md`; discovery paths and invocation syntax depend on the agent.
 
 ## License
 
-MIT © Samuel Olvera (samline)
+MIT — [LICENSE.md](LICENSE.md).

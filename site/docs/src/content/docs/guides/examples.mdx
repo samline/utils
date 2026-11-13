@@ -1,0 +1,29 @@
+---
+locale: en
+sidebar:
+  group: guides
+  order: 1
+title: 'Examples with context'
+titleAccent: 'context'
+description: 'Try every live preview with its explanation, then open the matching example to copy complete, runnable source files.'
+---
+
+import Playground from '../../../../../shared/components/Playground.astro'
+import { scenarios, presetIds } from '../../../../../shared/i18n/translations/en/demo'
+
+These dependency-free scenarios demonstrate the theme's example composition. They are not API examples for your package. Replace the scenario catalog with real package tasks and keep one shared preview component across Home, Examples and this guide.
+
+Each preview here is the same component used on Home and Examples, with its copyable HTML / CDN and Package / ESM files. Visitors never leave Docs to copy code.
+
+{presetIds.map(key => (
+
+  <section aria-labelledby={`guide-${key}`}>
+    <h2 id={`guide-${key}`}>{scenarios[key].title}</h2>
+    <p>{scenarios[key].description}</p>
+    <Playground preset={key} showCode />
+  </section>
+))}
+
+## Package examples
+
+For each actual recipe, explain its purpose, show the result, document prerequisites, and execute the copied code. Keep the default path simple and progressive. State whether changing preview controls also changes copied code.

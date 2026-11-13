@@ -1,0 +1,6 @@
+{
+  "name": "@fixture/beta",
+  "version": "0.4.0",
+  "description": "Beta is the minimal package of the collection fixture, with docs only.",
+  "license": "MIT"
+}

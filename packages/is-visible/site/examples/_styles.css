@@ -1,0 +1,14 @@
+.preview-box {
+  display: grid;
+  height: 14rem;
+  overflow-y: auto;
+  padding: 1rem;
+  border: 0.0625rem solid var(--color-border);
+  border-radius: var(--radius-control);
+  color: var(--color-text);
+}
+.preview-item {
+  padding: 1.25rem;
+  border: 0.0625rem solid var(--color-border);
+  border-radius: var(--radius-control);
+}

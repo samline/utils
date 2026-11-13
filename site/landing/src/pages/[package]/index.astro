@@ -1,0 +1,25 @@
+---
+// Collection mode: one Home per package (see .agents/collection-mode.md).
+// Package mode has no packages, so no route is generated.
+import Main from '../../layouts/Main.astro'
+import Hero from '../../sections/Hero.astro'
+import Features from '../../sections/Features.astro'
+import Runtimes from '../../sections/Runtimes.astro'
+import GettingStarted from '../../sections/GettingStarted.astro'
+import Recipes from '../../sections/Recipes.astro'
+import Faq from '../../sections/Faq.astro'
+import CallToAction from '../../sections/CallToAction.astro'
+import { collectionPackages } from '../../../../shared/lib/identity'
+export const getStaticPaths = () =>
+  collectionPackages.map(item => ({ params: { package: item.slug } }))
+---
+
+<Main>
+  <Hero />
+  <Features />
+  <Runtimes />
+  <GettingStarted />
+  <Recipes />
+  <Faq />
+  <CallToAction />
+</Main>

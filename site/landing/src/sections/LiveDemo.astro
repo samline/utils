@@ -1,0 +1,64 @@
+---
+import Playground from '../../../shared/components/Playground.astro'
+import DemoStudio from '../../../shared/components/DemoStudio.astro'
+import Tabs from '../../../shared/components/Tabs.astro'
+import t, { type DemoPreset } from '../../../shared/i18n/translations/en/demo'
+import DemoPanel from '../../../shared/components/DemoPanel.astro'
+import { identityFor, packageSlug } from '../../../shared/lib/identity'
+const { id = 'demo' } = Astro.props
+// Collection mode: a package Home shows its own site/Demo.astro preview.
+const demos = import.meta.glob<{ default: unknown }>('@collection/*/site/Demo.astro', {
+  eager: true,
+})
+const slug = packageSlug(Astro)
+const demoKey = slug && Object.keys(demos).find(path => path.endsWith(`/${slug}/site/Demo.astro`))
+const PackageDemo = demoKey ? (demos[demoKey]!.default as any) : null
+const label = slug ? `${identityFor(Astro).name} preview` : t.label
+---
+
+<div id={id} class:list={['live-demo']}>
+  <DemoStudio>
+    {PackageDemo ? (
+      <DemoPanel label={label} tagline={t.previewTagline}>
+        <PackageDemo />
+      </DemoPanel>
+    ) : (
+      <Tabs id={`preview-${id}`} variant="demo" label={t.label} items={t.tabs}>
+        <span slot="heading" class:list={['studio-title']}>
+          <span class:list={['status-dot']} aria-hidden="true"></span>
+          {t.label}
+        </span>
+        {t.tabs.map(tab => (
+          <Playground data-panel={tab.id} preset={tab.id as DemoPreset} framed={false} />
+        ))}
+      </Tabs>
+    )}
+  </DemoStudio>
+</div>
+
+<style>
+  .live-demo {
+    margin-top: 2.625rem;
+    scroll-margin-top: 1.5rem;
+  }
+  .studio-title {
+    font: 0.65rem/1.6 var(--font-mono);
+    letter-spacing: 0.13em;
+    display: flex;
+    align-items: center;
+    gap: 0.5625rem;
+    color: var(--palette-studio-title);
+  }
+  .status-dot {
+    width: 0.375rem;
+    height: 0.375rem;
+    background: var(--color-accent);
+    border-radius: 50%;
+    flex: none;
+  }
+  @media (width < 48rem) {
+    .live-demo {
+      margin-top: 2.5rem;
+    }
+  }
+</style>

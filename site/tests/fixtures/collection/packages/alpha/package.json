@@ -1,0 +1,10 @@
+{
+  "name": "@fixture/alpha",
+  "version": "1.2.3",
+  "description": "Alpha turns plain text into uppercase text for the collection fixture.",
+  "license": "MIT",
+  "keywords": [
+    "alpha",
+    "fixture"
+  ]
+}

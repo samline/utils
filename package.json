@@ -7,8 +7,7 @@
     "node": ">=20"
   },
   "workspaces": [
-    "packages/*",
-    "site"
+    "packages/*"
   ],
   "scripts": {
     "build": "bun run --filter './packages/*' build",
@@ -20,12 +19,14 @@
     "check": "bun run typecheck && bun run test:coverage && bun run build && bun run size && bun run test:e2e",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "site:dev": "bun run --filter @samline/utils-site dev",
-    "site:build": "bun run build && bun run --filter @samline/utils-site build",
+    "site:dev": "bun run build && npm --prefix site run dev",
+    "site:build": "bun run build && npm --prefix site run build",
     "changeset": "changeset",
     "version-packages": "changeset version",
     "release": "bun run check && changeset publish",
-    "release:status": "changeset status --verbose"
+    "release:status": "changeset status --verbose",
+    "site:install": "npm ci --prefix site",
+    "site:verify": "bun run build && npm --prefix site run verify"
   },
   "devDependencies": {
     "@changesets/cli": "^2.29.7",

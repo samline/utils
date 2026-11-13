@@ -1,0 +1,56 @@
+---
+import './_styles.css'
+---
+
+<div class="preview" data-preview="progress">
+  <div
+    class="bar"
+    role="progressbar"
+    aria-label="Reading progress"
+    aria-valuemin="0"
+    aria-valuemax="100"
+    aria-valuenow="0"
+  >
+  </div>
+  <div class="article" tabindex="0" aria-label="Scrollable article">
+    <p>Scroll this box.</p>
+    <p class="long">A long article.</p>
+  </div>
+</div>
+
+<script>
+  import { rafThrottle } from '@samline/debounce'
+
+  const root = document.querySelector<HTMLElement>('[data-preview="progress"]')!
+  const article = root.querySelector<HTMLElement>('.article')!
+  const bar = root.querySelector<HTMLElement>('.bar')!
+
+  const update = rafThrottle(() => {
+    const max = article.scrollHeight - article.clientHeight
+    const progress = max > 0 ? Math.round((article.scrollTop / max) * 100) : 0
+    bar.style.width = progress + '%'
+    bar.setAttribute('aria-valuenow', String(progress))
+  })
+
+  article.addEventListener('scroll', update, { passive: true })
+</script>
+
+<style>
+  .bar {
+    height: 0.375rem;
+    width: 0;
+    border-radius: 999px;
+    background: var(--color-accent);
+  }
+  .article {
+    height: 12rem;
+    overflow-y: auto;
+    padding: 0 1rem;
+    border: 0.0625rem solid var(--color-border);
+    border-radius: var(--radius-control);
+    color: var(--color-text);
+  }
+  .long {
+    height: 60rem;
+  }
+</style>

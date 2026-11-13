@@ -1,0 +1,36 @@
+---
+import './_styles.css'
+---
+
+<div class="preview" data-preview="search">
+  <label for="preview-search">Search a fruit</label>
+  <input id="preview-search" type="text" autocomplete="off" />
+  <p class="status" aria-live="polite">Type to search.</p>
+  <ul></ul>
+</div>
+
+<script>
+  import { debounce } from '@samline/debounce'
+
+  const fruits = ['apple', 'apricot', 'banana', 'blueberry', 'cherry', 'grape', 'mango', 'melon', 'orange', 'peach', 'pear', 'plum']
+  const root = document.querySelector<HTMLElement>('[data-preview="search"]')!
+  const input = root.querySelector('input')!
+  const status = root.querySelector('.status')!
+  const results = root.querySelector('ul')!
+
+  const search = debounce((query: string) => {
+    const matches = fruits.filter(fruit => fruit.includes(query.trim().toLowerCase()))
+    results.replaceChildren(
+      ...matches.map(fruit => Object.assign(document.createElement('li'), { textContent: fruit }))
+    )
+    status.textContent = query.trim()
+      ? `${matches.length} results for “${query.trim()}”`
+      : 'Type to search.'
+  }, 300)
+
+  input.addEventListener('input', () => search(input.value))
+  input.addEventListener('keydown', event => {
+    if (event.key === 'Enter') search.flush()
+    if (event.key === 'Escape') search.cancel()
+  })
+</script>

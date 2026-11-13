@@ -1,0 +1,16 @@
+{
+  "title": "Is Visible",
+  "category": "Viewport",
+  "summary": "Enter and leave callbacks for many elements on shared IntersectionObservers.",
+  "tags": [
+    "intersection-observer",
+    "lazy",
+    "scroll",
+    "react",
+    "vue",
+    "svelte"
+  ],
+  "delivery": {
+    "cdnScript": "https://cdn.jsdelivr.net/npm/@samline/is-visible@1.0.0/dist/browser/is-visible.global.js"
+  }
+}

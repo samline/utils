@@ -1,0 +1,16 @@
+---
+// Collection mode: one Examples page per package.
+import Main from '../../../layouts/Main.astro'
+import ExamplesGallery from '../../../sections/ExamplesGallery.astro'
+import { getI18n } from '../../../i18n/utils'
+import { collectionPackages } from '../../../../../shared/lib/identity'
+export const getStaticPaths = () =>
+  collectionPackages
+    .filter(item => item.hasExamples)
+    .map(item => ({ params: { package: item.slug } }))
+const t = getI18n(Astro).examples
+---
+
+<Main title={t.seoTitle} description={t.seoDescription}>
+  <ExamplesGallery />
+</Main>

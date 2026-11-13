@@ -6,3 +6,5 @@ bun.lock
 CHANGELOG.md
 test-results
 playwright-report
+site
+packages/*/site/**/*.astro

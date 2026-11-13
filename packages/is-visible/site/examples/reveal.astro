@@ -1,0 +1,44 @@
+---
+import './_styles.css'
+---
+
+<div class="preview-box reveal-list" data-preview="reveal" tabindex="0" aria-label="Scrollable sections">
+  <section class="preview-item reveal">First section</section>
+  <section class="preview-item reveal">Second section</section>
+  <section class="preview-item reveal">Third section</section>
+</div>
+
+<script>
+  import { isVisible } from '@samline/is-visible'
+
+  const list = document.querySelector<HTMLElement>('[data-preview="reveal"]')!
+  list.dataset.ready = ''
+  isVisible(list.querySelectorAll('.reveal'), {
+    root: list,
+    once: true,
+    threshold: 0.2,
+    visible: (_entry, section) => section.classList.add('is-visible'),
+  })
+</script>
+
+<style>
+  .reveal-list {
+    gap: 6rem;
+  }
+  .reveal-list[data-ready] .reveal {
+    opacity: 0;
+    transform: translateY(0.75rem);
+    transition:
+      opacity 0.6s var(--ease-ui),
+      transform 0.6s var(--ease-ui);
+  }
+  .reveal-list[data-ready] .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal-list[data-ready] .reveal {
+      transition: none;
+    }
+  }
+</style>

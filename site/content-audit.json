@@ -1,0 +1,349 @@
+{
+  "status": "verified",
+  "packageVersion": "1.0.0",
+  "notes": "Collection mode audit (see .agents/collection-mode.md). Reviewed 2026-11-12 against the package sources at the listed hashes.",
+  "themeReview": {
+    "status": "pending",
+    "source": "Accent pair carried over from the first utils site; awaiting maintainer confirmation.",
+    "accentLight": "#5b4b8a",
+    "accentDark": "#b9aee0"
+  },
+  "iconReview": {
+    "kept": ["package", "eye", "refresh", "branch", "layers", "wrench"],
+    "reason": "Collection mode: Features icon slots are shared by every package Home; each card is about a capability, not a specific drawing."
+  },
+  "packages": {
+    "debounce": {
+      "status": "verified",
+      "packageVersion": "1.0.0",
+      "capabilityReview": {
+        "status": "verified",
+        "integrations": [
+          {
+            "name": "Package / ESM and CommonJS",
+            "evidence": "package.json exports",
+            "destination": "../packages/debounce/site/docs/getting-started.md",
+            "reviewed": true
+          },
+          {
+            "name": "HTML / CDN (window.Debounce)",
+            "evidence": "src/browser/global.ts",
+            "destination": "../packages/debounce/site/docs/getting-started.md",
+            "reviewed": true
+          },
+          {
+            "name": "React, Vue and Svelte adapters",
+            "evidence": "src/react, src/vue, src/svelte",
+            "destination": "../packages/debounce/site/docs/guides/frameworks.md",
+            "reviewed": true
+          }
+        ],
+        "scenarios": [
+          {
+            "name": "Debounced search with flush and cancel",
+            "evidence": "test/core.test.ts",
+            "destination": "../packages/debounce/site/examples/search.astro",
+            "reviewed": true
+          },
+          {
+            "name": "Throttled autosave",
+            "evidence": "test/core.test.ts",
+            "destination": "../packages/debounce/site/examples/autosave.astro",
+            "reviewed": true
+          },
+          {
+            "name": "Scroll progress with rafThrottle",
+            "evidence": "tests/e2e/debounce.spec.ts",
+            "destination": "../packages/debounce/site/examples/progress.astro",
+            "reviewed": true
+          }
+        ],
+        "onboarding": {
+          "equivalentModes": true
+        }
+      },
+      "sources": [
+        {
+          "source": "packages/debounce/README.md",
+          "sha256": "1d336cdcb84c3cd86b6bcb2131dd18494f414b6edb093265a6b25bc60ba59913",
+          "destination": "../packages/debounce/site/docs/index.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/debounce/CHANGELOG.md",
+          "sha256": "87bd61d14a17ad1de82826890f42651ad92316d4a81a960df3d9cf9e7a8cc147",
+          "destination": "../packages/debounce/CHANGELOG.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/debounce/src/browser/global.ts",
+          "sha256": "8c26abf500899ad9c5f0cf4159493fa644063d7beb79479b90a748cf1fc17b17",
+          "destination": "../packages/debounce/site/docs/getting-started.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/debounce/src/core/debounce.ts",
+          "sha256": "1146bfcf69c698d67c4be511f329a9f6ac8491130adcc98890f1ed964b052a6f",
+          "destination": "../packages/debounce/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/debounce/src/core/index.ts",
+          "sha256": "9cb0b57529fba5383ae2d1cf4504c260f6e3cdea8ce607a894ba2a02eda6dd1e",
+          "destination": "../packages/debounce/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/debounce/src/core/raf-throttle.ts",
+          "sha256": "d286e71b288b56b268e03f18b382da67d9c029a31dc33bb43d14881375ebaf71",
+          "destination": "../packages/debounce/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/debounce/src/core/throttle.ts",
+          "sha256": "9e916720996942f75d07151a48d64a986065e1a9ca64e965568bb7de64b48ef3",
+          "destination": "../packages/debounce/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/debounce/src/index.ts",
+          "sha256": "23495bb0afefefde63c92c6a6271c23911472f4d980fdcf010e97f7ff5a7913e",
+          "destination": "../packages/debounce/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/debounce/src/react/index.ts",
+          "sha256": "d234a244f2002b6da2b0570ea2a2880c63923e028f5a1f97716b97f0f46d4622",
+          "destination": "../packages/debounce/site/docs/guides/frameworks.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/debounce/src/svelte/index.ts",
+          "sha256": "8bc09c0bb5abb5a1d6a0bfb72c1b0574ebec7cbd96d336d8a89bf1cbb829e315",
+          "destination": "../packages/debounce/site/docs/guides/frameworks.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/debounce/src/vanilla/index.ts",
+          "sha256": "f960874a1be0dd2dae2c3614192672d5690184b68fb7e4e0cc59b318feeeb390",
+          "destination": "../packages/debounce/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/debounce/src/vue/index.ts",
+          "sha256": "7c23de6bfdbdd39da7e5a9ad723ab22d27acb9a100e84b5c65d86d489e88f000",
+          "destination": "../packages/debounce/site/docs/guides/frameworks.md",
+          "reviewed": true
+        }
+      ],
+      "publicExports": [
+        {
+          "source": "debounce",
+          "destination": "../packages/debounce/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "throttle",
+          "destination": "../packages/debounce/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "rafThrottle",
+          "destination": "../packages/debounce/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "createDebounce (deprecated alias)",
+          "destination": "../packages/debounce/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "DebounceOptions, ThrottleOptions",
+          "destination": "../packages/debounce/site/docs/reference/configuration.md",
+          "reviewed": true
+        },
+        {
+          "source": "react: useDebouncedCallback, useThrottledCallback, useDebouncedValue",
+          "destination": "../packages/debounce/site/docs/guides/frameworks.md",
+          "reviewed": true
+        },
+        {
+          "source": "vue: useDebouncedCallback, useThrottledCallback, useDebouncedRef",
+          "destination": "../packages/debounce/site/docs/guides/frameworks.md",
+          "reviewed": true
+        },
+        {
+          "source": "svelte: createDebouncedStore",
+          "destination": "../packages/debounce/site/docs/guides/frameworks.md",
+          "reviewed": true
+        },
+        {
+          "source": "window.Debounce",
+          "destination": "../packages/debounce/site/docs/getting-started.md",
+          "reviewed": true
+        }
+      ]
+    },
+    "is-visible": {
+      "status": "verified",
+      "packageVersion": "1.0.0",
+      "capabilityReview": {
+        "status": "verified",
+        "integrations": [
+          {
+            "name": "Package / ESM and CommonJS",
+            "evidence": "package.json exports",
+            "destination": "../packages/is-visible/site/docs/getting-started.md",
+            "reviewed": true
+          },
+          {
+            "name": "HTML / CDN (window.isVisible)",
+            "evidence": "src/browser/global.ts",
+            "destination": "../packages/is-visible/site/docs/getting-started.md",
+            "reviewed": true
+          },
+          {
+            "name": "React, Vue and Svelte adapters",
+            "evidence": "src/react, src/vue, src/svelte",
+            "destination": "../packages/is-visible/site/docs/guides/frameworks.md",
+            "reviewed": true
+          }
+        ],
+        "scenarios": [
+          {
+            "name": "Reveal once as sections enter",
+            "evidence": "test/core.test.ts (once)",
+            "destination": "../packages/is-visible/site/examples/reveal.astro",
+            "reviewed": true
+          },
+          {
+            "name": "Lazy load with rootMargin",
+            "evidence": "tests/e2e/is-visible.spec.ts",
+            "destination": "../packages/is-visible/site/examples/lazy.astro",
+            "reviewed": true
+          },
+          {
+            "name": "Pause work off-screen with inOut",
+            "evidence": "test/core.test.ts (inOut)",
+            "destination": "../packages/is-visible/site/examples/pause.astro",
+            "reviewed": true
+          }
+        ],
+        "onboarding": {
+          "equivalentModes": true
+        }
+      },
+      "sources": [
+        {
+          "source": "packages/is-visible/README.md",
+          "sha256": "37b5e0bbf25205951795142097fecf2f67fe2c74c3b33ed14e119e416461aece",
+          "destination": "../packages/is-visible/site/docs/index.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/is-visible/CHANGELOG.md",
+          "sha256": "2ec76579af15f81957147b05a17909e7610303a85c93be276b94d1a9ec25305b",
+          "destination": "../packages/is-visible/CHANGELOG.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/is-visible/src/browser/global.ts",
+          "sha256": "2ca4c04ea00f543b3f0a9634e41027cffb072c7f15a9b9b604d1cd3f1d1bb19f",
+          "destination": "../packages/is-visible/site/docs/getting-started.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/is-visible/src/core/index.ts",
+          "sha256": "ef2310442c8d13e94899dacfe47930b467bd6c276765e60eac638dae968e8854",
+          "destination": "../packages/is-visible/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/is-visible/src/core/observe.ts",
+          "sha256": "f3ec0fb1afab02e46535f6bbf0ab3c310b9fa0c5a7eb26882cc810d121c20ecf",
+          "destination": "../packages/is-visible/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/is-visible/src/core/pool.ts",
+          "sha256": "daccc77f7887229462d5e460e2b2f75e81745bb55e9dbfaa8e66d6897561be37",
+          "destination": "../packages/is-visible/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/is-visible/src/core/state.ts",
+          "sha256": "98bc3d50a41f5cacc8695ca14b2dea0a385ee9f6978105539d13caa17f0112ba",
+          "destination": "../packages/is-visible/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/is-visible/src/index.ts",
+          "sha256": "df37a207f1c44dfe0da1210bb4d23ac96bdce267627dd67de7142f1af52db790",
+          "destination": "../packages/is-visible/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/is-visible/src/react/index.ts",
+          "sha256": "e27ca3b5c6546b9c48a2ded54993bb5c63ffc6f08d478c7f5947183425b1980d",
+          "destination": "../packages/is-visible/site/docs/guides/frameworks.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/is-visible/src/svelte/index.ts",
+          "sha256": "4cb8b235bf8c67e97461219dfa3a9425d284f6c4b57fc1dec219cc152ccff682",
+          "destination": "../packages/is-visible/site/docs/guides/frameworks.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/is-visible/src/vanilla/index.ts",
+          "sha256": "15e6ea8410f44d44080e341001d330c6cc8692fdb23f1cbe6b0a53b3110dd7dd",
+          "destination": "../packages/is-visible/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/is-visible/src/vue/index.ts",
+          "sha256": "51bdb057ca6d532a1d0a01c5ade02e51d13c58c45ff06657139890842d2e6b22",
+          "destination": "../packages/is-visible/site/docs/guides/frameworks.md",
+          "reviewed": true
+        }
+      ],
+      "publicExports": [
+        {
+          "source": "isVisible (default and named)",
+          "destination": "../packages/is-visible/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "observeVisibility",
+          "destination": "../packages/is-visible/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "IsVisibleOptions, ObserveVisibilityOptions, ElementTarget",
+          "destination": "../packages/is-visible/site/docs/reference/configuration.md",
+          "reviewed": true
+        },
+        {
+          "source": "react: useIsVisible, VisibilityObserver",
+          "destination": "../packages/is-visible/site/docs/guides/frameworks.md",
+          "reviewed": true
+        },
+        {
+          "source": "vue: useIsVisible, VisibilityObserver",
+          "destination": "../packages/is-visible/site/docs/guides/frameworks.md",
+          "reviewed": true
+        },
+        {
+          "source": "svelte: useIsVisible, createVisibilityAction",
+          "destination": "../packages/is-visible/site/docs/guides/frameworks.md",
+          "reviewed": true
+        },
+        {
+          "source": "window.isVisible, window.IsVisible",
+          "destination": "../packages/is-visible/site/docs/getting-started.md",
+          "reviewed": true
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,28 @@
+export default {
+  mainLabel: 'Main navigation',
+  paginationLabel: 'Documentation pagination',
+  navigation: 'Documentation navigation',
+  menu: 'Browse documentation',
+  close: 'Close navigation',
+  toc: 'On this page',
+  previous: 'Previous',
+  next: 'Next',
+  breadcrumb: 'Docs',
+  breadcrumbLabel: 'Breadcrumb',
+  groupLabels: {
+    start: 'Start here',
+    guides: 'Guides',
+    reference: 'Reference',
+    api: 'API in detail',
+  },
+  pageLabels: {
+    index: 'Overview',
+    'getting-started': 'Installation',
+    'guides/frameworks': 'Framework integrations',
+    'guides/examples': 'Examples',
+    'guides/accessibility': 'Accessibility',
+    'reference/api': 'API reference',
+    'reference/configuration': 'Configuration',
+    changelog: 'Changelog',
+  },
+}

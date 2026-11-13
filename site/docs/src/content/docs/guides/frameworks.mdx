@@ -1,0 +1,43 @@
+---
+locale: en
+title: Framework integrations
+titleAccent: integrations
+description: Adapt client lifecycle examples for supported React, Vue, Svelte, Astro, Shopify and WordPress hosts after verifying the package API.
+sidebar:
+  group: guides
+  order: 6
+---
+
+import Callout from '../../../../../shared/components/Callout.astro'
+
+<Callout title="Template integration scaffold">
+  Populate only the hosts supported by the target package. This page intentionally contains no
+  invented initialization API. The package-site skill's integration reference and the sibling
+  Ticker/Drawer implementations provide verified examples to adapt, not APIs to copy blindly.
+</Callout>
+
+## JavaScript and TypeScript
+
+Explain the real browser/server boundary, entrypoint, stylesheet and exported types. Keep languages, frameworks and ESM/CommonJS or HTML/CDN delivery distinct. Link the verified first integration.
+
+## React, Vue and Svelte
+
+For a DOM library, create after client mount and destroy before unmount; do not claim a wrapper export that does not exist. Supply independently copyable component and CSS files through shared FrameworkExamples, which composes the existing Tabs and CodeFiles. Keep IDs independent, DOM ownership explicit and required accessibility controls present. Compile and execute every provided component, including React development cleanup.
+
+If the package has actual framework adapters, use their public lifecycle rather than wrapping the DOM API unnecessarily. If it has no browser behavior, replace this section with integrations appropriate to that package.
+
+## Astro
+
+Distinguish frontmatter from processed browser scripts. Explain ownership across ordinary navigation and optional client-side routing only when relevant to the actual integration.
+
+## Shopify
+
+For a verified standalone browser build, provide a section, one layout loader, theme assets and package-specific JavaScript/CSS files. Load shared scripts once, use asset_url, and handle section load/unload in the theme editor. Section teardown must release only its own controllers, effects and listeners. Use Shopify's native events, not custom lifecycle or global mutation observers.
+
+## WordPress
+
+For a verified browser build, provide a complete small plugin or theme integration, not just a script pasted into each widget. Queue runtime CSS/JS and integration assets with dependencies and pinned versions, name the shortcode/block contract, and state the supported WordPress version. State whether the enqueue policy covers post content, widgets/builders or dynamic navigation. Keep untrusted data out of raw markup.
+
+## Validation and support scope
+
+Record each supported host, source evidence, actual example destination and execution result in content-audit.json.capabilityReview. Do not mark a platform reviewed from a badge alone. Keep this guide in the same navigation family as Ticker and Drawer when browser integrations apply; remove unsupported scaffolding during adaptation. A browser fixture validates copied scripts and host lifecycle events, not a deployment into a merchant's Shopify store or a real WordPress installation.

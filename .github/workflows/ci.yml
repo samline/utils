@@ -25,4 +25,15 @@ jobs:
       - run: bun run size
       - run: bunx playwright install --with-deps chromium firefox webkit
       - run: bun run test:e2e
-      - run: bun run --filter @samline/utils-site build
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+      - run: npm ci --prefix site
+      - run: npm --prefix site run check
+      - run: npm --prefix site run format:check
+      - run: npm --prefix site test
+      - run: npm --prefix site run build
+      - run: npm --prefix site run check:identity
+      - run: npm --prefix site run check:content

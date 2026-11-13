@@ -1,0 +1,15 @@
+landing/
+docs/
+shared/
+scripts/
+tests/
+e2e/
+brief/
+.agents/
+.claude/
+.github/
+AGENTS.md
+playwright-report/
+test-results/
+# In a package repository, keep files: ["dist", "CHANGELOG.md"] in its manifest.
+skills-lock.json

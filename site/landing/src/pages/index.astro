@@ -1,0 +1,30 @@
+---
+import Main from '../layouts/Main.astro'
+import Hero from '../sections/Hero.astro'
+import Features from '../sections/Features.astro'
+import Runtimes from '../sections/Runtimes.astro'
+import GettingStarted from '../sections/GettingStarted.astro'
+import Recipes from '../sections/Recipes.astro'
+import Faq from '../sections/Faq.astro'
+import CallToAction from '../sections/CallToAction.astro'
+import Catalog from '../sections/Catalog.astro'
+import { isCollection } from '../../../shared/lib/identity'
+import { getI18n } from '../i18n/utils'
+const t = getI18n(Astro).collection
+---
+
+{isCollection ? (
+  <Main title={t.seoTitle} description={t.seoDescription}>
+    <Catalog />
+  </Main>
+) : (
+  <Main>
+    <Hero />
+    <Features />
+    <Runtimes />
+    <GettingStarted />
+    <Recipes />
+    <Faq />
+    <CallToAction />
+  </Main>
+)}

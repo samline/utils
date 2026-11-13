@@ -1,0 +1,42 @@
+---
+import './_styles.css'
+---
+
+<div class="preview-box pause-box" data-preview="pause" tabindex="0" aria-label="Scrollable box">
+  <p>Scroll down to the panel.</p>
+  <div class="preview-item panel">Running: <output>0</output></div>
+  <p class="spacer"></p>
+</div>
+
+<script>
+  import { isVisible } from '@samline/is-visible'
+
+  const box = document.querySelector<HTMLElement>('[data-preview="pause"]')!
+  const panel = box.querySelector<HTMLElement>('.panel')!
+  const ticks = panel.querySelector('output')!
+  let timer: ReturnType<typeof setInterval> | undefined
+
+  isVisible(panel, {
+    root: box,
+    inOut: true,
+    threshold: 0.5,
+    visible: () => {
+      timer = setInterval(() => (ticks.textContent = String(Number(ticks.textContent) + 1)), 200)
+    },
+    notVisible: () => clearInterval(timer),
+  })
+</script>
+
+<style>
+  .pause-box {
+    display: block;
+    height: 12rem;
+  }
+  .panel {
+    margin-top: 14rem;
+    border-color: var(--color-accent);
+  }
+  .spacer {
+    height: 20rem;
+  }
+</style>

@@ -1,16 +1,41 @@
 {
-  "name": "@samline/utils-site",
+  "name": "package-landing-docs",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
-  "scripts": {
-    "dev": "astro dev --host 127.0.0.1 --port 4360",
-    "build": "astro build",
-    "preview": "astro preview --host 127.0.0.1 --port 4360",
-    "check": "astro check"
+  "engines": {
+    "node": ">=22.12.0"
   },
-  "dependencies": {
-    "@samline/debounce": "workspace:*",
-    "@samline/is-visible": "workspace:*",
-    "astro": "^7.3.8"
+  "workspaces": [
+    "landing",
+    "docs",
+    "shared"
+  ],
+  "scripts": {
+    "dev": "node scripts/assets.mjs && node scripts/dev.mjs",
+    "build": "node scripts/assets.mjs && npm run build --workspace docs && npm run build --workspace landing && node scripts/assemble.mjs && node scripts/check-site.mjs",
+    "preview": "node scripts/preview.mjs",
+    "check": "node scripts/check-config.mjs && npm run check:design && npm run check --workspace landing && npm run check --workspace docs",
+    "format": "prettier --plugin prettier-plugin-astro --write .",
+    "format:check": "prettier --plugin prettier-plugin-astro --check .",
+    "test": "node --test tests/*.test.mjs",
+    "test:browser": "playwright test",
+    "verify": "npm run check && npm run format:check && npm test && npm run test:adaptation && npm run test:collection && npm run build && npm run check:identity && npm run check:content && npm run test:browser",
+    "configure": "node scripts/configure.mjs",
+    "postinstall": "node scripts/assets.mjs",
+    "check:release": "npm run check:identity && node scripts/check-release.mjs",
+    "check:content": "node scripts/check-content.mjs",
+    "migrate:starlight": "node scripts/migrate-starlight.mjs",
+    "accent": "node scripts/accent-pair.mjs",
+    "test:adaptation": "node scripts/test-adaptation.mjs",
+    "check:design": "node scripts/check-design.mjs",
+    "check:identity": "node scripts/check-identity.mjs",
+    "test:collection": "node scripts/test-collection.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.62.1",
+    "axe-core": "^4.14.0",
+    "prettier": "^3.9.10",
+    "prettier-plugin-astro": "^1.1.1"
   }
 }

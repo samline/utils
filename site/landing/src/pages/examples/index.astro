@@ -1,0 +1,20 @@
+---
+import Main from '../../layouts/Main.astro'
+import ExamplesGallery from '../../sections/ExamplesGallery.astro'
+import Catalog from '../../sections/Catalog.astro'
+import { getI18n } from '../../i18n/utils'
+import { isCollection } from '../../../../shared/lib/identity'
+const i18n = getI18n(Astro)
+const t = i18n.examples
+const c = i18n.collection
+---
+
+{isCollection ? (
+  <Main title={c.examplesSeoTitle} description={c.examplesSeoDescription}>
+    <Catalog examplesOnly />
+  </Main>
+) : (
+  <Main title={t.seoTitle} description={t.seoDescription}>
+    <ExamplesGallery />
+  </Main>
+)}

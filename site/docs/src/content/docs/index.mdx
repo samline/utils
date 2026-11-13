@@ -1,0 +1,36 @@
+---
+locale: en
+sidebar:
+  group: start
+  order: 1
+title: 'A clear starting point'
+titleAccent: 'starting point'
+description: 'Find installation steps, working examples, the complete API reference and verified release notes for the package.'
+---
+
+import CardGrid from '../../../../shared/components/CardGrid.astro'
+import LinkCard from '../../../../shared/components/LinkCard.astro'
+import { href } from '../../lib/routes'
+
+This is a neutral documentation starter. Replace its instructional prose with verified information about the target package. The shell, search, typography and controls are shared with Home and Examples.
+
+## Choose your next step
+
+<CardGrid columns={2}>
+  <LinkCard href={href('getting-started')} title="Installation">
+    Choose a supported setup and start with the smallest working example.
+  </LinkCard>
+  <LinkCard href={href('guides/examples')} title="Working examples">
+    Try the shared demo and read separate source files.
+  </LinkCard>
+  <LinkCard href={href('reference/api')} title="API reference">
+    Document actual public exports, behavior and lifecycle.
+  </LinkCard>
+  <LinkCard href={href('changelog')} title="Changelog">
+    Read verified release changes, including incompatibilities.
+  </LinkCard>
+</CardGrid>
+
+## Before publishing
+
+Remove template instructions, execute every example and reconcile the documentation with the package's public exports and existing guides. A list of exported names is an inventory, not proof of complete documentation.
