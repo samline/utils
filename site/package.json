@@ -15,7 +15,7 @@
     "dev": "node scripts/assets.mjs && node scripts/dev.mjs",
     "build": "node scripts/assets.mjs && npm run build --workspace docs && npm run build --workspace landing && node scripts/assemble.mjs && node scripts/check-site.mjs",
     "preview": "node scripts/preview.mjs",
-    "check": "node scripts/check-config.mjs && npm run check:design && npm run check --workspace landing && npm run check --workspace docs",
+    "check": "node scripts/assets.mjs && node scripts/check-config.mjs && npm run check:design && npm run check --workspace landing && npm run check --workspace docs",
     "format": "prettier --plugin prettier-plugin-astro --write .",
     "format:check": "prettier --plugin prettier-plugin-astro --check .",
     "test": "node --test tests/*.test.mjs",
