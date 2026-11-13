@@ -1,0 +1,88 @@
+---
+// Home preview: one input, every conversion.
+const outputs = [
+  ['camelCase', 'camelCase'],
+  ['pascalCase', 'PascalCase'],
+  ['kebabCase', 'kebab-case'],
+  ['snakeCase', 'snake_case'],
+  ['constantCase', 'CONSTANT_CASE'],
+  ['titleCase', 'Title Case'],
+  ['sentenceCase', 'Sentence case'],
+  ['slugify', 'slugify'],
+] as const
+---
+
+<string-demo class="demo">
+  <label class="label" for="string-demo-input">Any text</label>
+  <input id="string-demo-input" class="input" type="text" value="XMLHttpRequest para el Año Nuevo" autocomplete="off" />
+  <dl class="outputs">
+    {
+      outputs.map(([fn, label]) => (
+        <div>
+          <dt>{label}</dt>
+          <dd>
+            <output data-fn={fn} />
+          </dd>
+        </div>
+      ))
+    }
+  </dl>
+</string-demo>
+
+<script>
+  import * as string from '@samline/string'
+
+  const convert = string as unknown as Record<string, (value: string) => string>
+  for (const root of document.querySelectorAll<HTMLElement>('string-demo')) {
+    const input = root.querySelector('input')!
+    const update = () => {
+      for (const output of root.querySelectorAll<HTMLOutputElement>('[data-fn]'))
+        output.textContent = convert[output.dataset.fn!]!(input.value) || '—'
+    }
+    input.addEventListener('input', update)
+    update()
+  }
+</script>
+
+<style>
+  .demo {
+    display: grid;
+    gap: 0.75rem;
+  }
+  .label {
+    font-size: 0.875rem;
+    color: var(--palette-specimen-text);
+  }
+  .input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 0.0625rem solid var(--color-border);
+    border-radius: var(--radius-control);
+    background: var(--color-bg-soft);
+    color: var(--color-text);
+    font: inherit;
+  }
+  .outputs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+    gap: 0.5rem;
+    margin: 0.5rem 0 0;
+  }
+  .outputs div {
+    min-width: 0;
+    padding: 0.625rem 0.875rem;
+    border: 0.0625rem solid var(--color-border);
+    border-radius: var(--radius-control);
+  }
+  dt {
+    font: 0.65rem/1.6 var(--font-mono);
+    letter-spacing: 0.08em;
+    color: var(--color-text-subtle);
+  }
+  dd {
+    margin: 0.125rem 0 0;
+    font: 0.875rem/1.4 var(--font-mono);
+    color: var(--color-text);
+    overflow-wrap: anywhere;
+  }
+</style>

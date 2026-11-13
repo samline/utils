@@ -20,15 +20,15 @@ Small, framework-agnostic JavaScript, CSS and HTML utilities. Each one is publis
 Install only the packages you need:
 
 ```sh
-npm install @samline/debounce @samline/is-visible
+npm install @samline/debounce @samline/is-visible @samline/string
 ```
 
 ```sh
-pnpm add @samline/debounce @samline/is-visible
+pnpm add @samline/debounce @samline/is-visible @samline/string
 ```
 
 ```sh
-bun add @samline/debounce @samline/is-visible
+bun add @samline/debounce @samline/is-visible @samline/string
 ```
 
 Every package works in modern browsers and Node 20 or newer, has no runtime dependencies and ships a classic browser script for pages without a build step.
@@ -86,6 +86,7 @@ Every entry point has a gzip size budget enforced in CI. Shared helpers from `pa
 | -------------------------------------------- | ------------------------------------------------------------------------------ |
 | [`@samline/debounce`](packages/debounce)     | `debounce`, `throttle` and `rafThrottle` with `cancel`, `flush` and `pending`. |
 | [`@samline/is-visible`](packages/is-visible) | Enter and leave callbacks for many elements on shared IntersectionObservers.   |
+| [`@samline/string`](packages/string)         | Case conversion, slugify, accents, truncate and initials on one word splitter. |
 
 ### Entrypoints
 
@@ -103,6 +104,7 @@ The [website](https://samline.github.io/utils/) has a Home, live examples and co
 | ------------------------------------------------------------------- | --------------------------------------------------------------------------- |
 | [Debounce docs](https://samline.github.io/utils/docs/debounce/)     | Installation, API, options and framework adapters of `@samline/debounce`.   |
 | [Is Visible docs](https://samline.github.io/utils/docs/is-visible/) | Installation, API, options and framework adapters of `@samline/is-visible`. |
+| [String docs](https://samline.github.io/utils/docs/string/)         | Every function, the options and how words are split in `@samline/string`.   |
 | [Examples](https://samline.github.io/utils/examples/)               | Live previews with complete and separate source files.                      |
 
 ### Repository map
@@ -112,6 +114,7 @@ packages/
   internal/      Private helpers (auto-init, data-* readers, reduced motion, targets). Never published.
   debounce/      @samline/debounce: src, tests, README, CHANGELOG and site/ content
   is-visible/    @samline/is-visible: src, tests, README, CHANGELOG and site/ content
+  string/        @samline/string: src, tests, README, CHANGELOG and site/ content
 site/            Website from package-landing-docs in collection mode
 tests/e2e/       Playwright tests in Chromium, Firefox and WebKit against the built bundles
 scripts/         Size budgets and repository checks
@@ -122,7 +125,7 @@ Each package's `site/` folder holds its catalog metadata, Home copy, live demo, 
 
 ## Changelog
 
-Each package keeps its own `CHANGELOG.md`, generated from changesets: [debounce](packages/debounce/CHANGELOG.md) and [is-visible](packages/is-visible/CHANGELOG.md). This repository's [CHANGELOG.md](CHANGELOG.md) records changes to the monorepo itself.
+Each package keeps its own `CHANGELOG.md`, generated from changesets: [debounce](packages/debounce/CHANGELOG.md), [is-visible](packages/is-visible/CHANGELOG.md) and [string](packages/string/CHANGELOG.md). This repository's [CHANGELOG.md](CHANGELOG.md) records changes to the monorepo itself.
 
 ### Releasing
 
@@ -140,6 +143,7 @@ Each package has an integration skill for AI agents, maintained in its `site/SKI
 
 - [Debounce skill](https://samline.github.io/utils/skills/debounce/SKILL.md) — source: [packages/debounce/site/SKILL.md](packages/debounce/site/SKILL.md)
 - [Is Visible skill](https://samline.github.io/utils/skills/is-visible/SKILL.md) — source: [packages/is-visible/site/SKILL.md](packages/is-visible/site/SKILL.md)
+- [String skill](https://samline.github.io/utils/skills/string/SKILL.md) — source: [packages/string/site/SKILL.md](packages/string/site/SKILL.md)
 
 Download a `SKILL.md` into a folder with the package name in your agent's supported skill directory, for example `.agents/skills/debounce/SKILL.md`. Discovery paths and invocation syntax depend on the agent.
 

@@ -1,0 +1,24 @@
+---
+import './_shared.css'
+---
+
+<div class="preview" data-preview="keys">
+  <pre></pre>
+</div>
+
+<script>
+  import { camelCase, snakeCase } from '@samline/string'
+
+  const mapKeys = (object: Record<string, unknown>, convert: (key: string) => string) =>
+    Object.fromEntries(Object.entries(object).map(([key, value]) => [convert(key), value]))
+
+  const fromApi = { user_id: 7, first_name: 'Ana', last_login_at: '2026-11-13' }
+  const forJs = mapKeys(fromApi, camelCase)
+  const back = mapKeys(forJs, snakeCase)
+
+  document.querySelector('[data-preview="keys"] pre')!.textContent = JSON.stringify(
+    { forJs, back },
+    null,
+    2
+  )
+</script>

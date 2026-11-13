@@ -19,7 +19,7 @@
     },
     "packages/debounce": {
       "name": "@samline/debounce",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "devDependencies": {
         "@testing-library/react": "^16.3.0",
         "@types/react": "^19.1.0",
@@ -45,7 +45,7 @@
     },
     "packages/is-visible": {
       "name": "@samline/is-visible",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "devDependencies": {
         "@testing-library/react": "^16.3.0",
         "@types/react": "^19.1.0",
@@ -64,6 +64,10 @@
         "svelte",
         "vue",
       ],
+    },
+    "packages/string": {
+      "name": "@samline/string",
+      "version": "0.0.0",
     },
   },
   "packages": {
@@ -304,6 +308,8 @@
     "@samline/internal": ["@samline/internal@workspace:packages/internal"],
 
     "@samline/is-visible": ["@samline/is-visible@workspace:packages/is-visible"],
+
+    "@samline/string": ["@samline/string@workspace:packages/string"],
 
     "@sveltejs/acorn-typescript": ["@sveltejs/acorn-typescript@1.0.13", "", { "peerDependencies": { "acorn": "^8.9.0" } }, "sha512-wgKggnhZVL9Bfx1OaKKTrYY9BFRk6C8UAkQNUcIv1+llzYrIqy+RZm5HPKzn0NpEBvTVhTqB4kQyllZywsRBRQ=="],
 

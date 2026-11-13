@@ -344,6 +344,150 @@
           "reviewed": true
         }
       ]
+    },
+    "string": {
+      "status": "verified",
+      "packageVersion": "1.0.0",
+      "capabilityReview": {
+        "status": "verified",
+        "integrations": [
+          {
+            "name": "Package / ESM and CommonJS",
+            "evidence": "package.json exports",
+            "destination": "../packages/string/site/docs/getting-started.md",
+            "reviewed": true
+          },
+          {
+            "name": "HTML / CDN (window.SamlineString)",
+            "evidence": "src/browser/global.ts",
+            "destination": "../packages/string/site/docs/getting-started.md",
+            "reviewed": true
+          }
+        ],
+        "scenarios": [
+          {
+            "name": "Live slug field",
+            "evidence": "test/string.test.ts (trim: false)",
+            "destination": "../packages/string/site/examples/slug.astro",
+            "reviewed": true
+          },
+          {
+            "name": "API key normalization",
+            "evidence": "test/string.test.ts (round trips)",
+            "destination": "../packages/string/site/examples/keys.astro",
+            "reviewed": true
+          },
+          {
+            "name": "Avatars and excerpts",
+            "evidence": "test/string.test.ts (truncate, initials)",
+            "destination": "../packages/string/site/examples/cards.astro",
+            "reviewed": true
+          }
+        ],
+        "onboarding": {
+          "equivalentModes": true
+        }
+      },
+      "sources": [
+        {
+          "source": "packages/string/README.md",
+          "sha256": "eed62d92ec3ce4f79558ac73005d15ccdc9beda471393bd78fa47d857caeb72c",
+          "destination": "../packages/string/site/docs/index.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/string/src/browser/global.ts",
+          "sha256": "0f302e7bdba836f7194aa3d23d83fe9866daa8bd5631403a246c7ffdb5abdef1",
+          "destination": "../packages/string/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/string/src/core/accents.ts",
+          "sha256": "1225c54f3f2166e42ae93b8ff20225cea564227faa48349176bfa597828ee79b",
+          "destination": "../packages/string/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/string/src/core/case.ts",
+          "sha256": "1a8e83c586c9f91326c8dd75ccabe772567f8c0350c795d7ddc7071bb7c6b404",
+          "destination": "../packages/string/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/string/src/core/index.ts",
+          "sha256": "40111119277e7807cd53cfa100ebac0d9e26925098148a190427b30fda991f41",
+          "destination": "../packages/string/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/string/src/core/slugify.ts",
+          "sha256": "ca06a02119d4062bed5c0e31b68401d0618346ab88dc36875ffd856c17cca43e",
+          "destination": "../packages/string/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/string/src/core/text.ts",
+          "sha256": "5adce8df62a659595695803e0e856bf890619e48b94e3fab6426d8b854a3a10d",
+          "destination": "../packages/string/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/string/src/core/words.ts",
+          "sha256": "df40ab4c6f9c04c81dc2037735a85a27bb5ed816d96ddbb5e887cc9e392c6b2a",
+          "destination": "../packages/string/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/string/src/index.ts",
+          "sha256": "23495bb0afefefde63c92c6a6271c23911472f4d980fdcf010e97f7ff5a7913e",
+          "destination": "../packages/string/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/string/src/vanilla/index.ts",
+          "sha256": "f960874a1be0dd2dae2c3614192672d5690184b68fb7e4e0cc59b318feeeb390",
+          "destination": "../packages/string/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/string/src/core/words.ts",
+          "sha256": "df40ab4c6f9c04c81dc2037735a85a27bb5ed816d96ddbb5e887cc9e392c6b2a",
+          "destination": "../packages/string/site/docs/guides/words.md",
+          "reviewed": true
+        }
+      ],
+      "publicExports": [
+        {
+          "source": "camelCase, pascalCase, kebabCase, snakeCase, dotCase, constantCase",
+          "destination": "../packages/string/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "titleCase, sentenceCase, capitalize, uncapitalize",
+          "destination": "../packages/string/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "slugify, removeAccents",
+          "destination": "../packages/string/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "truncate, initials, words",
+          "destination": "../packages/string/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "SlugifyOptions, TitleCaseOptions, TruncateOptions, InitialsOptions, CaseOptions",
+          "destination": "../packages/string/site/docs/reference/configuration.md",
+          "reviewed": true
+        },
+        {
+          "source": "window.SamlineString",
+          "destination": "../packages/string/site/docs/reference/api.md",
+          "reviewed": true
+        }
+      ]
     }
   }
 }

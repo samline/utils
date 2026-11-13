@@ -1,0 +1,34 @@
+---
+import './_shared.css'
+---
+
+<div class="preview" data-preview="cards">
+  <ul></ul>
+</div>
+
+<script>
+  import { initials, truncate } from '@samline/string'
+
+  const people = [
+    { name: 'Samuel Olvera', bio: 'Builds small, framework-agnostic utilities for the open web.' },
+    {
+      name: 'ana maría lópez',
+      bio: 'Diseña interfaces accesibles y escribe sobre tipografía en español.',
+    },
+  ]
+
+  document.querySelector('[data-preview="cards"] ul')!.replaceChildren(
+    ...people.map(person => {
+      const item = document.createElement('li')
+      const avatar = Object.assign(document.createElement('span'), {
+        className: 'avatar',
+        textContent: initials(person.name),
+      })
+      const text = Object.assign(document.createElement('span'), {
+        textContent: truncate(person.bio, 40),
+      })
+      item.append(avatar, text)
+      return item
+    })
+  )
+</script>

@@ -1,0 +1,30 @@
+---
+import './_shared.css'
+---
+
+<div class="preview" data-preview="slug">
+  <label for="preview-title">Title</label>
+  <input id="preview-title" type="text" value="Café & Té: Guía 2026" />
+  <label for="preview-slug">Slug</label>
+  <input id="preview-slug" type="text" />
+</div>
+
+<script>
+  import { slugify } from '@samline/string'
+
+  const title = document.querySelector<HTMLInputElement>('#preview-title')!
+  const slug = document.querySelector<HTMLInputElement>('#preview-slug')!
+  let edited = false
+
+  const sync = () => {
+    if (!edited) slug.value = slugify(title.value, { replacements: { '&': 'y' } })
+  }
+  title.addEventListener('input', sync)
+  slug.addEventListener('input', () => {
+    edited = true
+    slug.value = slugify(slug.value, { trim: false })
+  })
+  // blur, not change: Safari skips change when a script edited the value during input.
+  slug.addEventListener('blur', () => (slug.value = slugify(slug.value)))
+  sync()
+</script>
