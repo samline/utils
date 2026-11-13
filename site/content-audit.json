@@ -317,6 +317,139 @@
         }
       ]
     },
+    "horizontal-scroll": {
+      "status": "verified",
+      "packageVersion": "1.0.0",
+      "capabilityReview": {
+        "status": "verified",
+        "integrations": [
+          {
+            "name": "Package / ESM and CommonJS",
+            "evidence": "package.json exports",
+            "destination": "../packages/horizontal-scroll/site/docs/getting-started.md",
+            "reviewed": true
+          },
+          {
+            "name": "HTML / CDN (window.HorizontalScroll)",
+            "evidence": "src/browser/global.ts",
+            "destination": "../packages/horizontal-scroll/site/docs/getting-started.md",
+            "reviewed": true
+          },
+          {
+            "name": "React, Vue, Svelte and Astro",
+            "evidence": "horizontalScroll().destroy and autoHorizontalScroll observe",
+            "destination": "../packages/horizontal-scroll/site/docs/guides/frameworks.md",
+            "reviewed": true
+          }
+        ],
+        "scenarios": [
+          {
+            "name": "Pinned gallery",
+            "evidence": "test/horizontal-scroll.test.ts, tests/e2e/horizontal-scroll.spec.ts, tests/e2e/examples.spec.ts",
+            "destination": "../packages/horizontal-scroll/site/examples/gallery.astro",
+            "reviewed": true
+          },
+          {
+            "name": "Fixed header and progress bar",
+            "evidence": "test/horizontal-scroll.test.ts (top, speed, onProgress), tests/e2e/examples.spec.ts",
+            "destination": "../packages/horizontal-scroll/site/examples/progress.astro",
+            "reviewed": true
+          },
+          {
+            "name": "Wide screens only with a native fallback",
+            "evidence": "test/horizontal-scroll.test.ts (media, reduced motion), tests/e2e/horizontal-scroll.spec.ts, tests/e2e/examples.spec.ts",
+            "destination": "../packages/horizontal-scroll/site/examples/responsive.astro",
+            "reviewed": true
+          }
+        ],
+        "onboarding": {
+          "equivalentModes": true
+        }
+      },
+      "sources": [
+        {
+          "source": "packages/horizontal-scroll/README.md",
+          "sha256": "0a99f8c768398a343a8fedc0974c4b3bb47fb20d22373f38fb54f07a19fbfb18",
+          "destination": "../packages/horizontal-scroll/site/docs/index.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/horizontal-scroll/src/browser/global.ts",
+          "sha256": "795e14fa4c24abd1cf1f1083983ce5d88c951a7fbbd112d8e68fe18b57072f7c",
+          "destination": "../packages/horizontal-scroll/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/horizontal-scroll/src/core/horizontal-scroll.ts",
+          "sha256": "9a4833e98690f0f7017770ad9b7a872ed81454bee6092e6645942e4b61173bcb",
+          "destination": "../packages/horizontal-scroll/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/horizontal-scroll/src/core/index.ts",
+          "sha256": "7234ae6f06f2ec214a7b91c5e4f7a55aa3987a5a760565d5363350251242da63",
+          "destination": "../packages/horizontal-scroll/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/horizontal-scroll/src/index.ts",
+          "sha256": "23b1527115f63b78b6dff1a3c90737298ffcfd7488659d0142851cade17fcfac",
+          "destination": "../packages/horizontal-scroll/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/horizontal-scroll/src/vanilla/index.ts",
+          "sha256": "12bb9591f51e2e49fba60e0c7413c8a9598ca3c541bb739fde1bae42c52c7a40",
+          "destination": "../packages/horizontal-scroll/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/horizontal-scroll/src/core/horizontal-scroll.ts",
+          "sha256": "9a4833e98690f0f7017770ad9b7a872ed81454bee6092e6645942e4b61173bcb",
+          "destination": "../packages/horizontal-scroll/site/docs/reference/configuration.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/horizontal-scroll/src/core/horizontal-scroll.ts",
+          "sha256": "9a4833e98690f0f7017770ad9b7a872ed81454bee6092e6645942e4b61173bcb",
+          "destination": "../packages/horizontal-scroll/site/docs/guides/layouts.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/horizontal-scroll/src/core/horizontal-scroll.ts",
+          "sha256": "9a4833e98690f0f7017770ad9b7a872ed81454bee6092e6645942e4b61173bcb",
+          "destination": "../packages/horizontal-scroll/site/docs/guides/frameworks.md",
+          "reviewed": true
+        }
+      ],
+      "publicExports": [
+        {
+          "source": "horizontalScroll, autoHorizontalScroll",
+          "destination": "../packages/horizontal-scroll/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "HorizontalScroll, HorizontalScrollProgress",
+          "destination": "../packages/horizontal-scroll/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "HorizontalScrollOptions, AutoHorizontalScrollOptions",
+          "destination": "../packages/horizontal-scroll/site/docs/reference/configuration.md",
+          "reviewed": true
+        },
+        {
+          "source": "data-horizontal-scroll attributes",
+          "destination": "../packages/horizontal-scroll/site/docs/reference/configuration.md",
+          "reviewed": true
+        },
+        {
+          "source": "window.HorizontalScroll",
+          "destination": "../packages/horizontal-scroll/site/docs/reference/api.md",
+          "reviewed": true
+        }
+      ]
+    },
     "is-visible": {
       "status": "verified",
       "packageVersion": "1.0.1",

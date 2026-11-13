@@ -43,6 +43,10 @@
         "vue",
       ],
     },
+    "packages/horizontal-scroll": {
+      "name": "@samline/horizontal-scroll",
+      "version": "1.0.0",
+    },
     "packages/internal": {
       "name": "@samline/internal",
       "version": "0.0.0",
@@ -318,6 +322,8 @@
     "@samline/counter": ["@samline/counter@workspace:packages/counter"],
 
     "@samline/debounce": ["@samline/debounce@workspace:packages/debounce"],
+
+    "@samline/horizontal-scroll": ["@samline/horizontal-scroll@workspace:packages/horizontal-scroll"],
 
     "@samline/internal": ["@samline/internal@workspace:packages/internal"],
 

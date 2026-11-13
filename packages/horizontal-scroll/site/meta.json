@@ -1,0 +1,9 @@
+{
+  "title": "Horizontal Scroll",
+  "category": "Motion",
+  "summary": "Pin a section and move its content sideways as the page scrolls down, with keyboard focus, media queries and a native scroll fallback.",
+  "tags": ["horizontal-scroll", "sticky", "pin", "scroll-driven", "gallery", "timeline"],
+  "delivery": {
+    "cdnScript": "https://cdn.jsdelivr.net/npm/@samline/horizontal-scroll@1.0.0/dist/browser/horizontal-scroll.global.js"
+  }
+}

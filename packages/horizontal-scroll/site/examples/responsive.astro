@@ -1,0 +1,60 @@
+---
+import './_shared.css'
+---
+
+<div class="preview">
+  <div class="stage" data-preview="responsive" tabindex="0" aria-label="Scrollable page">
+    <p class="spacer">Scroll down</p>
+    <section
+      data-horizontal-scroll
+      data-horizontal-scroll-media="(min-width: 48rem)"
+      aria-label="Products"
+    >
+      <div data-horizontal-scroll-track class="track">
+        {Array.from({ length: 5 }, (_, i) => <article class="card" tabindex="0">Card {i + 1}</article>)}
+      </div>
+    </section>
+    <p class="spacer">The end</p>
+  </div>
+  <p class="note">
+    State: <output data-state>…</output>. Narrow the window, or turn on reduced motion, to get the
+    swipeable carousel.
+  </p>
+</div>
+
+<script>
+  import { horizontalScroll } from '@samline/horizontal-scroll'
+
+  const stage = document.querySelector<HTMLElement>('[data-preview="responsive"]')!
+  const section = stage.querySelector('section')!
+  const output = document.querySelector<HTMLOutputElement>('[data-preview="responsive"] ~ .note output')!
+  horizontalScroll(section, { root: stage })
+  const show = () => (output.value = section.getAttribute('data-horizontal-scroll-state') ?? '')
+  show()
+  new MutationObserver(show).observe(section, {
+    attributes: true,
+    attributeFilter: ['data-horizontal-scroll-state'],
+  })
+</script>
+
+<style>
+  .preview [data-horizontal-scroll] {
+    scroll-snap-type: x mandatory;
+  }
+  .preview [data-horizontal-scroll] .card {
+    scroll-snap-align: center;
+    background: color-mix(in srgb, #3fa86b 16%, transparent);
+  }
+  .preview [data-horizontal-scroll-state='inactive'] .track {
+    height: auto;
+    padding-block: 2rem;
+  }
+  .preview [data-horizontal-scroll-state='active'] {
+    scroll-snap-type: none;
+  }
+  .note {
+    margin: 0;
+    font-size: 0.875rem;
+    color: var(--color-text-subtle);
+  }
+</style>

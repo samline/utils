@@ -20,15 +20,15 @@ Small, framework-agnostic JavaScript, CSS and HTML utilities. Each one is publis
 Install only the packages you need:
 
 ```sh
-npm install @samline/counter @samline/debounce @samline/is-visible @samline/reveal @samline/scroll-spy @samline/string
+npm install @samline/counter @samline/debounce @samline/horizontal-scroll @samline/is-visible @samline/reveal @samline/scroll-spy @samline/string
 ```
 
 ```sh
-pnpm add @samline/counter @samline/debounce @samline/is-visible @samline/reveal @samline/scroll-spy @samline/string
+pnpm add @samline/counter @samline/debounce @samline/horizontal-scroll @samline/is-visible @samline/reveal @samline/scroll-spy @samline/string
 ```
 
 ```sh
-bun add @samline/counter @samline/debounce @samline/is-visible @samline/reveal @samline/scroll-spy @samline/string
+bun add @samline/counter @samline/debounce @samline/horizontal-scroll @samline/is-visible @samline/reveal @samline/scroll-spy @samline/string
 ```
 
 Every package works in modern browsers and Node 20 or newer, has no runtime dependencies and ships a classic browser script for pages without a build step.
@@ -82,14 +82,15 @@ Every entry point has a gzip size budget enforced in CI. Shared helpers from `pa
 
 ## API at a glance
 
-| API                                          | Purpose                                                                        |
-| -------------------------------------------- | ------------------------------------------------------------------------------ |
-| [`@samline/counter`](packages/counter)       | Numbers that count as they scroll into view, from the value in the HTML.       |
-| [`@samline/debounce`](packages/debounce)     | `debounce`, `throttle` and `rafThrottle` with `cancel`, `flush` and `pending`. |
-| [`@samline/is-visible`](packages/is-visible) | Enter and leave callbacks for many elements on shared IntersectionObservers.   |
-| [`@samline/reveal`](packages/reveal)         | Scroll reveals with CSS effects, cascades, repeat and a CSS-only scrub mode.   |
-| [`@samline/scroll-spy`](packages/scroll-spy) | Highlights the navigation link of the section in view, with aria-current.      |
-| [`@samline/string`](packages/string)         | Case conversion, slugify, accents, truncate and initials on one word splitter. |
+| API                                                        | Purpose                                                                        |
+| ---------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| [`@samline/counter`](packages/counter)                     | Numbers that count as they scroll into view, from the value in the HTML.       |
+| [`@samline/debounce`](packages/debounce)                   | `debounce`, `throttle` and `rafThrottle` with `cancel`, `flush` and `pending`. |
+| [`@samline/horizontal-scroll`](packages/horizontal-scroll) | Pins a section while its row moves sideways with the page scroll.              |
+| [`@samline/is-visible`](packages/is-visible)               | Enter and leave callbacks for many elements on shared IntersectionObservers.   |
+| [`@samline/reveal`](packages/reveal)                       | Scroll reveals with CSS effects, cascades, repeat and a CSS-only scrub mode.   |
+| [`@samline/scroll-spy`](packages/scroll-spy)               | Highlights the navigation link of the section in view, with aria-current.      |
+| [`@samline/string`](packages/string)                       | Case conversion, slugify, accents, truncate and initials on one word splitter. |
 
 ### Entrypoints
 
@@ -104,15 +105,16 @@ Every entry point has a gzip size budget enforced in CI. Shared helpers from `pa
 
 The [website](https://samline.github.io/utils/) has a Home, live examples and complete docs for each package.
 
-| Guide                                                               | What it covers                                                                   |
-| ------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| [Counter docs](https://samline.github.io/utils/docs/counter/)       | Installation, attributes, options and formatting of `@samline/counter`.          |
-| [Debounce docs](https://samline.github.io/utils/docs/debounce/)     | Installation, API, options and framework adapters of `@samline/debounce`.        |
-| [Is Visible docs](https://samline.github.io/utils/docs/is-visible/) | Installation, API, options and framework adapters of `@samline/is-visible`.      |
-| [Reveal docs](https://samline.github.io/utils/docs/reveal/)         | Installation, attributes, options, CSS variables and scrub of `@samline/reveal`. |
-| [Scroll Spy docs](https://samline.github.io/utils/docs/scroll-spy/) | Installation, options, layouts and frameworks of `@samline/scroll-spy`.          |
-| [String docs](https://samline.github.io/utils/docs/string/)         | Every function, the options and how words are split in `@samline/string`.        |
-| [Examples](https://samline.github.io/utils/examples/)               | Live previews with complete and separate source files.                           |
+| Guide                                                                             | What it covers                                                                   |
+| --------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| [Counter docs](https://samline.github.io/utils/docs/counter/)                     | Installation, attributes, options and formatting of `@samline/counter`.          |
+| [Debounce docs](https://samline.github.io/utils/docs/debounce/)                   | Installation, API, options and framework adapters of `@samline/debounce`.        |
+| [Horizontal Scroll docs](https://samline.github.io/utils/docs/horizontal-scroll/) | Installation, options, layouts and fallbacks of `@samline/horizontal-scroll`.    |
+| [Is Visible docs](https://samline.github.io/utils/docs/is-visible/)               | Installation, API, options and framework adapters of `@samline/is-visible`.      |
+| [Reveal docs](https://samline.github.io/utils/docs/reveal/)                       | Installation, attributes, options, CSS variables and scrub of `@samline/reveal`. |
+| [Scroll Spy docs](https://samline.github.io/utils/docs/scroll-spy/)               | Installation, options, layouts and frameworks of `@samline/scroll-spy`.          |
+| [String docs](https://samline.github.io/utils/docs/string/)                       | Every function, the options and how words are split in `@samline/string`.        |
+| [Examples](https://samline.github.io/utils/examples/)                             | Live previews with complete and separate source files.                           |
 
 ### Repository map
 
@@ -121,6 +123,7 @@ packages/
   internal/      Private helpers (auto-init, data-* readers, reduced motion, targets). Never published.
   counter/       @samline/counter: src, tests, README, CHANGELOG and site/ content
   debounce/      @samline/debounce: src, tests, README, CHANGELOG and site/ content
+  horizontal-scroll/ @samline/horizontal-scroll: src, tests, README, CHANGELOG and site/ content
   is-visible/    @samline/is-visible: src, tests, README, CHANGELOG and site/ content
   reveal/        @samline/reveal: src, tests, README, CHANGELOG and site/ content
   scroll-spy/    @samline/scroll-spy: src, tests, README, CHANGELOG and site/ content
@@ -135,7 +138,7 @@ Each package's `site/` folder holds its catalog metadata, Home copy, live demo, 
 
 ## Changelog
 
-Each package keeps its own `CHANGELOG.md`, generated from changesets: [counter](packages/counter/CHANGELOG.md), [debounce](packages/debounce/CHANGELOG.md), [is-visible](packages/is-visible/CHANGELOG.md), [reveal](packages/reveal/CHANGELOG.md), [scroll-spy](packages/scroll-spy/CHANGELOG.md) and [string](packages/string/CHANGELOG.md). This repository's [CHANGELOG.md](CHANGELOG.md) records changes to the monorepo itself.
+Each package keeps its own `CHANGELOG.md`, generated from changesets: [counter](packages/counter/CHANGELOG.md), [debounce](packages/debounce/CHANGELOG.md), [horizontal-scroll](packages/horizontal-scroll/CHANGELOG.md), [is-visible](packages/is-visible/CHANGELOG.md), [reveal](packages/reveal/CHANGELOG.md), [scroll-spy](packages/scroll-spy/CHANGELOG.md) and [string](packages/string/CHANGELOG.md). This repository's [CHANGELOG.md](CHANGELOG.md) records changes to the monorepo itself.
 
 ### Releasing
 
@@ -153,6 +156,7 @@ Each package has an integration skill for AI agents, maintained in its `site/SKI
 
 - [Counter skill](https://samline.github.io/utils/skills/counter/SKILL.md) — source: [packages/counter/site/SKILL.md](packages/counter/site/SKILL.md)
 - [Debounce skill](https://samline.github.io/utils/skills/debounce/SKILL.md) — source: [packages/debounce/site/SKILL.md](packages/debounce/site/SKILL.md)
+- [Horizontal Scroll skill](https://samline.github.io/utils/skills/horizontal-scroll/SKILL.md) — source: [packages/horizontal-scroll/site/SKILL.md](packages/horizontal-scroll/site/SKILL.md)
 - [Is Visible skill](https://samline.github.io/utils/skills/is-visible/SKILL.md) — source: [packages/is-visible/site/SKILL.md](packages/is-visible/site/SKILL.md)
 - [Reveal skill](https://samline.github.io/utils/skills/reveal/SKILL.md) — source: [packages/reveal/site/SKILL.md](packages/reveal/site/SKILL.md)
 - [Scroll Spy skill](https://samline.github.io/utils/skills/scroll-spy/SKILL.md) — source: [packages/scroll-spy/site/SKILL.md](packages/scroll-spy/site/SKILL.md)

@@ -1,0 +1,67 @@
+---
+import './_shared.css'
+---
+
+<div class="preview">
+  <div class="stage" data-preview="progress" tabindex="0" aria-label="Scrollable page">
+    <header class="bar-header">
+      Timeline<span class="progress"></span>
+    </header>
+    <p class="spacer">Scroll down</p>
+    <section data-horizontal-scroll aria-label="Timeline">
+      <ol data-horizontal-scroll-track class="track steps">
+        {Array.from({ length: 8 }, (_, i) => <li class="card step" tabindex="0">{2017 + i}</li>)}
+      </ol>
+    </section>
+    <p class="spacer">The end</p>
+  </div>
+</div>
+
+<script>
+  import { horizontalScroll } from '@samline/horizontal-scroll'
+
+  const stage = document.querySelector<HTMLElement>('[data-preview="progress"]')!
+  const bar = stage.querySelector<HTMLElement>('.progress')!
+  horizontalScroll(stage.querySelector('section')!, {
+    root: stage,
+    top: 48,
+    speed: 1.5,
+    onProgress: ({ progress }) => bar.style.setProperty('--progress', String(progress)),
+  })
+</script>
+
+<style>
+  .bar-header {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+    background: var(--color-bg);
+    border-bottom: 0.0625rem solid var(--color-border);
+    font-size: 0.875rem;
+  }
+  .progress {
+    position: absolute;
+    left: 0;
+    bottom: -0.0625rem;
+    width: 100%;
+    height: 0.1875rem;
+    background: var(--color-accent);
+    transform-origin: left;
+    transform: scaleX(var(--progress, 0));
+  }
+  .preview .steps {
+    height: 19rem;
+  }
+  .preview .step {
+    flex-basis: 11rem;
+    height: 8rem;
+    border-radius: 0;
+    border-width: 0 0 0 0.1875rem;
+    border-color: var(--color-accent);
+    font-size: 1.5rem;
+  }
+</style>

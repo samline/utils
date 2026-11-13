@@ -1,0 +1,22 @@
+---
+import './_shared.css'
+---
+
+<div class="preview">
+  <div class="stage" data-preview="gallery" tabindex="0" aria-label="Scrollable page">
+    <p class="spacer">Scroll down</p>
+    <section data-horizontal-scroll aria-label="Gallery">
+      <div data-horizontal-scroll-track class="track">
+        {Array.from({ length: 6 }, (_, i) => <article class="card" tabindex="0">Card {i + 1}</article>)}
+      </div>
+    </section>
+    <p class="spacer">The end</p>
+  </div>
+</div>
+
+<script>
+  import { horizontalScroll } from '@samline/horizontal-scroll'
+
+  const stage = document.querySelector<HTMLElement>('[data-preview="gallery"]')!
+  horizontalScroll(stage.querySelector('section')!, { root: stage })
+</script>

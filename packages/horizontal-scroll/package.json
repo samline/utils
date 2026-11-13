@@ -1,0 +1,72 @@
+{
+  "name": "@samline/horizontal-scroll",
+  "version": "1.0.0",
+  "description": "Pin a section and move its content sideways as the page scrolls down, with keyboard focus, a no-JavaScript fallback, media queries and reduced motion, for vanilla JavaScript, any framework and plain HTML.",
+  "keywords": [
+    "horizontal-scroll",
+    "scroll",
+    "sticky",
+    "pin",
+    "scroll-driven",
+    "carousel",
+    "gallery",
+    "timeline"
+  ],
+  "author": "Samuel Olvera (samline)",
+  "license": "MIT",
+  "homepage": "https://samline.github.io/utils/horizontal-scroll/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samline/utils.git",
+    "directory": "packages/horizontal-scroll"
+  },
+  "bugs": {
+    "url": "https://github.com/samline/utils/issues"
+  },
+  "type": "module",
+  "sideEffects": [
+    "./dist/browser/horizontal-scroll.global.js"
+  ],
+  "files": [
+    "dist",
+    "CHANGELOG.md",
+    "LICENSE.md"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "unpkg": "./dist/browser/horizontal-scroll.global.js",
+  "jsdelivr": "./dist/browser/horizontal-scroll.global.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./vanilla": {
+      "types": "./dist/vanilla/index.d.ts",
+      "import": "./dist/vanilla/index.js",
+      "require": "./dist/vanilla/index.cjs"
+    },
+    "./browser": "./dist/browser/horizontal-scroll.global.js",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "clean": "rm -rf dist coverage",
+    "build": "tsup",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "prepublishOnly": "bun run clean && bun run build && bun run typecheck && bun run test:coverage"
+  },
+  "size": {
+    "./dist/index.js": 2500,
+    "./dist/browser/horizontal-scroll.global.js": 2600
+  }
+}
