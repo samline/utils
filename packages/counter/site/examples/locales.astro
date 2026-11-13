@@ -1,0 +1,57 @@
+---
+import './_shared.css'
+---
+
+<div class="preview">
+  <ul class="prices" data-preview="locales">
+    <li lang="en-US">
+      <span class="big" data-usd>
+        $1,234.50
+      </span>{' '}
+      en-US
+    </li>
+    <li lang="de-DE">
+      <span class="big" data-plain>
+        1.234.567,89
+      </span>{' '}
+      de-DE
+    </li>
+    <li lang="fr-FR">
+      <span class="big" data-plain>
+        1 234 567
+      </span>{' '}
+      fr-FR
+    </li>
+    <li lang="en-IN">
+      <span class="big" data-plain>
+        12,34,567
+      </span>{' '}
+      en-IN
+    </li>
+  </ul>
+</div>
+
+<script>
+  import { counter } from '@samline/counter'
+
+  const list = document.querySelector('[data-preview="locales"]')!
+  counter(list.querySelector('[data-usd]'), { format: { style: 'currency', currency: 'USD' } })
+  counter(list.querySelectorAll('[data-plain]'))
+</script>
+
+<style>
+  .prices {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--color-text-subtle);
+  }
+  .prices .big {
+    display: inline-block;
+    min-width: 12rem;
+    color: var(--color-text);
+  }
+</style>

@@ -1,0 +1,34 @@
+---
+import './_shared.css'
+---
+
+<div class="preview">
+  <div class="box" data-preview="repeat" tabindex="0" aria-label="Scrollable counters" lang="en">
+    <p class="spacer">Scroll down, then back up</p>
+    <p>
+      <span
+        class="big"
+        data-counter="0"
+        data-counter-from="10"
+        data-counter-repeat
+        data-counter-easing="linear"
+      >
+        0
+      </span>{' '}
+      seconds left
+    </p>
+    <p>
+      <span class="big" data-counter="365" data-counter-repeat data-counter-duration="1200">
+        365
+      </span>{' '}
+      days a year
+    </p>
+  </div>
+</div>
+
+<script>
+  import { autoCounter } from '@samline/counter'
+
+  const box = document.querySelector<HTMLElement>('[data-preview="repeat"]')!
+  autoCounter({ scope: box, root: box })
+</script>

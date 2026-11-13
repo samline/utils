@@ -13,6 +13,139 @@
     "reason": "Collection mode: Features icon slots are shared by every package Home; each card is about a capability, not a specific drawing."
   },
   "packages": {
+    "counter": {
+      "status": "verified",
+      "packageVersion": "1.0.0",
+      "capabilityReview": {
+        "status": "verified",
+        "integrations": [
+          {
+            "name": "Package / ESM and CommonJS",
+            "evidence": "package.json exports",
+            "destination": "../packages/counter/site/docs/getting-started.md",
+            "reviewed": true
+          },
+          {
+            "name": "HTML / CDN (window.Counter)",
+            "evidence": "src/browser/global.ts",
+            "destination": "../packages/counter/site/docs/getting-started.md",
+            "reviewed": true
+          },
+          {
+            "name": "React, Vue, Svelte and Astro",
+            "evidence": "counter() cleanup and autoCounter observe",
+            "destination": "../packages/counter/site/docs/guides/frameworks.md",
+            "reviewed": true
+          }
+        ],
+        "scenarios": [
+          {
+            "name": "Stats band",
+            "evidence": "test/counter.test.ts, tests/e2e/counter.spec.ts, tests/e2e/examples.spec.ts",
+            "destination": "../packages/counter/site/examples/stats.astro",
+            "reviewed": true
+          },
+          {
+            "name": "Locales and currencies",
+            "evidence": "test/counter.test.ts (parseNumber, format), tests/e2e/examples.spec.ts",
+            "destination": "../packages/counter/site/examples/locales.astro",
+            "reviewed": true
+          },
+          {
+            "name": "Count down and repeat",
+            "evidence": "test/counter.test.ts (repeat), tests/e2e/examples.spec.ts",
+            "destination": "../packages/counter/site/examples/repeat.astro",
+            "reviewed": true
+          }
+        ],
+        "onboarding": {
+          "equivalentModes": true
+        }
+      },
+      "sources": [
+        {
+          "source": "packages/counter/README.md",
+          "sha256": "b9c56c5ba6eb4df34afeaecb72e8c8d610abe874bd47490768855b1be4f237d3",
+          "destination": "../packages/counter/site/docs/index.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/counter/src/browser/global.ts",
+          "sha256": "4f15b5a0207b01739c1cda1b3a6b3ccebf2fcb08786c21137177791d01449636",
+          "destination": "../packages/counter/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/counter/src/core/counter.ts",
+          "sha256": "4218f6b5e59179f9134ad7dae597f9d8aa3e939f30beb823fda2820420e3f299",
+          "destination": "../packages/counter/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/counter/src/core/index.ts",
+          "sha256": "04f2ec878f8ddce6b78b4c06f95497599681ca06e0f0dc56fd3bba1ebd64fd41",
+          "destination": "../packages/counter/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/counter/src/index.ts",
+          "sha256": "10dcf963a768191ce7cb8647f2eb0a6c9a73451881b28529af375f4131223f4f",
+          "destination": "../packages/counter/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/counter/src/vanilla/index.ts",
+          "sha256": "b30bbb9a6bb17622fceb25a8ed552b25b248eb03804178e702da171108f87389",
+          "destination": "../packages/counter/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/counter/src/core/counter.ts",
+          "sha256": "4218f6b5e59179f9134ad7dae597f9d8aa3e939f30beb823fda2820420e3f299",
+          "destination": "../packages/counter/site/docs/reference/configuration.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/counter/src/core/counter.ts",
+          "sha256": "4218f6b5e59179f9134ad7dae597f9d8aa3e939f30beb823fda2820420e3f299",
+          "destination": "../packages/counter/site/docs/guides/formatting.md",
+          "reviewed": true
+        },
+        {
+          "source": "packages/counter/src/core/counter.ts",
+          "sha256": "4218f6b5e59179f9134ad7dae597f9d8aa3e939f30beb823fda2820420e3f299",
+          "destination": "../packages/counter/site/docs/guides/frameworks.md",
+          "reviewed": true
+        }
+      ],
+      "publicExports": [
+        {
+          "source": "counter, autoCounter",
+          "destination": "../packages/counter/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "animateNumber, parseNumber, EASINGS",
+          "destination": "../packages/counter/site/docs/reference/api.md",
+          "reviewed": true
+        },
+        {
+          "source": "CounterOptions, AutoCounterOptions, AnimateNumberOptions, Easing, EasingName, CounterState",
+          "destination": "../packages/counter/site/docs/reference/configuration.md",
+          "reviewed": true
+        },
+        {
+          "source": "data-counter attributes",
+          "destination": "../packages/counter/site/docs/reference/configuration.md",
+          "reviewed": true
+        },
+        {
+          "source": "window.Counter",
+          "destination": "../packages/counter/site/docs/reference/api.md",
+          "reviewed": true
+        }
+      ]
+    },
     "debounce": {
       "status": "verified",
       "packageVersion": "1.0.1",

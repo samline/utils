@@ -1,0 +1,115 @@
+---
+// Home preview: statistics that count when shown, with a replay button.
+const stats = [
+  { value: '12480', text: '12,480', label: 'Downloads', prefix: '', suffix: '' },
+  { value: '98.6', text: '98.6', label: 'Uptime', prefix: '', suffix: '%' },
+  { value: '4.9', text: '4.9', label: 'Rating', prefix: '', suffix: ' / 5' },
+  { value: '1200', text: '1,200', label: 'Cities', prefix: '+', suffix: '' },
+]
+---
+
+<counter-demo class="demo">
+  <dl class="stats" lang="en">
+    {stats.map(stat => (
+      <div class="stat">
+        <dt>{stat.label}</dt>
+        <dd>
+          {stat.prefix}
+          <span data-counter={stat.value}>{stat.text}</span>
+          {stat.suffix}
+        </dd>
+      </div>
+    ))}
+  </dl>
+  <div class="controls">
+    <label>
+      <span>Easing</span>
+      <select data-easing>
+        <option value="ease-out">ease-out</option>
+        <option value="ease-in-out">ease-in-out</option>
+        <option value="linear">linear</option>
+      </select>
+    </label>
+    <button type="button" data-replay>
+      Count again
+    </button>
+  </div>
+</counter-demo>
+
+<script>
+  import { counter, type EasingName } from '@samline/counter'
+
+  for (const root of document.querySelectorAll<HTMLElement>('counter-demo')) {
+    const numbers = root.querySelectorAll<HTMLElement>('[data-counter]')
+    const easing = root.querySelector<HTMLSelectElement>('[data-easing]')!
+    let stop = () => {}
+    const start = () => {
+      stop()
+      stop = counter(numbers, { duration: 1800, easing: easing.value as EasingName })
+    }
+    root.querySelector('[data-replay]')!.addEventListener('click', start)
+    easing.addEventListener('change', start)
+    start()
+  }
+</script>
+
+<style>
+  .demo {
+    display: grid;
+    gap: 1rem;
+  }
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+    gap: 0.75rem;
+    margin: 0;
+  }
+  .stat {
+    padding: 1rem 1.25rem;
+    border: 0.0625rem solid var(--color-border);
+    border-radius: var(--radius-control);
+    background: var(--color-bg-soft);
+  }
+  dt {
+    font: 0.65rem/1.6 var(--font-mono);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-subtle);
+  }
+  dd {
+    margin: 0.25rem 0 0;
+    font-size: 1.75rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-text);
+  }
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+  }
+  label {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    font-size: 0.875rem;
+    color: var(--palette-specimen-text);
+  }
+  select,
+  button {
+    padding: 0.375rem 0.75rem;
+    border: 0.0625rem solid var(--color-border);
+    border-radius: var(--radius-control);
+    background: var(--color-bg-soft);
+    color: var(--color-text);
+    font: inherit;
+    font-size: 0.875rem;
+  }
+  button {
+    cursor: pointer;
+  }
+  button:hover {
+    border-color: var(--color-accent);
+  }
+</style>

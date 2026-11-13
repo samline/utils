@@ -1,0 +1,9 @@
+{
+  "title": "Counter",
+  "category": "Motion",
+  "summary": "Count numbers up as they scroll into view, with easing, decimals and Intl formatting, while the final value stays in the HTML.",
+  "tags": ["counter", "count-up", "number", "animation", "intl", "statistics"],
+  "delivery": {
+    "cdnScript": "https://cdn.jsdelivr.net/npm/@samline/counter@1.0.0/dist/browser/counter.global.js"
+  }
+}

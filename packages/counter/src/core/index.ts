@@ -1,0 +1,17 @@
+export {
+  ATTRIBUTE,
+  EASINGS,
+  STATE_ATTRIBUTE,
+  animateNumber,
+  autoCounter,
+  counter,
+  parseNumber,
+  type AnimateNumberOptions,
+  type AutoCounterOptions,
+  type AutoInitController,
+  type CounterOptions,
+  type CounterState,
+  type Easing,
+  type EasingName,
+  type ElementTarget,
+} from './counter.js'

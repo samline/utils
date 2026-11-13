@@ -1,0 +1,50 @@
+---
+import './_shared.css'
+
+const stats = [
+  { label: 'Customers', value: '12480', text: '12,480', before: '', after: '' },
+  { label: 'Uptime', value: '99.95', text: '99.95', before: '', after: '%' },
+  { label: 'Countries', value: '42', text: '42', before: '+', after: '' },
+]
+---
+
+<div class="preview">
+  <div class="box" data-preview="stats" tabindex="0" aria-label="Scrollable stats" lang="en">
+    <p class="spacer">Scroll down</p>
+    <dl class="stats">
+      {stats.map(stat => (
+        <div>
+          <dt>{stat.label}</dt>
+          <dd class="big">
+            {stat.before}
+            <span data-counter={stat.value}>{stat.text}</span>
+            {stat.after}
+          </dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</div>
+
+<script>
+  import { autoCounter } from '@samline/counter'
+
+  const box = document.querySelector<HTMLElement>('[data-preview="stats"]')!
+  autoCounter({ scope: box, root: box })
+</script>
+
+<style>
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+    gap: 1rem;
+    margin: 0;
+  }
+  dt {
+    font-size: 0.875rem;
+    color: var(--palette-specimen-text);
+  }
+  dd {
+    margin: 0;
+  }
+</style>

@@ -17,6 +17,10 @@
         "vitest": "^5.0.1",
       },
     },
+    "packages/counter": {
+      "name": "@samline/counter",
+      "version": "1.0.0",
+    },
     "packages/debounce": {
       "name": "@samline/debounce",
       "version": "1.0.1",
@@ -306,6 +310,8 @@
     "@rollup/rollup-win32-x64-gnu": ["@rollup/rollup-win32-x64-gnu@4.68.2", "", { "os": "win32", "cpu": "x64" }, "sha512-5IYoWxQGo5WECbJbImIf2w33uCHJNLv4o/FQtSyeYDed7AC6zx84NsEcGYccoI2geDEYkrxUXcsYK/6EhwVSIg=="],
 
     "@rollup/rollup-win32-x64-msvc": ["@rollup/rollup-win32-x64-msvc@4.68.2", "", { "os": "win32", "cpu": "x64" }, "sha512-ee+c14ggUiM7lg4PtCjSBYU9O9dHp4FFespRnd5yj7SilUBJCL3x3aHlB+sIqbGjcPo3pEyODASnfKJuZ26YBw=="],
+
+    "@samline/counter": ["@samline/counter@workspace:packages/counter"],
 
     "@samline/debounce": ["@samline/debounce@workspace:packages/debounce"],
 
