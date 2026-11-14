@@ -1,7 +1,8 @@
-.preview { display: grid; gap: 0.75rem; }
-.preview label { font-size: 0.875rem; color: var(--palette-specimen-text); }
-.preview input,
-.preview textarea {
+/* Scoped to this package's previews: every package's example styles load on each Examples page. */
+.debounce-example { display: grid; gap: 0.75rem; }
+.debounce-example label { font-size: 0.875rem; color: var(--palette-specimen-text); }
+.debounce-example input,
+.debounce-example textarea {
   width: 100%;
   padding: 0.75rem 1rem;
   border: 0.0625rem solid var(--color-border);
@@ -10,5 +11,5 @@
   color: var(--color-text);
   font: inherit;
 }
-.preview .status { margin: 0; color: var(--color-text-muted); font-size: 0.875rem; }
-.preview ul { margin: 0; padding-left: 1.25rem; color: var(--color-text); }
+.debounce-example .status { margin: 0; color: var(--color-text-muted); font-size: 0.875rem; }
+.debounce-example ul { margin: 0; padding-left: 1.25rem; color: var(--color-text); }

@@ -1,16 +1,17 @@
-.preview {
+/* Scoped to this package's previews: every package's example styles load on each Examples page. */
+.scroll-to-example {
   display: grid;
   gap: 0.75rem;
   color: var(--color-text);
 }
-.preview .box {
+.scroll-to-example .box {
   position: relative;
   height: 18rem;
   overflow-y: auto;
   border: 0.0625rem solid var(--color-border);
   border-radius: var(--radius-control);
 }
-.preview .bar {
+.scroll-to-example .bar {
   position: sticky;
   top: 0;
   z-index: 1;
@@ -22,32 +23,32 @@
   border-bottom: 0.0625rem solid var(--color-border);
   font-size: 0.875rem;
 }
-.preview .bar a {
+.scroll-to-example .bar a {
   color: var(--color-text-subtle);
 }
-.preview section,
-.preview article {
+.scroll-to-example section,
+.scroll-to-example article {
   min-height: 14rem;
   padding: 1rem;
   border-top: 0.0625rem solid var(--color-border);
 }
-.preview section:focus,
-.preview article:focus {
+.scroll-to-example section:focus,
+.scroll-to-example article:focus {
   outline: none;
 }
 /* Mock headings of the demo content: styled text, so they stay out of the page outline. */
-.preview .part-title {
+.scroll-to-example .part-title {
   margin: 0 0 0.5rem;
   font-size: 1rem;
   font-weight: 600;
   color: var(--color-text);
 }
-.preview p {
+.scroll-to-example p {
   margin: 0;
   font-size: 0.875rem;
   color: var(--palette-specimen-text);
 }
-.preview .pill {
+.scroll-to-example .pill {
   padding: 0.375rem 0.875rem;
   border: 0.0625rem solid var(--color-border);
   border-radius: 999rem;
@@ -57,7 +58,7 @@
   font-size: 0.875rem;
   cursor: pointer;
 }
-.preview .pill[aria-selected='true'] {
+.scroll-to-example .pill[aria-selected='true'] {
   background: var(--color-accent);
   border-color: var(--color-accent);
   color: var(--color-bg);

@@ -2,7 +2,7 @@
 import './_shared.css'
 ---
 
-<div class="preview">
+<div class="preview horizontal-scroll-example">
   <div class="stage" data-preview="responsive" tabindex="0" aria-label="Scrollable page">
     <p class="spacer">Scroll down</p>
     <section
@@ -17,8 +17,10 @@ import './_shared.css'
     <p class="spacer">The end</p>
   </div>
   <p class="note">
-    State: <output data-state>…</output>. Narrow the window, or turn on reduced motion, to get the
-    swipeable carousel.
+    State: <output data-state>…</output>.{' '}
+    <span data-hint
+      >Narrow the window, or turn on reduced motion, to get the swipeable carousel.</span
+    >
   </p>
 </div>
 
@@ -29,7 +31,16 @@ import './_shared.css'
   const section = stage.querySelector('section')!
   const output = document.querySelector<HTMLOutputElement>('[data-preview="responsive"] ~ .note output')!
   horizontalScroll(section, { root: stage })
-  const show = () => (output.value = section.getAttribute('data-horizontal-scroll-state') ?? '')
+  const hint = output.parentElement!.querySelector<HTMLElement>('[data-hint]')!
+  const show = () => {
+    const state = section.getAttribute('data-horizontal-scroll-state') ?? ''
+    output.value = state
+    // Tell the visitor how to see the other behavior from where they are.
+    hint.textContent =
+      state === 'active'
+        ? 'Narrow the window, or turn on reduced motion, to get the swipeable carousel.'
+        : 'Swipe the cards sideways. On a wide screen without reduced motion, scrolling moves them.'
+  }
   show()
   new MutationObserver(show).observe(section, {
     attributes: true,

@@ -1,9 +1,10 @@
-.preview {
+/* Scoped to this package's previews: every package's example styles load on each Examples page. */
+.reveal-example {
   display: grid;
   gap: 0.75rem;
   color: var(--color-text);
 }
-.preview .box {
+.reveal-example .box {
   display: grid;
   gap: 0.75rem;
   height: 16rem;
@@ -12,20 +13,22 @@
   border: 0.0625rem solid var(--color-border);
   border-radius: var(--radius-control);
 }
-.preview .spacer {
+.reveal-example .spacer {
   min-height: 24rem;
   display: grid;
   place-items: center;
-  font-size: 0.875rem;
+  font: 0.75rem/1.6 var(--font-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--color-text-subtle);
 }
-.preview .item {
+.reveal-example .item {
   padding: 1.25rem;
   border: 0.0625rem solid var(--color-border);
   border-radius: var(--radius-control);
   background: var(--color-bg-soft);
 }
-.preview .note {
+.reveal-example .note {
   margin: 0;
   font-size: 0.875rem;
   color: var(--palette-specimen-text);

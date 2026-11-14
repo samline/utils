@@ -4,7 +4,7 @@ import './_shared.css'
 const parts = ['Features', 'Pricing', 'FAQ']
 ---
 
-<div class="preview">
+<div class="preview scroll-to-example">
   <div class="box" data-preview="header" tabindex="0" aria-label="Scrollable page">
     <nav class="bar">
       {parts.map(part => <a href={`#scroll-to-header-${part.toLowerCase()}`}>{part}</a>)}

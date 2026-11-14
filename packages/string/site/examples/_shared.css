@@ -1,6 +1,7 @@
-.preview { display: grid; gap: 0.5rem; color: var(--color-text); }
-.preview label { font-size: 0.875rem; color: var(--palette-specimen-text); }
-.preview input {
+/* Scoped to this package's previews: every package's example styles load on each Examples page. */
+.string-example { display: grid; gap: 0.5rem; color: var(--color-text); }
+.string-example label { font-size: 0.875rem; color: var(--palette-specimen-text); }
+.string-example input {
   width: 100%;
   padding: 0.75rem 1rem;
   border: 0.0625rem solid var(--color-border);
@@ -9,7 +10,7 @@
   color: var(--color-text);
   font: inherit;
 }
-.preview pre {
+.string-example pre {
   margin: 0;
   padding: 1rem;
   overflow-x: auto;
@@ -17,9 +18,9 @@
   border-radius: var(--radius-control);
   font: 0.8125rem/1.6 var(--font-mono);
 }
-.preview ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.75rem; }
-.preview li { display: flex; gap: 0.75rem; align-items: center; }
-.preview .avatar {
+.string-example ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.75rem; }
+.string-example li { display: flex; gap: 0.75rem; align-items: center; }
+.string-example .avatar {
   display: grid;
   place-items: center;
   flex: none;

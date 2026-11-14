@@ -1,14 +1,15 @@
-.preview {
+/* Scoped to this package's previews: every package's example styles load on each Examples page. */
+.scroll-spy-example {
   display: grid;
   gap: 1rem;
   color: var(--color-text);
 }
-.preview .layout {
+.scroll-spy-example .layout {
   display: grid;
   grid-template-columns: minmax(8rem, 10rem) 1fr;
   gap: 1rem;
 }
-.preview .box {
+.scroll-spy-example .box {
   height: 16rem;
   overflow-y: auto;
   scroll-behavior: smooth;
@@ -17,31 +18,31 @@
   border-radius: var(--radius-control);
 }
 @media (prefers-reduced-motion: reduce) {
-  .preview .box {
+  .scroll-spy-example .box {
     scroll-behavior: auto;
   }
 }
 /* Mock headings of the demo content: styled text, so they stay out of the page outline. */
-.preview section .part-title {
+.scroll-spy-example section .part-title {
   margin: 0;
   padding: 1rem 0 0.5rem;
   font-size: 1rem;
   font-weight: 600;
   color: var(--color-text);
 }
-.preview .side {
+.scroll-spy-example .side {
   display: grid;
   align-content: start;
   gap: 0.125rem;
 }
-.preview .side a {
+.scroll-spy-example .side a {
   padding: 0.375rem 0.75rem;
   border-left: 0.125rem solid var(--color-border);
   color: var(--color-text-subtle);
   font-size: 0.875rem;
   text-decoration: none;
 }
-.preview .side a[aria-current] {
+.scroll-spy-example .side a[aria-current] {
   border-color: var(--color-accent);
   color: var(--color-text);
 }

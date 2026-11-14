@@ -1,16 +1,17 @@
-.preview {
+/* Scoped to this package's previews: every package's example styles load on each Examples page. */
+.horizontal-scroll-example {
   display: grid;
   gap: 0.75rem;
   color: var(--color-text);
 }
-.preview .stage {
+.horizontal-scroll-example .stage {
   position: relative;
   height: 22rem;
   overflow-y: auto;
   border: 0.0625rem solid var(--color-border);
   border-radius: var(--radius-control);
 }
-.preview .spacer {
+.horizontal-scroll-example .spacer {
   height: 14rem;
   margin: 0;
   display: grid;
@@ -20,10 +21,10 @@
   text-transform: uppercase;
   color: var(--color-text-subtle);
 }
-.preview [data-horizontal-scroll] {
+.horizontal-scroll-example [data-horizontal-scroll] {
   overflow-x: auto;
 }
-.preview .track {
+.horizontal-scroll-example .track {
   display: flex;
   gap: 1rem;
   height: 22rem;
@@ -33,7 +34,7 @@
   list-style: none;
   box-sizing: border-box;
 }
-.preview .card {
+.horizontal-scroll-example .card {
   flex: 0 0 min(70%, 16rem);
   height: 13rem;
   display: grid;
@@ -43,7 +44,7 @@
   background: color-mix(in srgb, var(--color-accent) 12%, transparent);
   font-size: 1.25rem;
 }
-.preview .card:focus-visible {
+.horizontal-scroll-example .card:focus-visible {
   outline: 0.125rem solid var(--color-accent);
   outline-offset: 0.25rem;
 }
