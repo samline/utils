@@ -69,6 +69,8 @@ The package `CHANGELOG.md` and `README.md` stay the release and npm sources.
   of a collection link the docs overview.
 - Site-level pages hide package-only links (skill, changelog, npm).
 - `/examples/` lists the packages that have examples.
+- Collection-level navigation offers Packages and Docs. Examples are linked from
+  catalog cards and package menus; the global examples index repeats the catalog.
 - `scripts/test-collection.mjs` builds `tests/fixtures/collection` (alpha with
   examples and docs, beta minimal) and runs the combined link check.
 

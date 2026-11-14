@@ -105,13 +105,16 @@ export const collection = {
     'Live previews and copyable example files for each package of the collection.',
 } as const
 
-// Collection mode: site-level pages (the catalog, /examples/, /docs/) link the
-// catalog, every package's examples and the docs overview.
+// Collection-level navigation separates package discovery from documentation.
+// Examples stay on each package: the global examples index repeats the catalog.
 const collectionNavigation = {
   ...navigationFor(project),
+  mobile: {
+    ...navigationFor(project).mobile,
+    introduction: 'Find a package, try its examples, and read its documentation.',
+  },
   items: [
     { href: '#catalog', label: 'Packages', description: 'Browse every package of the collection.' },
-    { page: 'examples', label: 'Examples', description: 'Live previews for each package.' },
     { docsRoute: 'overview', label: 'Docs', description: 'Guides and references per package.' },
   ],
 } as const
