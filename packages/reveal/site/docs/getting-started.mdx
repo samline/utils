@@ -1,0 +1,117 @@
+---
+title: 'Getting started'
+titleAccent: 'started'
+description: Install @samline/reveal with a package manager or a script tag, load the stylesheet and reveal your first elements.
+locale: en
+sidebar:
+  group: start
+  order: 2
+  label: Installation
+---
+
+import Installer from '../../../../site/shared/components/Installer.astro'
+import PackagePreview from '../../../../site/shared/components/PackagePreview.astro'
+import CardGrid from '../../../../site/shared/components/CardGrid.astro'
+import LinkCard from '../../../../site/shared/components/LinkCard.astro'
+import { examplesFor } from '../../../../site/shared/lib/package-examples'
+import { href } from '../../../../site/docs/src/lib/routes'
+
+export const starter = examplesFor('reveal')[0]
+
+Install `@samline/reveal`, then follow the Package / ESM or the HTML / CDN path to the first reveal. Both use the same API.
+
+## Requirements
+
+- Any modern browser. Without IntersectionObserver, content simply stays visible.
+- Scrub mode needs scroll-driven animations (`animation-timeline: view()`); elsewhere scrub elements stay visible.
+- On the server, `reveal` and `autoReveal` return no-ops.
+- No runtime dependencies.
+
+## Install
+
+<Installer />
+
+## Package / ESM
+
+```js
+import '@samline/reveal/style.css'
+import { autoReveal } from '@samline/reveal'
+
+autoReveal()
+```
+
+```html
+<section data-reveal>Slides up</section>
+<ul data-reveal-stagger="80">
+  <li data-reveal="fade">One</li>
+  <li data-reveal="fade">Two</li>
+</ul>
+```
+
+`autoReveal()` reveals every `[data-reveal]` in the page, including elements added later. To reveal specific elements, call `reveal(target, options)`; both return a way to stop. Available as ESM and CommonJS (`require('@samline/reveal')`); the stylesheet is `@samline/reveal/style.css` (or `dist/style.css`).
+
+## HTML / CDN
+
+For Shopify, WordPress or plain HTML pages without a build step, load the stylesheet and the browser bundle. It reveals every `[data-reveal]` as soon as the DOM is ready. Pin the version in production.
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@samline/reveal@1.0.0/dist/style.css">
+<script src="https://cdn.jsdelivr.net/npm/@samline/reveal@1.0.0/dist/browser/reveal.global.js" defer></script>
+```
+
+To pass options, add `data-manual` to the script tag and start it yourself, or call `Reveal.auto()` from a script that runs before the DOM is ready (a deferred or inline script after the bundle):
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@samline/reveal@1.0.0/dist/browser/reveal.global.js" data-manual defer></script>
+<script type="module">
+  Reveal.auto({ stagger: 60, rootMargin: '0px 0px -10% 0px' })
+</script>
+```
+
+## Working starter files
+
+A complete page you can save and open: the live preview runs the real package, and its files load the published browser bundle.
+
+<PackagePreview slug="reveal" example={starter} />
+
+## Next steps
+
+<CardGrid columns={2}>
+
+<LinkCard href={href('reveal/guides/examples')} title="Examples">
+
+Live previews with the complete, copyable source of each one.
+
+</LinkCard>
+
+<LinkCard href={href('reveal/reference/api')} title="API reference">
+
+Signatures and behavior of `reveal`, `autoReveal` and `window.Reveal`.
+
+</LinkCard>
+
+<LinkCard href={href('reveal/reference/configuration')} title="Configuration">
+
+Attributes, options, CSS variables and states.
+
+</LinkCard>
+
+<LinkCard href={href('reveal/guides/effects')} title="Effects and timing">
+
+Custom effects, cascades and repeat.
+
+</LinkCard>
+
+<LinkCard href={href('reveal/guides/scrub')} title="Scrub mode">
+
+Scroll-driven reveals without JavaScript.
+
+</LinkCard>
+
+<LinkCard href={href('reveal/guides/frameworks')} title="Framework integrations">
+
+React, Vue, Svelte, Astro and page swaps.
+
+</LinkCard>
+
+</CardGrid>

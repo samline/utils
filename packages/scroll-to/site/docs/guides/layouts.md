@@ -1,10 +1,11 @@
 ---
-title: Layouts
+title: 'Layouts and focus'
+titleAccent: 'focus'
 description: Use @samline/scroll-to with fixed headers, skip links, scroll containers, horizontal tab strips, history and reduced motion.
 locale: en
 sidebar:
   group: guides
-  order: 1
+  order: 2
 ---
 
 ## Fixed headers

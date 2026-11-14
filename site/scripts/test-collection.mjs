@@ -91,7 +91,16 @@ try {
   const alphaDocs = await page('docs/alpha/getting-started/index.html')
   assert.match(alphaDocs, /Installation/)
   assert.doesNotMatch(alphaDocs, /docs\/beta\//, 'package docs only list their own articles')
-  assert.equal(title(alphaDocs), 'Installation — @fixture/alpha')
+  assert.equal(title(alphaDocs), 'Getting started — @fixture/alpha')
+  // Package docs use the shared installer tabs and end with the first
+  // example's starter files, which Home's "Copy complete working files" links.
+  const alphaDocsText = alphaDocs.replace(/<[^>]+>/g, '')
+  for (const command of ['npm install', 'pnpm add', 'yarn add', 'bun add'])
+    assert.ok(alphaDocsText.includes(`${command} @fixture/alpha`), `${command} tab`)
+  assert.match(alphaDocs, /cdn\.example\.com\/alpha@1\.2\.3/)
+  assert.match(alphaDocs, /id="working-starter-files"/)
+  assert.match(alphaDocs, /data-package-example="alpha\/basic"/)
+  assert.match(alpha, /getting-started\/#working-starter-files/)
 
   assert.match(await page('skills/alpha/SKILL.md'), /# Alpha skill/)
   assert.match(await page('skills/beta/SKILL.md'), /# Beta skill/)

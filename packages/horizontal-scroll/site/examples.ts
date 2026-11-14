@@ -32,6 +32,9 @@ body { margin: 0; font-family: system-ui, sans-serif; }
 .card { flex: 0 0 min(70vw, 28rem); height: 60vh; display: grid; place-items: center; border-radius: 1rem; background: #efeafd; font-size: 1.5rem; }
 .card:focus-visible { outline: 3px solid #bf4532; outline-offset: 4px; }`,
       js: `// Nothing to call: the script sets up every [data-horizontal-scroll] on its own.`,
+      esm: `import { autoHorizontalScroll } from '@samline/horizontal-scroll'
+
+autoHorizontalScroll()`,
     },
   },
   {
@@ -58,6 +61,14 @@ body { margin: 0; font-family: system-ui, sans-serif; }
 .step { flex: 0 0 18rem; height: 12rem; display: grid; place-items: center; border-left: 3px solid #bf4532; background: #fbf1ef; font-size: 2rem; }`,
       js: `// Called before the DOM is ready, this replaces the automatic start.
 HorizontalScroll.auto({
+  top: 64,
+  speed: 1.5,
+  onProgress: ({ progress }) =>
+    document.querySelector('.progress').style.setProperty('--progress', progress),
+})`,
+      esm: `import { autoHorizontalScroll } from '@samline/horizontal-scroll'
+
+autoHorizontalScroll({
   top: 64,
   speed: 1.5,
   onProgress: ({ progress }) =>
@@ -90,6 +101,9 @@ body { margin: 0; font-family: system-ui, sans-serif; }
 [data-horizontal-scroll-state='active'] .track { height: 100vh; align-items: center; box-sizing: border-box; }
 .card { flex: 0 0 min(80vw, 24rem); height: 18rem; display: grid; place-items: center; border-radius: 1rem; background: #e6f4ea; font-size: 1.5rem; }`,
       js: `// Nothing to call: the media query comes from the attribute.`,
+      esm: `import { autoHorizontalScroll } from '@samline/horizontal-scroll'
+
+autoHorizontalScroll()`,
     },
   },
 ]

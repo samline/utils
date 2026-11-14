@@ -1,10 +1,12 @@
 ---
-title: Options
+title: 'Configuration options'
+titleAccent: 'options'
 description: Options for slugify, titleCase, truncate and initials, and the locale option shared by every case function.
 locale: en
 sidebar:
   group: reference
   order: 2
+  label: Configuration
 ---
 
 ## Locale

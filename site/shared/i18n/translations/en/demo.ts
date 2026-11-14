@@ -76,7 +76,10 @@ export const scenarios = {
       { id: 'length', label: 'Characters' },
     ],
     samples: [
-      { label: 'Long title', value: '  Ten   tips for faster, calmer releases  ' },
+      {
+        label: 'Long title',
+        value: '  Ten   tips for faster, calmer releases  ',
+      },
       { label: 'Underscores', value: 'Quarterly report — Q3', choice: '_' },
     ],
   },
@@ -143,8 +146,16 @@ export const scenarios = {
     },
     readouts: [{ id: 'result', label: 'Result' }],
     samples: [
-      { label: 'Shouting', value: 'PLEASE READ BEFORE INSTALLING', choice: 'sentence' },
-      { label: 'Lower case', value: 'Getting Started With The API', choice: 'lower' },
+      {
+        label: 'Shouting',
+        value: 'PLEASE READ BEFORE INSTALLING',
+        choice: 'sentence',
+      },
+      {
+        label: 'Lower case',
+        value: 'Getting Started With The API',
+        choice: 'lower',
+      },
     ],
   },
 } as const satisfies Record<string, Scenario>
@@ -189,5 +200,7 @@ export default {
     'Enable JavaScript to update the preview as you type. The example source files remain readable below.',
   openCode: 'Explore the code',
   modeLabel: 'Loading mode',
+  packageNote: (npmName: string) =>
+    `Install ${npmName} with npm, pnpm, yarn or bun, then serve these files with your bundler or dev server.`,
   copyComplete: 'Copy the complete example',
 } as const

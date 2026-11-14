@@ -1,0 +1,88 @@
+---
+title: 'Getting started'
+titleAccent: 'started'
+description: Install @samline/debounce with a package manager or a script tag and debounce your first handler.
+locale: en
+sidebar:
+  group: start
+  order: 2
+  label: Installation
+---
+
+import Installer from '../../../../site/shared/components/Installer.astro'
+import PackagePreview from '../../../../site/shared/components/PackagePreview.astro'
+import CardGrid from '../../../../site/shared/components/CardGrid.astro'
+import LinkCard from '../../../../site/shared/components/LinkCard.astro'
+import { examplesFor } from '../../../../site/shared/lib/package-examples'
+import { href } from '../../../../site/docs/src/lib/routes'
+
+export const starter = examplesFor('debounce')[0]
+
+Install `@samline/debounce`, then follow the Package / ESM or the HTML / CDN path to the first debounced handler. Both use the same API.
+
+## Requirements
+
+- Any modern browser. Node 20 or newer for server-side use.
+- No runtime dependencies. React, Vue and Svelte are optional peers, only for their adapters.
+
+## Install
+
+<Installer />
+
+## Package / ESM
+
+```js
+import { debounce } from '@samline/debounce'
+
+const search = debounce(query => fetchResults(query), 300)
+input.addEventListener('input', () => search(input.value))
+```
+
+The root entry also exports `throttle` and `rafThrottle`. It is ESM and CommonJS (`require('@samline/debounce')`).
+
+## HTML / CDN
+
+For Shopify, WordPress or plain HTML pages without a build step, load the browser bundle with a classic script tag. Pin the version in production.
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@samline/debounce@1.0.1/dist/browser/debounce.global.js"></script>
+<script>
+  const { debounce, throttle, rafThrottle } = window.Debounce
+</script>
+```
+
+## Working starter files
+
+A complete page you can save and open: the live preview runs the real package, and its files load the published browser bundle.
+
+<PackagePreview slug="debounce" example={starter} />
+
+## Next steps
+
+<CardGrid columns={2}>
+
+<LinkCard href={href('debounce/guides/examples')} title="Examples">
+
+Live previews with the complete, copyable source of each one.
+
+</LinkCard>
+
+<LinkCard href={href('debounce/reference/api')} title="API reference">
+
+Every function and its return value.
+
+</LinkCard>
+
+<LinkCard href={href('debounce/reference/configuration')} title="Configuration">
+
+Defaults and accepted values of `leading`, `trailing` and `maxWait`.
+
+</LinkCard>
+
+<LinkCard href={href('debounce/guides/frameworks')} title="Framework integrations">
+
+React, Vue and Svelte adapters.
+
+</LinkCard>
+
+</CardGrid>

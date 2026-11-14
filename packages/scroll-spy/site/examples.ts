@@ -17,7 +17,7 @@ export default [
       'Links to #id sections get aria-current="true" once their section crosses the line at 25% of the box. A clicked link stays highlighted while the box scrolls to it.',
     files: {
       html: `<div class="layout">
-  <nav data-scroll-spy aria-label="On this page">
+  <nav data-scroll-spy aria-label="Article sections">
     <a href="#overview">Overview</a>
     <a href="#install">Install</a>
     <a href="#usage">Usage</a>
@@ -36,6 +36,10 @@ nav a[aria-current] { border-color: #bf4532; color: #111; font-weight: 600; }
       js: `// The article scrolls instead of the page, so pass it as the root.
 // Called before the DOM is ready, this replaces the automatic start.
 ScrollSpy.auto({ root: document.querySelector('#article') })`,
+      esm: `import { autoScrollSpy } from '@samline/scroll-spy'
+
+// The article scrolls instead of the page, so pass it as the root.
+autoScrollSpy({ root: document.querySelector('#article') })`,
     },
   },
   {
@@ -64,6 +68,13 @@ section { padding: 0 1rem; scroll-margin-top: 3rem; }`,
   activeClass: 'is-active',
   updateHash: true,
 })`,
+      esm: `import { autoScrollSpy } from '@samline/scroll-spy'
+
+autoScrollSpy({
+  root: document.querySelector('#page'),
+  activeClass: 'is-active',
+  updateHash: true,
+})`,
     },
   },
   {
@@ -88,6 +99,9 @@ nav a[aria-current] { background: #efeafd; color: #111; }
 #book { height: 16rem; overflow-y: auto; padding: 0 1rem; border: 1px solid #ccc; }
 section { min-height: 10rem; }`,
       js: `ScrollSpy.auto({ root: document.querySelector('#book') })`,
+      esm: `import { autoScrollSpy } from '@samline/scroll-spy'
+
+autoScrollSpy({ root: document.querySelector('#book') })`,
     },
   },
 ]

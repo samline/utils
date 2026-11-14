@@ -1,3 +1,5 @@
+import { themeScript } from '@samline/theme'
+
 // Copyable files are complete pages that load the published browser bundle in
 // <head> without defer (cdnScript.head), so the theme applies before the first
 // paint and window.Theme starts on its own. The previews in examples/*.astro
@@ -31,6 +33,10 @@ export default [
 .toggle { justify-self: start; padding: 0.5rem 1rem; border: 1px solid currentColor; border-radius: 999px; background: none; color: inherit; font: inherit; cursor: pointer; }
 .toggle[aria-pressed='true'] { background: var(--accent); border-color: var(--accent); color: var(--bg); }`,
       js: `// Nothing to call: the script applies the theme and handles [data-theme-toggle].`,
+      esmHead: `<script>${themeScript()}</script>`,
+      esm: `import { createTheme } from '@samline/theme'
+
+createTheme()`,
     },
   },
   {
@@ -67,6 +73,18 @@ const show = ({ mode, theme }) => {
 
 show(Theme.controller)
 document.addEventListener('themechange', event => show(event.detail))`,
+      esmHead: `<script>${themeScript()}</script>`,
+      esm: `import { createTheme } from '@samline/theme'
+
+const controller = createTheme()
+
+const status = document.querySelector('#status')
+const show = ({ mode, theme }) => {
+  status.textContent = mode === 'system' ? \`Following the system: \${theme}\` : \`Chosen: \${theme}\`
+}
+
+show(controller)
+document.addEventListener('themechange', event => show(event.detail))`,
     },
   },
   {
@@ -75,7 +93,11 @@ document.addEventListener('themechange', event => show(event.detail))`,
     // The script tag names the themes, so a stored sepia applies before the first paint.
     cdnScript: {
       head: true,
-      attributes: { 'data-themes': 'light dark sepia', 'data-default': 'light', 'data-attribute': 'class' },
+      attributes: {
+        'data-themes': 'light dark sepia',
+        'data-default': 'light',
+        'data-attribute': 'class',
+      },
     },
     title: 'More than light and dark',
     description:
@@ -98,6 +120,15 @@ fieldset { display: flex; gap: 1rem; border-radius: 0.75rem; }
       js: `// Restart with the options a script tag cannot hold. The data-* options
 // on the script tag still apply, so the theme on the page does not change.
 Theme.auto({
+  themeColor: { light: '#ffffff', dark: '#18181b', sepia: '#f4ecd8' },
+})`,
+      esmHead: `<script>${themeScript({ themes: ['light', 'dark', 'sepia'], defaultMode: 'light', attribute: 'class' })}</script>`,
+      esm: `import { createTheme } from '@samline/theme'
+
+createTheme({
+  themes: ['light', 'dark', 'sepia'],
+  defaultMode: 'light',
+  attribute: 'class',
   themeColor: { light: '#ffffff', dark: '#18181b', sepia: '#f4ecd8' },
 })`,
     },

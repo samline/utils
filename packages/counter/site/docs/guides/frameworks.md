@@ -1,10 +1,11 @@
 ---
-title: Frameworks
+title: 'Framework integrations'
+titleAccent: 'integrations'
 description: Use @samline/counter in React, Vue, Svelte and Astro, and keep it working with client-side navigation and page swaps.
 locale: en
 sidebar:
   group: guides
-  order: 2
+  order: 3
 ---
 
 `counter` returns a cleanup that also restores the original text, so it fits every framework's mount and unmount hooks. Render the final value; the counter replaces it only while animating.

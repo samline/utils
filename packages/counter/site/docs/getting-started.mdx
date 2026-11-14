@@ -1,0 +1,107 @@
+---
+title: 'Getting started'
+titleAccent: 'started'
+description: Install @samline/counter with a package manager or a script tag and count your first number as it scrolls into view.
+locale: en
+sidebar:
+  group: start
+  order: 2
+  label: Installation
+---
+
+import Installer from '../../../../site/shared/components/Installer.astro'
+import PackagePreview from '../../../../site/shared/components/PackagePreview.astro'
+import CardGrid from '../../../../site/shared/components/CardGrid.astro'
+import LinkCard from '../../../../site/shared/components/LinkCard.astro'
+import { examplesFor } from '../../../../site/shared/lib/package-examples'
+import { href } from '../../../../site/docs/src/lib/routes'
+
+export const starter = examplesFor('counter')[0]
+
+Install `@samline/counter`, then follow the Package / ESM or the HTML / CDN path to the first counter. Both use the same API.
+
+## Requirements
+
+- Any modern browser with `Intl.NumberFormat`. Without IntersectionObserver, numbers count right away.
+- On the server, `counter` and `autoCounter` return no-ops and `animateNumber` jumps to the end.
+- No runtime dependencies.
+
+## Install
+
+<Installer />
+
+## Package / ESM
+
+```js
+import { autoCounter } from '@samline/counter'
+
+autoCounter()
+```
+
+```html
+<p lang="en">
+  <span data-counter="12480">12,480</span> customers ·
+  <span data-counter="99.95">99.95</span>% uptime
+</p>
+```
+
+`autoCounter()` counts every `[data-counter]` in the page, including numbers added later. To count specific elements, call `counter(target, options)`; both return a way to stop. Available as ESM and CommonJS (`require('@samline/counter')`). There is no stylesheet.
+
+## HTML / CDN
+
+For Shopify, WordPress or plain HTML pages without a build step, load the browser bundle. It counts every `[data-counter]` as soon as the DOM is ready. Pin the version in production.
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@samline/counter@1.0.0/dist/browser/counter.global.js" defer></script>
+```
+
+To pass options, add `data-manual` to the script tag and start it yourself, or call `Counter.auto()` from a script that runs before the DOM is ready (a deferred or inline script after the bundle):
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@samline/counter@1.0.0/dist/browser/counter.global.js" data-manual defer></script>
+<script type="module">
+  Counter.auto({ duration: 1500, locale: 'es-MX' })
+</script>
+```
+
+## Working starter files
+
+A complete page you can save and open: the live preview runs the real package, and its files load the published browser bundle.
+
+<PackagePreview slug="counter" example={starter} />
+
+## Next steps
+
+<CardGrid columns={2}>
+
+<LinkCard href={href('counter/guides/examples')} title="Examples">
+
+Live previews with the complete, copyable source of each one.
+
+</LinkCard>
+
+<LinkCard href={href('counter/reference/api')} title="API reference">
+
+Signatures and behavior of `counter`, `autoCounter`, `animateNumber`, `parseNumber` and `window.Counter`.
+
+</LinkCard>
+
+<LinkCard href={href('counter/reference/configuration')} title="Configuration">
+
+Attributes, options and states.
+
+</LinkCard>
+
+<LinkCard href={href('counter/guides/formatting')} title="Number formatting">
+
+Locales, currencies, percentages and layout.
+
+</LinkCard>
+
+<LinkCard href={href('counter/guides/frameworks')} title="Framework integrations">
+
+React, Vue, Svelte, Astro and page swaps.
+
+</LinkCard>
+
+</CardGrid>

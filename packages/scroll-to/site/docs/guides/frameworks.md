@@ -1,10 +1,11 @@
 ---
-title: Frameworks
+title: 'Framework integrations'
+titleAccent: 'integrations'
 description: Use @samline/scroll-to in React, Vue, Svelte and Astro, and alongside client-side routers that handle hashes themselves.
 locale: en
 sidebar:
   group: guides
-  order: 2
+  order: 3
 ---
 
 `scrollTo` is a plain function that returns a promise, so it works anywhere. `autoScrollTo` returns `{ destroy }` for your unmount hook.

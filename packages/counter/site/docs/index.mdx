@@ -1,5 +1,5 @@
 ---
-title: Counter
+title: 'Counter'
 description: What @samline/counter does, why the final value stays in the HTML, and how counting, formatting and repeat fit together.
 locale: en
 sidebar:
@@ -7,6 +7,10 @@ sidebar:
   order: 1
   label: Overview
 ---
+
+import CardGrid from '../../../../site/shared/components/CardGrid.astro'
+import LinkCard from '../../../../site/shared/components/LinkCard.astro'
+import { href } from '../../../../site/docs/src/lib/routes'
 
 `@samline/counter` counts numbers up (or down) as they scroll into view. Render the final value, put the plain number in `data-counter` and call `autoCounter()` (or load the CDN script).
 
@@ -34,8 +38,44 @@ sidebar:
 | Count again | `data-counter-repeat` |
 | Any number, no DOM | `animateNumber()` |
 
-- [Installation](getting-started/) — npm, CDN and the first counter.
-- [API reference](reference/api/) — `counter`, `autoCounter`, `animateNumber`, `parseNumber` and `window.Counter`.
-- [Options](reference/configuration/) — attributes, options and states.
-- [Formatting](guides/formatting/) — locales, currencies, percentages and layout.
-- [Frameworks](guides/frameworks/) — React, Vue, Svelte, Astro and page swaps.
+## Choose your next step
+
+<CardGrid columns={2}>
+
+<LinkCard href={href('counter/getting-started')} title="Installation">
+
+Package managers, the CDN and the first counter.
+
+</LinkCard>
+
+<LinkCard href={href('counter/guides/examples')} title="Examples">
+
+Live previews with the complete, copyable source of each one.
+
+</LinkCard>
+
+<LinkCard href={href('counter/reference/api')} title="API reference">
+
+Signatures and behavior of `counter`, `autoCounter`, `animateNumber`, `parseNumber` and `window.Counter`.
+
+</LinkCard>
+
+<LinkCard href={href('counter/reference/configuration')} title="Configuration">
+
+Attributes, options and states.
+
+</LinkCard>
+
+<LinkCard href={href('counter/guides/formatting')} title="Number formatting">
+
+Locales, currencies, percentages and layout.
+
+</LinkCard>
+
+<LinkCard href={href('counter/guides/frameworks')} title="Framework integrations">
+
+React, Vue, Svelte, Astro and page swaps.
+
+</LinkCard>
+
+</CardGrid>

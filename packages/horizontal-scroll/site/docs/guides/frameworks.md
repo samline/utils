@@ -1,10 +1,11 @@
 ---
-title: Frameworks
+title: 'Framework integrations'
+titleAccent: 'integrations'
 description: Use @samline/horizontal-scroll in React, Vue, Svelte and Astro, and keep it working with client-side navigation and page swaps.
 locale: en
 sidebar:
   group: guides
-  order: 2
+  order: 3
 ---
 
 `horizontalScroll` returns an object with `destroy()`, so it fits every framework's mount and unmount hooks. Changes in size are picked up on their own; call `refresh()` after replacing the track element.

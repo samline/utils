@@ -1,10 +1,11 @@
 ---
-title: Frameworks
+title: 'Framework integrations'
+titleAccent: 'integrations'
 description: Use @samline/debounce in React with hooks, in Vue with composables and in Svelte with a debounced store.
 locale: en
 sidebar:
   group: guides
-  order: 1
+  order: 2
 ---
 
 Each adapter is a subpath and re-exports the root API.

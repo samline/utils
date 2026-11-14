@@ -1,5 +1,6 @@
 ---
-title: API reference
+title: 'API reference'
+titleAccent: 'reference'
 description: Every @samline/reveal export, reveal, autoReveal, REVEAL_EFFECTS and the window.Reveal browser global, with their arguments and return values.
 locale: en
 sidebar:

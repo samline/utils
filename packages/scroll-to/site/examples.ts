@@ -36,6 +36,9 @@ section { min-height: 70vh; border-top: 1px solid #ddd; }
 section:focus { outline: none; }`,
       js: `// Called before the DOM is ready, this replaces the automatic start.
 ScrollTo.auto({ offset: '#header' })`,
+      esm: `import { autoScrollTo, scrollTo } from '@samline/scroll-to'
+
+autoScrollTo({ offset: '#header' })`,
     },
   },
   {
@@ -61,6 +64,17 @@ tabs.addEventListener('click', event => {
   tab.setAttribute('aria-selected', 'true')
   ScrollTo.scrollTo(tab, { container: tabs, inline: 'center', block: 'nearest' })
 })`,
+      esm: `import { autoScrollTo, scrollTo } from '@samline/scroll-to'
+
+const tabs = document.querySelector('#tabs')
+
+tabs.addEventListener('click', event => {
+  const tab = event.target.closest('[role="tab"]')
+  if (!tab) return
+  tabs.querySelector('[aria-selected="true"]').setAttribute('aria-selected', 'false')
+  tab.setAttribute('aria-selected', 'true')
+  scrollTo(tab, { container: tabs, inline: 'center', block: 'nearest' })
+})`,
     },
   },
   {
@@ -85,6 +99,19 @@ article.flash { background: #fff6c2; }`,
 document.querySelector('#show').addEventListener('click', async () => {
   const answer = document.querySelector('#q4')
   const arrived = await ScrollTo.scrollTo(answer, { offset: 16, duration: 900 })
+  status.textContent = arrived ? 'Arrived' : 'Interrupted'
+  if (arrived) {
+    answer.classList.add('flash')
+    setTimeout(() => answer.classList.remove('flash'), 1200)
+  }
+})`,
+      esm: `import { autoScrollTo, scrollTo } from '@samline/scroll-to'
+
+const status = document.querySelector('#status')
+
+document.querySelector('#show').addEventListener('click', async () => {
+  const answer = document.querySelector('#q4')
+  const arrived = await scrollTo(answer, { offset: 16, duration: 900 })
   status.textContent = arrived ? 'Arrived' : 'Interrupted'
   if (arrived) {
     answer.classList.add('flash')

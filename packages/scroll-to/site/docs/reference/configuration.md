@@ -1,10 +1,12 @@
 ---
-title: Options
+title: 'Configuration options'
+titleAccent: 'options'
 description: Every @samline/scroll-to option and data-scroll-to attribute, with defaults and how targets, offsets and alignment are read.
 locale: en
 sidebar:
   group: reference
   order: 2
+  label: Configuration
 ---
 
 ## Options

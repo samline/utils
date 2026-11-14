@@ -1,10 +1,11 @@
 ---
-title: Scrub mode
+title: 'Scrub mode'
+titleAccent: 'mode'
 description: Tie a @samline/reveal effect to the scroll position with a CSS scroll-driven animation, set its range and know what other browsers show.
 locale: en
 sidebar:
   group: guides
-  order: 2
+  order: 3
 ---
 
 `data-reveal-scrub` plays the effect along the scroll position instead of on entry: halfway through the range, the element is halfway revealed, and scrolling back reverses it. It is a CSS scroll-driven animation (`animation-timeline: view()`); the script ignores these elements, so it works with the stylesheet alone.

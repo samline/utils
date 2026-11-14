@@ -1,0 +1,25 @@
+---
+title: 'Working examples'
+titleAccent: 'examples'
+description: 'Every live Counter preview with its explanation and the complete, copyable source files of each one.'
+locale: en
+sidebar:
+  group: guides
+  order: 1
+  label: Examples
+---
+
+import PackagePreview from '../../../../../site/shared/components/PackagePreview.astro'
+import { examplesFor } from '../../../../../site/shared/lib/package-examples'
+
+export const examples = examplesFor('counter')
+
+Each preview is the same one shown on Home and Examples, and runs the real package. The copied files load the published browser bundle, so they work as they are.
+
+{examples.map(example => (
+
+  <section aria-labelledby={`guide-${example.id}`}>
+    <h2 id={`guide-${example.id}`}>{example.title}</h2>
+    <PackagePreview slug="counter" example={example} />
+  </section>
+))}

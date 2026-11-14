@@ -1,10 +1,11 @@
 ---
-title: Frameworks
+title: 'Framework integrations'
+titleAccent: 'integrations'
 description: Use @samline/is-visible in React with useIsVisible, in Vue with a composable and in Svelte with an action.
 locale: en
 sidebar:
   group: guides
-  order: 1
+  order: 2
 ---
 
 Each adapter is a subpath and re-exports the root API. In every adapter `isVisible` turns `false` when the element leaves, even without `inOut`; your `notVisible` callback still runs only with `inOut`.

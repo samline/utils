@@ -1,10 +1,11 @@
 ---
-title: Frameworks
+title: 'Framework integrations'
+titleAccent: 'integrations'
 description: Use @samline/theme in React, Vue, Svelte, Astro and Next.js, with the head snippet for no flash and the controller in your components.
 locale: en
 sidebar:
   group: guides
-  order: 2
+  order: 3
 ---
 
 Create one controller for the page and share it. Apply the theme in `<head>` first, with the CDN script or `themeScript()`, so nothing flashes before your bundle runs.

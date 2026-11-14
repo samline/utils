@@ -1,0 +1,89 @@
+---
+title: 'Getting started'
+titleAccent: 'started'
+description: Install @samline/string with a package manager or a script tag and convert your first text in the browser or on the server.
+locale: en
+sidebar:
+  group: start
+  order: 2
+  label: Installation
+---
+
+import Installer from '../../../../site/shared/components/Installer.astro'
+import PackagePreview from '../../../../site/shared/components/PackagePreview.astro'
+import CardGrid from '../../../../site/shared/components/CardGrid.astro'
+import LinkCard from '../../../../site/shared/components/LinkCard.astro'
+import { examplesFor } from '../../../../site/shared/lib/package-examples'
+import { href } from '../../../../site/docs/src/lib/routes'
+
+export const starter = examplesFor('string')[0]
+
+Install `@samline/string`, then follow the Package / ESM or the HTML / CDN path to the first slug. Both use the same API.
+
+## Requirements
+
+- Any modern browser, Node 20 or newer, workers and edge runtimes. No DOM access.
+- No runtime dependencies.
+
+## Install
+
+<Installer />
+
+## Package / ESM
+
+```js
+import { camelCase, slugify, truncate } from '@samline/string'
+
+camelCase('user_first_name') // 'userFirstName'
+slugify('¡Hola, Ñandú & Café!') // 'hola-nandu-cafe'
+truncate('The quick brown fox', 12) // 'The quick…'
+```
+
+Every function is tree-shakeable and available from ESM and CommonJS (`require('@samline/string')`).
+
+## HTML / CDN
+
+For Shopify, WordPress or plain HTML pages without a build step, load the browser bundle with a classic script tag. Pin the version in production.
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@samline/string@1.0.0/dist/browser/string.global.js"></script>
+<script>
+  const { slugify, titleCase } = window.SamlineString
+</script>
+```
+
+## Working starter files
+
+A complete page you can save and open: the live preview runs the real package, and its files load the published browser bundle.
+
+<PackagePreview slug="string" example={starter} />
+
+## Next steps
+
+<CardGrid columns={2}>
+
+<LinkCard href={href('string/guides/examples')} title="Examples">
+
+Live previews with the complete, copyable source of each one.
+
+</LinkCard>
+
+<LinkCard href={href('string/reference/api')} title="API reference">
+
+Every function with examples.
+
+</LinkCard>
+
+<LinkCard href={href('string/reference/configuration')} title="Configuration">
+
+Defaults and accepted values of `slugify`, `titleCase`, `truncate`, `initials` and locales.
+
+</LinkCard>
+
+<LinkCard href={href('string/guides/words')} title="Word splitting">
+
+Exactly how words are detected.
+
+</LinkCard>
+
+</CardGrid>

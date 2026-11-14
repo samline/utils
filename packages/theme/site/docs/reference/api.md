@@ -1,5 +1,6 @@
 ---
-title: API reference
+title: 'API reference'
+titleAccent: 'reference'
 description: Every @samline/theme export, createTheme, themeScript, the Theme controller, the themechange event, their types and the window.Theme global.
 locale: en
 sidebar:

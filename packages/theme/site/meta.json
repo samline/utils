@@ -17,6 +17,7 @@
     "no-flash"
   ],
   "delivery": {
-    "cdnScript": "https://cdn.jsdelivr.net/npm/@samline/theme@1.0.0/dist/browser/theme.global.js"
+    "cdnScript": "https://cdn.jsdelivr.net/npm/@samline/theme@1.0.0/dist/browser/theme.global.js",
+    "cdnScriptHead": true
   }
 }

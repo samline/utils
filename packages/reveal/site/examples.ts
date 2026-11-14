@@ -27,6 +27,11 @@ export default [
       js: `// The box scrolls instead of the page, so pass it as the root.
 // Called before the DOM is ready, this replaces the automatic start.
 Reveal.auto({ root: document.querySelector('#page') })`,
+      esm: `import { autoReveal } from '@samline/reveal'
+import '@samline/reveal/style.css'
+
+// The box scrolls instead of the page, so pass it as the root.
+autoReveal({ root: document.querySelector('#page') })`,
     },
   },
   {
@@ -50,6 +55,10 @@ Reveal.auto({ root: document.querySelector('#page') })`,
 .spacer { min-height: 24rem; margin: 0; }
 .item { padding: 1.25rem; border: 1px solid #ccc; --reveal-distance: 1.5rem; }`,
       js: `Reveal.auto({ root: document.querySelector('#page') })`,
+      esm: `import { autoReveal } from '@samline/reveal'
+import '@samline/reveal/style.css'
+
+autoReveal({ root: document.querySelector('#page') })`,
     },
   },
   {
@@ -71,6 +80,12 @@ Reveal.auto({ root: document.querySelector('#page') })`,
 .spacer { min-height: 24rem; margin: 0; }
 .item { padding: 1.25rem; border: 1px solid #ccc; --reveal-range: entry 0% cover 40%; }`,
       js: `document.querySelector('#support').textContent = CSS.supports('animation-timeline: view()')
+  ? 'Scroll-driven animations are supported here.'
+  : 'This browser has no scroll-driven animations, so the content stays visible.'`,
+      esm: `import { autoReveal } from '@samline/reveal'
+import '@samline/reveal/style.css'
+
+document.querySelector('#support').textContent = CSS.supports('animation-timeline: view()')
   ? 'Scroll-driven animations are supported here.'
   : 'This browser has no scroll-driven animations, so the content stays visible.'`,
     },

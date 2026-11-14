@@ -1,5 +1,6 @@
 ---
-title: API reference
+title: 'API reference'
+titleAccent: 'reference'
 description: Every @samline/horizontal-scroll export, horizontalScroll, autoHorizontalScroll, their types and the window.HorizontalScroll global.
 locale: en
 sidebar:

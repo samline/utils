@@ -1,10 +1,12 @@
 ---
-title: Options
+title: 'Configuration options'
+titleAccent: 'options'
 description: leading, trailing and maxWait for debounce, and leading and trailing for throttle.
 locale: en
 sidebar:
   group: reference
   order: 2
+  label: Configuration
 ---
 
 ## `debounce` options

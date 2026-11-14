@@ -1,10 +1,12 @@
 ---
-title: Options
+title: 'Configuration options'
+titleAccent: 'options'
 description: Every @samline/scroll-spy attribute and JavaScript option, with defaults and which one wins.
 locale: en
 sidebar:
   group: reference
   order: 2
+  label: Configuration
 ---
 
 ## Attributes

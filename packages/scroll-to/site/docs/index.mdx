@@ -1,5 +1,5 @@
 ---
-title: Scroll To
+title: 'Scroll To'
 description: What @samline/scroll-to does, how a scroll is aimed, animated and finished, and how links, triggers and containers fit together.
 locale: en
 sidebar:
@@ -7,6 +7,10 @@ sidebar:
   order: 1
   label: Overview
 ---
+
+import CardGrid from '../../../../site/shared/components/CardGrid.astro'
+import LinkCard from '../../../../site/shared/components/LinkCard.astro'
+import { href } from '../../../../site/docs/src/lib/routes'
 
 `@samline/scroll-to` scrolls smoothly to anchors, elements and positions, and stops where it should: below a fixed header, centered in a strip, or at the nearest edge. Call `autoScrollTo()` (or load the CDN script) and same-page `#id` links and `[data-scroll-to]` triggers use it.
 
@@ -38,8 +42,44 @@ sidebar:
 | From code | `await scrollTo(target, options)` |
 | Measure only | `scrollPosition(target, options)` |
 
-- [Installation](getting-started/) — npm, CDN and the first links.
-- [API reference](reference/api/) — `scrollTo`, `scrollPosition`, `cancelScroll`, `autoScrollTo` and `window.ScrollTo`.
-- [Options](reference/configuration/) — options and attributes.
-- [Layouts](guides/layouts/) — fixed headers, skip links, containers, tabs and history.
-- [Frameworks](guides/frameworks/) — React, Vue, Svelte, Astro and client-side routers.
+## Choose your next step
+
+<CardGrid columns={2}>
+
+<LinkCard href={href('scroll-to/getting-started')} title="Installation">
+
+Package managers, the CDN and the first links.
+
+</LinkCard>
+
+<LinkCard href={href('scroll-to/guides/examples')} title="Examples">
+
+Live previews with the complete, copyable source of each one.
+
+</LinkCard>
+
+<LinkCard href={href('scroll-to/reference/api')} title="API reference">
+
+Signatures and behavior of `scrollTo`, `scrollPosition`, `cancelScroll`, `autoScrollTo` and `window.ScrollTo`.
+
+</LinkCard>
+
+<LinkCard href={href('scroll-to/reference/configuration')} title="Configuration">
+
+Options and attributes.
+
+</LinkCard>
+
+<LinkCard href={href('scroll-to/guides/layouts')} title="Layouts and focus">
+
+Fixed headers, skip links, containers, tabs and history.
+
+</LinkCard>
+
+<LinkCard href={href('scroll-to/guides/frameworks')} title="Framework integrations">
+
+React, Vue, Svelte, Astro and client-side routers.
+
+</LinkCard>
+
+</CardGrid>

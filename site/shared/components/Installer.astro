@@ -25,7 +25,9 @@ const panels = [
             ...(project.delivery.cdnStylesheet
               ? [`<link rel="stylesheet" href="${project.delivery.cdnStylesheet}">`]
               : []),
-            `<script src="${project.delivery.cdnScript}" defer></script>`,
+            'cdnScriptHead' in project.delivery && project.delivery.cdnScriptHead
+              ? `<script src="${project.delivery.cdnScript}"></script>`
+              : `<script src="${project.delivery.cdnScript}" defer></script>`,
           ].join('\n'),
         },
       ]

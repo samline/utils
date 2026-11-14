@@ -1,0 +1,57 @@
+---
+title: 'Is Visible'
+description: What @samline/is-visible does, how its transitions and shared observers behave, and where to start.
+locale: en
+sidebar:
+  group: start
+  order: 1
+  label: Overview
+---
+
+import CardGrid from '../../../../site/shared/components/CardGrid.astro'
+import LinkCard from '../../../../site/shared/components/LinkCard.astro'
+import { href } from '../../../../site/docs/src/lib/routes'
+
+`@samline/is-visible` reports when elements enter and leave the viewport, or any scroll container. It wraps `IntersectionObserver` with the details people usually get wrong:
+
+- **Any target:** an element, a selector, a `NodeList` or an array, with one cleanup for all of them.
+- **Honest transitions:** `visible` fires once per entry; `notVisible` only after the element was visible.
+- **Shared observers:** calls with the same `root`, `rootMargin` and `threshold` share one observer.
+- **Never stuck hidden:** without `IntersectionObserver`, every element is reported visible once.
+- **Safe on the server:** without a DOM, every call returns a no-op cleanup.
+
+## Choose your next step
+
+<CardGrid columns={2}>
+
+<LinkCard href={href('is-visible/getting-started')} title="Installation">
+
+Package managers, the CDN and the first lazy image.
+
+</LinkCard>
+
+<LinkCard href={href('is-visible/guides/examples')} title="Examples">
+
+Live previews with the complete, copyable source of each one.
+
+</LinkCard>
+
+<LinkCard href={href('is-visible/reference/api')} title="API reference">
+
+Signatures and behavior of `isVisible`, `observeVisibility` and their callbacks.
+
+</LinkCard>
+
+<LinkCard href={href('is-visible/reference/configuration')} title="Configuration">
+
+Defaults and accepted values of `inOut`, `once`, `root`, `rootMargin`, `threshold` and `fallback`.
+
+</LinkCard>
+
+<LinkCard href={href('is-visible/guides/frameworks')} title="Framework integrations">
+
+React, Vue and Svelte adapters.
+
+</LinkCard>
+
+</CardGrid>

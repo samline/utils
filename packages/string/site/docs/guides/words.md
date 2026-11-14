@@ -1,10 +1,11 @@
 ---
-title: Word splitting
+title: 'Word splitting'
+titleAccent: 'splitting'
 description: Exactly how @samline/string splits text into words, with separators, camelCase, acronyms, digits and any script.
 locale: en
 sidebar:
   group: guides
-  order: 1
+  order: 2
 ---
 
 Every case function starts from `words(text)`. The rules, in order:

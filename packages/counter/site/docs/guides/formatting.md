@@ -1,10 +1,11 @@
 ---
-title: Formatting
+title: 'Number formatting'
+titleAccent: 'formatting'
 description: Format @samline/counter numbers for any language with currencies, percentages, compact notation or a formatter, and keep the layout steady.
 locale: en
 sidebar:
   group: guides
-  order: 1
+  order: 2
 ---
 
 Numbers are formatted with `Intl.NumberFormat` in the language of the element: the closest `lang` attribute, `data-counter-locale` or the `locale` option. Write the HTML the same way, so the text is identical before and after counting.

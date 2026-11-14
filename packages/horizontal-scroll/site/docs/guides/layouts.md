@@ -1,10 +1,11 @@
 ---
-title: Layouts
+title: 'Layouts and fallbacks'
+titleAccent: 'fallbacks'
 description: Use @samline/horizontal-scroll with fixed headers, native fallbacks, keyboard focus, scroll containers and ancestors that break sticky.
 locale: en
 sidebar:
   group: guides
-  order: 1
+  order: 2
 ---
 
 ## Full-height rows

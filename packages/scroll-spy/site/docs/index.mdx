@@ -1,5 +1,5 @@
 ---
-title: Scroll Spy
+title: 'Scroll Spy'
 description: What @samline/scroll-spy does, when a section is active, and how links, clicks and scroll containers fit together.
 locale: en
 sidebar:
@@ -7,6 +7,10 @@ sidebar:
   order: 1
   label: Overview
 ---
+
+import CardGrid from '../../../../site/shared/components/CardGrid.astro'
+import LinkCard from '../../../../site/shared/components/LinkCard.astro'
+import { href } from '../../../../site/docs/src/lib/routes'
 
 `@samline/scroll-spy` highlights the navigation link of the section being read. Put `data-scroll-spy` on a navigation of plain `#id` links and call `autoScrollSpy()` (or load the CDN script).
 
@@ -38,8 +42,44 @@ The active link gets `aria-current="true"` and, if you set one, `activeClass`. E
 | Shareable URL | `updateHash` |
 | React to changes | `onChange({ id, section, links, previous })` |
 
-- [Installation](getting-started/) — npm, CDN and the first navigation.
-- [API reference](reference/api/) — `scrollSpy`, `autoScrollSpy` and `window.ScrollSpy`.
-- [Options](reference/configuration/) — attributes and options.
-- [Layouts](guides/layouts/) — sticky headers, scroll containers, smooth scrolling and nested lists.
-- [Frameworks](guides/frameworks/) — React, Vue, Svelte, Astro and page swaps.
+## Choose your next step
+
+<CardGrid columns={2}>
+
+<LinkCard href={href('scroll-spy/getting-started')} title="Installation">
+
+Package managers, the CDN and the first navigation.
+
+</LinkCard>
+
+<LinkCard href={href('scroll-spy/guides/examples')} title="Examples">
+
+Live previews with the complete, copyable source of each one.
+
+</LinkCard>
+
+<LinkCard href={href('scroll-spy/reference/api')} title="API reference">
+
+Signatures and behavior of `scrollSpy`, `autoScrollSpy` and `window.ScrollSpy`.
+
+</LinkCard>
+
+<LinkCard href={href('scroll-spy/reference/configuration')} title="Configuration">
+
+Attributes and options.
+
+</LinkCard>
+
+<LinkCard href={href('scroll-spy/guides/layouts')} title="Layouts and containers">
+
+Sticky headers, scroll containers, smooth scrolling and nested lists.
+
+</LinkCard>
+
+<LinkCard href={href('scroll-spy/guides/frameworks')} title="Framework integrations">
+
+React, Vue, Svelte, Astro and page swaps.
+
+</LinkCard>
+
+</CardGrid>

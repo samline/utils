@@ -23,6 +23,10 @@ dd { margin: 0; font-size: 2rem; font-weight: 600; font-variant-numeric: tabular
       js: `// The box scrolls instead of the page, so pass it as the root.
 // Called before the DOM is ready, this replaces the automatic start.
 Counter.auto({ root: document.querySelector('#page') })`,
+      esm: `import { autoCounter, counter } from '@samline/counter'
+
+// The box scrolls instead of the page, so pass it as the root.
+autoCounter({ root: document.querySelector('#page') })`,
     },
   },
   {
@@ -42,6 +46,10 @@ Counter.auto({ root: document.querySelector('#page') })`,
 .prices span { display: inline-block; min-width: 9rem; font-size: 1.5rem; font-variant-numeric: tabular-nums; }`,
       js: `Counter.counter('#usd', { format: { style: 'currency', currency: 'USD' } })
 Counter.counter('.plain')`,
+      esm: `import { autoCounter, counter } from '@samline/counter'
+
+counter('#usd', { format: { style: 'currency', currency: 'USD' } })
+counter('.plain')`,
     },
   },
   {
@@ -60,6 +68,9 @@ Counter.counter('.plain')`,
 .spacer { min-height: 20rem; margin: 0; }
 .row span { font-size: 2rem; font-weight: 600; font-variant-numeric: tabular-nums; }`,
       js: `Counter.auto({ root: document.querySelector('#page') })`,
+      esm: `import { autoCounter, counter } from '@samline/counter'
+
+autoCounter({ root: document.querySelector('#page') })`,
     },
   },
 ]

@@ -1,5 +1,6 @@
 ---
-title: API reference
+title: 'API reference'
+titleAccent: 'reference'
 description: debounce, throttle, rafThrottle and the cancel, flush and pending controls of their returned functions.
 locale: en
 sidebar:

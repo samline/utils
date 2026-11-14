@@ -8,6 +8,7 @@ export default [
       html: '<input id="source" value="hello"><output id="result"></output>',
       css: 'output { font-weight: 600; }',
       js: "const source = document.querySelector('#source')\nconst result = document.querySelector('#result')\nconst update = () => (result.textContent = source.value.toUpperCase())\nsource.addEventListener('input', update)\nupdate()",
+      esm: "const source = document.querySelector('#source')\nconst result = document.querySelector('#result')\nconst update = () => (result.textContent = source.value.toUpperCase())\nsource.addEventListener('input', update)\nupdate()",
     },
   },
 ] as const

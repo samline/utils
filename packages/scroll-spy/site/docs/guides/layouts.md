@@ -1,10 +1,11 @@
 ---
-title: Layouts
+title: 'Layouts and containers'
+titleAccent: 'containers'
 description: Use @samline/scroll-spy with sticky headers, scroll containers, smooth scrolling, nested tables of contents and long navigations.
 locale: en
 sidebar:
   group: guides
-  order: 1
+  order: 2
 ---
 
 ## Sticky headers

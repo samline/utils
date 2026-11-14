@@ -1,10 +1,11 @@
 ---
-title: Frameworks
+title: 'Framework integrations'
+titleAccent: 'integrations'
 description: Use @samline/scroll-spy in React, Vue, Svelte and Astro, and keep it working with client-side navigation and page swaps.
 locale: en
 sidebar:
   group: guides
-  order: 2
+  order: 3
 ---
 
 `scrollSpy` returns an object with `destroy()`, so it fits every framework's mount and unmount hooks. Call `refresh()` when the headings change.

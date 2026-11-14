@@ -1,0 +1,59 @@
+---
+title: 'String'
+description: What @samline/string does, how it splits words and which function to use for each case, slug and text job.
+locale: en
+sidebar:
+  group: start
+  order: 1
+  label: Overview
+---
+
+import CardGrid from '../../../../site/shared/components/CardGrid.astro'
+import LinkCard from '../../../../site/shared/components/LinkCard.astro'
+import { href } from '../../../../site/docs/src/lib/routes'
+
+`@samline/string` converts text between cases, builds URL slugs, removes accents, truncates and builds initials. Every function relies on the same word splitter, so `XMLHttpRequest`, `xml-http-request` and `xml_http_request` always agree.
+
+| Job | Functions |
+| --- | --- |
+| Identifiers | `camelCase`, `pascalCase`, `kebabCase`, `snakeCase`, `dotCase`, `constantCase` |
+| Human text | `titleCase`, `sentenceCase`, `capitalize`, `uncapitalize` |
+| URLs and search | `slugify`, `removeAccents` |
+| Display | `truncate`, `initials` |
+| Building blocks | `words` |
+
+## Choose your next step
+
+<CardGrid columns={2}>
+
+<LinkCard href={href('string/getting-started')} title="Installation">
+
+Package managers, the CDN and the first slug.
+
+</LinkCard>
+
+<LinkCard href={href('string/guides/examples')} title="Examples">
+
+Live previews with the complete, copyable source of each one.
+
+</LinkCard>
+
+<LinkCard href={href('string/reference/api')} title="API reference">
+
+Every function with examples.
+
+</LinkCard>
+
+<LinkCard href={href('string/reference/configuration')} title="Configuration">
+
+Defaults and accepted values of `slugify`, `titleCase`, `truncate`, `initials` and locales.
+
+</LinkCard>
+
+<LinkCard href={href('string/guides/words')} title="Word splitting">
+
+Exactly how words are detected.
+
+</LinkCard>
+
+</CardGrid>

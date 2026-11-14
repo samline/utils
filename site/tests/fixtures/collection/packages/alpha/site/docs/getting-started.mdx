@@ -1,0 +1,24 @@
+---
+title: 'Getting started'
+titleAccent: 'started'
+description: Install Alpha and run the first call.
+locale: en
+sidebar:
+  group: start
+  order: 2
+  label: Installation
+---
+
+import Installer from '../../../../../../../shared/components/Installer.astro'
+import PackagePreview from '../../../../../../../shared/components/PackagePreview.astro'
+import { examplesFor } from '../../../../../../../shared/lib/package-examples'
+
+export const starter = examplesFor('alpha')[0]
+
+## Install
+
+<Installer />
+
+## Working starter files
+
+<PackagePreview slug="alpha" example={starter} />

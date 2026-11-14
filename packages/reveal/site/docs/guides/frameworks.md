@@ -1,10 +1,11 @@
 ---
-title: Frameworks
+title: 'Framework integrations'
+titleAccent: 'integrations'
 description: Use @samline/reveal in React, Vue, Svelte and Astro, and keep it working with client-side navigation and page swaps.
 locale: en
 sidebar:
   group: guides
-  order: 3
+  order: 4
 ---
 
 `reveal` returns a cleanup, so it fits every framework's mount and unmount hooks. Import the stylesheet once, for example in your app entry.

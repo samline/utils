@@ -82,10 +82,17 @@ export function readCollectionPackage(slug) {
     throw new Error(`Collection package ${slug} needs site/card.svg to be one <svg> element`)
   if (art && /<script|\son[a-z]+=/i.test(art))
     throw new Error(`Collection package ${slug} site/card.svg cannot contain scripts`)
-  const delivery = { cdnScript: null, cdnStylesheet: null, ...meta.delivery }
+  const { cdnScriptHead = false, ...urls } = meta.delivery ?? {}
+  const delivery = { cdnScript: null, cdnStylesheet: null, ...urls }
   for (const value of Object.values(delivery))
     if (value !== null && !/^https?:\/\//.test(value))
       throw new Error(`Collection package ${slug} needs HTTP(S) delivery URLs or null`)
+  if (typeof cdnScriptHead !== 'boolean')
+    throw new Error(
+      `Collection package ${slug} needs site/meta.json delivery.cdnScriptHead as a boolean`
+    )
+  // A script that must run before the first paint goes in <head> without defer.
+  delivery.cdnScriptHead = cdnScriptHead
   return {
     slug,
     name: requireText(meta.title, 'site/meta.json title', slug),

@@ -1,5 +1,6 @@
 ---
-title: API reference
+title: 'API reference'
+titleAccent: 'reference'
 description: Every @samline/string function with its input and output, from camelCase and slugify to truncate, initials and words.
 locale: en
 sidebar:

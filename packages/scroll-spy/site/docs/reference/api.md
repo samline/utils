@@ -1,5 +1,6 @@
 ---
-title: API reference
+title: 'API reference'
+titleAccent: 'reference'
 description: Every @samline/scroll-spy export, scrollSpy, autoScrollSpy, their types and the window.ScrollSpy browser global.
 locale: en
 sidebar:

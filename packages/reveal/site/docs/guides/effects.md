@@ -1,10 +1,11 @@
 ---
-title: Effects and timing
+title: 'Effects and timing'
+titleAccent: 'timing'
 description: Tune the built-in @samline/reveal effects, write your own starting point in CSS, cascade groups and replay elements on every entry.
 locale: en
 sidebar:
   group: guides
-  order: 1
+  order: 2
 ---
 
 ## Tune an effect

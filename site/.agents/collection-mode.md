@@ -23,15 +23,15 @@ default `package` mode and every existing single-package site stay unchanged.
 
 ## Package content contract (`<packagesDir>/<pkg>/site/`)
 
-| File               | Purpose                                                                |
-| ------------------ | ---------------------------------------------------------------------- |
-| `meta.json`        | `title`, `category`, `summary`, `tags`, optional `delivery` (CDN URLs) |
-| `landing.ts`       | Default export with the same shape as `landing/.../en/sections.ts`     |
-| `Demo.astro`       | Required live preview for the package Home (imports the package)       |
-| `examples.ts`      | Examples gallery records: id, title, description, files (html/css/js)  |
-| `examples/*.astro` | One live preview per example record, rendered beside its copied files  |
-| `docs/**/*.md(x)`  | Articles; same frontmatter schema as `docs/src/content/docs`           |
-| `SKILL.md`         | Package integration skill, served at `skills/<unscoped name>/SKILL.md` |
+| File               | Purpose                                                                                 |
+| ------------------ | --------------------------------------------------------------------------------------- |
+| `meta.json`        | `title`, `category`, `summary`, `tags`, optional `delivery` (CDN URLs, `cdnScriptHead`) |
+| `landing.ts`       | Default export with the same shape as `landing/.../en/sections.ts`                      |
+| `Demo.astro`       | Required live preview for the package Home (imports the package)                        |
+| `examples.ts`      | Examples gallery records: id, title, description, files (html/css/js)                   |
+| `examples/*.astro` | One live preview per example record, rendered beside its copied files                   |
+| `docs/**/*.md(x)`  | Articles; same frontmatter schema as `docs/src/content/docs`                            |
+| `SKILL.md`         | Package integration skill, served at `skills/<unscoped name>/SKILL.md`                  |
 
 The package `CHANGELOG.md` and `README.md` stay the release and npm sources.
 
@@ -74,6 +74,26 @@ The package `CHANGELOG.md` and `README.md` stay the release and npm sources.
 - `scripts/test-collection.mjs` builds `tests/fixtures/collection` (alpha with
   examples and docs, beta minimal) and runs the combined link check.
 
+## Package docs conventions (2026-11-13)
+
+Package articles follow the same structure as the single-package sites
+(Ticker, Drawer, Notify, Autocomplete), so every section reads alike:
+
+- `index.mdx`: titled with the package name (identity-parity checks it, so it
+  has no accent) and labelled `Overview`; it ends with a `Choose your next step`
+  CardGrid.
+- `getting-started.mdx`: `Getting started` (label `Installation`) with
+  Requirements, the shared `<Installer />` tabs (npm, pnpm, yarn, bun and the
+  CDN), Package / ESM, HTML / CDN, `Working starter files` (the first example's
+  `PackagePreview`) and a `Next steps` CardGrid. Home's "Copy complete working
+  files" links that section.
+- `guides/examples.mdx`: `Working examples` (label `Examples`, first guide)
+  renders every example with `PackagePreview`, as on Examples.
+- Every other article has a `titleAccent`; frameworks, configuration and API pages use
+  the template titles.
+- `delivery.cdnScriptHead: true` in `meta.json` marks a script that must run
+  before the first paint (Theme): the installer's CDN tab omits `defer`.
+
 ## Custom previews in package mode (2026-11-13)
 
 The same `site/` contract works for a single package: when the site root has
@@ -96,3 +116,7 @@ and 174 package e2e tests across Chromium, Firefox and WebKit. Package typecheck
 coverage, build and size budgets passed. Browser tests required execution outside
 the filesystem sandbox. The auxiliary adaptation test cannot build its copied
 collection because its temporary directory lacks the sibling packages.
+
+## Copied example loading modes
+
+`files.js` is the classic CDN behavior; `files.esm` is the complete module source, including package imports, styles and explicit mounting. Both are required. PackageCode displays the available HTML / CDN and Package / ESM tabs and installation instructions for the current identity. Use `filesFor(slug, example, mode)` for either complete or split files. CDN availability follows that package's delivery configuration.

@@ -1,10 +1,12 @@
 ---
-title: Options
+title: 'Configuration options'
+titleAccent: 'options'
 description: Every @samline/horizontal-scroll attribute and JavaScript option, with defaults, which one wins and what the script changes.
 locale: en
 sidebar:
   group: reference
   order: 2
+  label: Configuration
 ---
 
 ## Attributes

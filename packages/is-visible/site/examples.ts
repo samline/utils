@@ -26,6 +26,17 @@ window.isVisible(list.querySelectorAll('.reveal'), {
   threshold: 0.2,
   visible: (entry, section) => section.classList.add('is-visible'),
 })`,
+      esm: `import { isVisible } from '@samline/is-visible'
+
+document.documentElement.classList.add('js')
+const list = document.querySelector('#list')
+
+isVisible(list.querySelectorAll('.reveal'), {
+  root: list,
+  once: true,
+  threshold: 0.2,
+  visible: (entry, section) => section.classList.add('is-visible'),
+})`,
     },
   },
   {
@@ -46,6 +57,18 @@ window.isVisible(list.querySelectorAll('.reveal'), {
       js: `const feed = document.querySelector('#feed')
 
 window.isVisible(feed.querySelectorAll('[data-src]'), {
+  root: feed,
+  once: true,
+  rootMargin: '0px 0px 200px 0px',
+  visible: (entry, article) => {
+    article.textContent = \`\${article.dataset.src} loaded\`
+  },
+})`,
+      esm: `import { isVisible } from '@samline/is-visible'
+
+const feed = document.querySelector('#feed')
+
+isVisible(feed.querySelectorAll('[data-src]'), {
   root: feed,
   once: true,
   rootMargin: '0px 0px 200px 0px',
@@ -75,6 +98,22 @@ const ticks = document.querySelector('#ticks')
 let timer = null
 
 window.isVisible(panel, {
+  root: box,
+  inOut: true,
+  threshold: 0.5,
+  visible: () => {
+    timer = setInterval(() => (ticks.textContent = String(Number(ticks.textContent) + 1)), 200)
+  },
+  notVisible: () => clearInterval(timer),
+})`,
+      esm: `import { isVisible } from '@samline/is-visible'
+
+const box = document.querySelector('#box')
+const panel = document.querySelector('#panel')
+const ticks = document.querySelector('#ticks')
+let timer = null
+
+isVisible(panel, {
   root: box,
   inOut: true,
   threshold: 0.5,

@@ -1,17 +1,36 @@
 ---
-title: Installation
+title: 'Getting started'
+titleAccent: 'started'
 description: Install @samline/horizontal-scroll with a package manager or a script tag and pin your first horizontally scrolling section.
 locale: en
 sidebar:
   group: start
   order: 2
+  label: Installation
 ---
 
-## Package / ESM
+import Installer from '../../../../site/shared/components/Installer.astro'
+import PackagePreview from '../../../../site/shared/components/PackagePreview.astro'
+import CardGrid from '../../../../site/shared/components/CardGrid.astro'
+import LinkCard from '../../../../site/shared/components/LinkCard.astro'
+import { examplesFor } from '../../../../site/shared/lib/package-examples'
+import { href } from '../../../../site/docs/src/lib/routes'
 
-```sh
-npm install @samline/horizontal-scroll
-```
+export const starter = examplesFor('horizontal-scroll')[0]
+
+Install `@samline/horizontal-scroll`, then follow the Package / ESM or the HTML / CDN path to the first section. Both use the same API.
+
+## Requirements
+
+- Any modern browser with `position: sticky`. Without JavaScript the row keeps your CSS.
+- On the server, `horizontalScroll` returns an inert object and `autoHorizontalScroll` does nothing.
+- No runtime dependencies.
+
+## Install
+
+<Installer />
+
+## Package / ESM
 
 ```js
 import { autoHorizontalScroll } from '@samline/horizontal-scroll'
@@ -66,8 +85,44 @@ To pass options, add `data-manual` to the script tag and start it yourself, or c
 </script>
 ```
 
-## Requirements
+## Working starter files
 
-- Any modern browser with `position: sticky`. Without JavaScript the row keeps your CSS.
-- On the server, `horizontalScroll` returns an inert object and `autoHorizontalScroll` does nothing.
-- No runtime dependencies.
+A complete page you can save and open: the live preview runs the real package, and its files load the published browser bundle.
+
+<PackagePreview slug="horizontal-scroll" example={starter} />
+
+## Next steps
+
+<CardGrid columns={2}>
+
+<LinkCard href={href('horizontal-scroll/guides/examples')} title="Examples">
+
+Live previews with the complete, copyable source of each one.
+
+</LinkCard>
+
+<LinkCard href={href('horizontal-scroll/reference/api')} title="API reference">
+
+Signatures and behavior of `horizontalScroll`, `autoHorizontalScroll` and `window.HorizontalScroll`.
+
+</LinkCard>
+
+<LinkCard href={href('horizontal-scroll/reference/configuration')} title="Configuration">
+
+Attributes and options.
+
+</LinkCard>
+
+<LinkCard href={href('horizontal-scroll/guides/layouts')} title="Layouts and fallbacks">
+
+Headers, fallbacks, focus, scroll containers and sticky pitfalls.
+
+</LinkCard>
+
+<LinkCard href={href('horizontal-scroll/guides/frameworks')} title="Framework integrations">
+
+React, Vue, Svelte, Astro and page swaps.
+
+</LinkCard>
+
+</CardGrid>

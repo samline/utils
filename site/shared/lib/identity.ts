@@ -23,7 +23,8 @@ export interface CollectionPackage {
   size: string | null
   /** Inline catalog preview from site/card.svg. */
   art: string | null
-  delivery: { cdnScript: string | null; cdnStylesheet: string | null }
+  /** `cdnScriptHead`: the script runs before the first paint, so it is loaded without defer. */
+  delivery: { cdnScript: string | null; cdnStylesheet: string | null; cdnScriptHead?: boolean }
   skill: string
   home: string
   docsHome: string

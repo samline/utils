@@ -1,5 +1,6 @@
 ---
-title: API reference
+title: 'API reference'
+titleAccent: 'reference'
 description: Every @samline/scroll-to export, scrollTo, scrollPosition, cancelScroll, autoScrollTo, their types and the window.ScrollTo global.
 locale: en
 sidebar:

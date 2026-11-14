@@ -1,5 +1,6 @@
 ---
-title: API reference
+title: 'API reference'
+titleAccent: 'reference'
 description: Every @samline/counter export, counter, autoCounter, animateNumber, parseNumber, EASINGS and the window.Counter browser global.
 locale: en
 sidebar:

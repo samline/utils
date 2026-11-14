@@ -1,0 +1,116 @@
+---
+title: 'Getting started'
+titleAccent: 'started'
+description: Install @samline/scroll-spy with a package manager or a script tag and highlight the section in view in your first navigation.
+locale: en
+sidebar:
+  group: start
+  order: 2
+  label: Installation
+---
+
+import Installer from '../../../../site/shared/components/Installer.astro'
+import PackagePreview from '../../../../site/shared/components/PackagePreview.astro'
+import CardGrid from '../../../../site/shared/components/CardGrid.astro'
+import LinkCard from '../../../../site/shared/components/LinkCard.astro'
+import { examplesFor } from '../../../../site/shared/lib/package-examples'
+import { href } from '../../../../site/docs/src/lib/routes'
+
+export const starter = examplesFor('scroll-spy')[0]
+
+Install `@samline/scroll-spy`, then follow the Package / ESM or the HTML / CDN path to the first navigation. Both use the same API.
+
+## Requirements
+
+- Any modern browser. Without JavaScript the links still jump to their sections.
+- On the server, `scrollSpy` returns an inert object and `autoScrollSpy` does nothing.
+- No runtime dependencies.
+
+## Install
+
+<Installer />
+
+## Package / ESM
+
+```js
+import { autoScrollSpy } from '@samline/scroll-spy'
+
+autoScrollSpy()
+```
+
+```html
+<nav data-scroll-spy aria-label="On this page">
+  <a href="#install">Install</a>
+  <a href="#usage">Usage</a>
+</nav>
+
+<section id="install">…</section>
+<section id="usage">…</section>
+```
+
+```css
+nav a[aria-current] {
+  font-weight: 600;
+}
+```
+
+`autoScrollSpy()` watches every `[data-scroll-spy]` in the page, including navigations added later. To watch one navigation, call `scrollSpy(nav, options)`; it returns `{ active, refresh, destroy }`. Available as ESM and CommonJS (`require('@samline/scroll-spy')`). There is no stylesheet.
+
+## HTML / CDN
+
+For Shopify, WordPress or plain HTML pages without a build step, load the browser bundle. It watches every `[data-scroll-spy]` as soon as the DOM is ready. Pin the version in production.
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@samline/scroll-spy@1.0.0/dist/browser/scroll-spy.global.js" defer></script>
+```
+
+To pass options, add `data-manual` to the script tag and start it yourself, or call `ScrollSpy.auto()` from a script that runs before the DOM is ready (a deferred or inline script after the bundle):
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@samline/scroll-spy@1.0.0/dist/browser/scroll-spy.global.js" data-manual defer></script>
+<script type="module">
+  ScrollSpy.auto({ offset: 96, activeClass: 'is-active' })
+</script>
+```
+
+## Working starter files
+
+A complete page you can save and open: the live preview runs the real package, and its files load the published browser bundle.
+
+<PackagePreview slug="scroll-spy" example={starter} />
+
+## Next steps
+
+<CardGrid columns={2}>
+
+<LinkCard href={href('scroll-spy/guides/examples')} title="Examples">
+
+Live previews with the complete, copyable source of each one.
+
+</LinkCard>
+
+<LinkCard href={href('scroll-spy/reference/api')} title="API reference">
+
+Signatures and behavior of `scrollSpy`, `autoScrollSpy` and `window.ScrollSpy`.
+
+</LinkCard>
+
+<LinkCard href={href('scroll-spy/reference/configuration')} title="Configuration">
+
+Attributes and options.
+
+</LinkCard>
+
+<LinkCard href={href('scroll-spy/guides/layouts')} title="Layouts and containers">
+
+Sticky headers, scroll containers, smooth scrolling and nested lists.
+
+</LinkCard>
+
+<LinkCard href={href('scroll-spy/guides/frameworks')} title="Framework integrations">
+
+React, Vue, Svelte, Astro and page swaps.
+
+</LinkCard>
+
+</CardGrid>

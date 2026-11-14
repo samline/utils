@@ -1,10 +1,11 @@
 ---
-title: Layouts
+title: 'Styling and rendering'
+titleAccent: 'rendering'
 description: Style themes with CSS variables, add custom themes, avoid the flash on server-rendered pages, theme a single widget and handle transitions.
 locale: en
 sidebar:
   group: guides
-  order: 1
+  order: 2
 ---
 
 ## CSS variables

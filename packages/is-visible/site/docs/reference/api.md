@@ -1,5 +1,6 @@
 ---
-title: API reference
+title: 'API reference'
+titleAccent: 'reference'
 description: isVisible, observeVisibility, their visible and notVisible callbacks, targets and the browser global.
 locale: en
 sidebar:

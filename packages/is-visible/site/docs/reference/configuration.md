@@ -1,10 +1,12 @@
 ---
-title: Options
+title: 'Configuration options'
+titleAccent: 'options'
 description: inOut, once, root, rootMargin, threshold and fallback, and how shared observers work.
 locale: en
 sidebar:
   group: reference
   order: 2
+  label: Configuration
 ---
 
 | Option       | Default     | Description                                                                                  |

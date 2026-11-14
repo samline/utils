@@ -2,7 +2,7 @@
 import TextLink from '../../../shared/components/TextLink.astro'
 import RichText from '../components/RichText.astro'
 import { docsHref } from '../lib/docs'
-import { isCollection } from '../../../shared/lib/identity'
+import { identityFor, isCollection } from '../../../shared/lib/identity'
 import { getI18n } from '../i18n/utils'
 import Section from '../../../shared/components/Section.astro'
 import Box from '../../../shared/components/Box.astro'
@@ -13,9 +13,11 @@ import Installer from '../../../shared/components/Installer.astro'
 const i18n = getI18n(Astro)
 const t = i18n.sections.gettingStarted
 const headingId = `section-heading-${crypto.randomUUID()}`
-// The template's installation guide has a starter-files section; a collection
-// package's guide is its own, so link the page itself.
-const starterFilesHref = `${docsHref('setup', Astro)}${isCollection ? '' : '#working-starter-files'}`
+// The installation guide ends with working starter files. A collection package
+// renders its first example there, so it has them only when it has examples.
+const identity = identityFor(Astro)
+const hasStarterFiles = !isCollection || ('hasExamples' in identity && identity.hasExamples)
+const starterFilesHref = `${docsHref('setup', Astro)}${hasStarterFiles ? '#working-starter-files' : ''}`
 ---
 
 <Section aria-labelledby={headingId} spacing="none" id="how" class:list={['content-section']}>
