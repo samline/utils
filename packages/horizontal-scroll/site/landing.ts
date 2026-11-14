@@ -24,8 +24,8 @@ const landing: LandingFactory = ({ identity, text, heading, code }) => ({
       'Add data-horizontal-scroll to a section and its row pins to the top while the page scroll moves it sideways, then lets the page carry on.',
     descriptionContinuation: 'Install it, scroll the live preview, then read the full reference.',
     footnotes: ['About 2.5 KB gzip', 'Zero dependencies', `${identity.license} licensed`],
-    compatibilityLabel: 'Works with',
-    platforms: ['Vanilla JS', 'TypeScript', 'Any framework', 'Plain HTML', 'Landing pages'],
+    compatibilityLabel: 'ONE SMALL SCRIPT. RIGHT AT HOME IN YOUR STACK.',
+    platforms: ['JavaScript', 'TypeScript', 'React', 'Vue', 'Svelte', 'Shopify', 'WordPress'],
   },
   features: {
     eyebrow: '01 / More than a sticky row',
@@ -33,36 +33,42 @@ const landing: LandingFactory = ({ identity, text, heading, code }) => ({
     titleAccent: 'The details you forget.',
     items: {
       dependencies: {
+        icon: 'ruler',
         title: 'Sized for you',
         description: text(
           'The section grows exactly tall enough to cross its row, and measures again when images, fonts or the window change.'
         ),
       },
       accessibility: {
+        icon: 'keyboard',
         title: 'Keyboard friendly',
         description: text(
           'Tab to a card that is off to the side and the page scrolls until it is in view, so focus never disappears.'
         ),
       },
       lifecycle: {
+        icon: 'shield',
         title: 'A real fallback',
         description: text(
           'Without JavaScript, outside your media query or with reduced motion, the row is left to your CSS, such as a native swipe.'
         ),
       },
       entrypoints: {
+        icon: 'hand',
         title: 'No scroll hijacking',
         description: text(
           'The page keeps its own scrolling: wheel, touch, keys and scrollbars all work. Only the row position follows it.'
         ),
       },
       frameworks: {
+        icon: 'zap',
         title: 'Smooth on every frame',
         description: text(
           'One read per frame and a GPU-friendly translate, with sticky positioning doing the pinning instead of JavaScript.'
         ),
       },
       markup: {
+        icon: 'gauge',
         title: 'Progress for free',
         description: text(
           'A --horizontal-scroll-progress variable and an onProgress callback drive bars, counters and effects.'
@@ -189,9 +195,9 @@ const landing: LandingFactory = ({ identity, text, heading, code }) => ({
         ),
       },
       changes: {
-        question: text('How are releases documented?'),
+        question: text('Can it run only on wide screens?'),
         answer: text(
-          'CHANGELOG.md is the single release history and is published in the docs. Breaking and behavior changes are called out explicitly.'
+          'Yes. Set media, or data-horizontal-scroll-media, to a query such as (min-width: 48rem). It is followed live: outside it the section is released and the row is left to your CSS, such as a native swipe.'
         ),
       },
       header: {

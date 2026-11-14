@@ -33,28 +33,34 @@ export default {
     titleAccent: 'Clear in every detail.',
     items: {
       dependencies: {
+        icon: 'package',
         title: 'The problem it solves',
         description: text('Explain a concrete problem and show the result.'),
       },
       accessibility: {
+        icon: 'eye',
         title: 'Accessibility responsibilities',
         description: text(
           'Describe what the package provides and what the application must supply.'
         ),
       },
       lifecycle: {
+        icon: 'refresh',
         title: 'A clear lifecycle',
         description: text('Document initialization, updates and cleanup where applicable.'),
       },
       entrypoints: {
+        icon: 'branches',
         title: 'Supported integrations',
         description: text('Show actual exports and supported environments.'),
       },
       frameworks: {
+        icon: 'layers',
         title: 'Fits your workflow',
         description: text('Describe integrations verified against the package.'),
       },
       markup: {
+        icon: 'wrench',
         title: 'Useful examples',
         description: text('Replace neutral demos with real, runnable package recipes.'),
       },

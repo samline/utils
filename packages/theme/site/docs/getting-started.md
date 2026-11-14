@@ -7,6 +7,29 @@ sidebar:
   order: 2
 ---
 
+## Package / ESM
+
+```sh
+npm install @samline/theme
+```
+
+```js
+import { createTheme } from '@samline/theme'
+
+const theme = createTheme()
+theme.toggle()
+```
+
+A bundled module runs after the page paints, so on its own it can flash. Pair it with the inline snippet in `<head>`, which applies the stored theme first:
+
+```js
+import { themeScript } from '@samline/theme'
+
+const head = `<script>${themeScript()}</script>`
+```
+
+Pass the same `themes`, `defaultMode`, `attribute` and `storageKey` to both. Available as ESM and CommonJS (`require('@samline/theme')`). There is no stylesheet: style `[data-theme]` in your own CSS.
+
 ## HTML / CDN
 
 For Shopify, WordPress or plain HTML pages without a build step, load the browser bundle in `<head>`, **without** `defer` or `async`, so the theme is written before the page paints. Pin the version in production.
@@ -42,29 +65,6 @@ For options a tag cannot hold, such as `themeColor`, add `data-manual` and start
   Theme.auto({ themeColor: { light: '#ffffff', dark: '#111111' } })
 </script>
 ```
-
-## Package / ESM
-
-```sh
-npm install @samline/theme
-```
-
-```js
-import { createTheme } from '@samline/theme'
-
-const theme = createTheme()
-theme.toggle()
-```
-
-A bundled module runs after the page paints, so on its own it can flash. Pair it with the inline snippet in `<head>`, which applies the stored theme first:
-
-```js
-import { themeScript } from '@samline/theme'
-
-const head = `<script>${themeScript()}</script>`
-```
-
-Pass the same `themes`, `defaultMode`, `attribute` and `storageKey` to both. Available as ESM and CommonJS (`require('@samline/theme')`). There is no stylesheet: style `[data-theme]` in your own CSS.
 
 ## Requirements
 

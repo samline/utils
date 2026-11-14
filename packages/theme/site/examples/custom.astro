@@ -55,6 +55,12 @@ import './_shared.css'
     --custom-fg: #433422;
     --custom-card: #eadfc4;
   }
+  /* Site text tokens follow the site's own theme; this box has its own palette. */
+  .themed label,
+  .themed legend,
+  .themed p {
+    color: inherit;
+  }
   .themed .card {
     background: var(--custom-card);
     border-color: transparent;

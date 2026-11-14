@@ -69,7 +69,7 @@ createTheme({
 
 ## Transitions
 
-While switching, transitions are turned off for one frame, so a page with `transition: background 0.3s` swaps at once instead of fading every element. Set `disableTransitions: false` if you want the fade.
+While switching, transitions are turned off until the new theme is styled, so a page with `transition: background 0.3s` swaps at once instead of fading every element. Set `disableTransitions: false` if you want the fade.
 
 ## Other tabs
 

@@ -27,8 +27,8 @@ const landing: LandingFactory = ({ identity, text, heading, code }) => ({
       'Debounce input, throttle work and run layout code once per frame with one small, dependency-free package.',
     descriptionContinuation: 'Install it, try the live counter, then read the full reference.',
     footnotes: ['764 B gzip', 'Zero dependencies', `${identity.license} licensed`],
-    compatibilityLabel: 'Works with',
-    platforms: ['Vanilla JS', 'TypeScript', 'React', 'Vue', 'Svelte', 'Plain HTML'],
+    compatibilityLabel: 'ONE SMALL SCRIPT. RIGHT AT HOME IN YOUR STACK.',
+    platforms: ['JavaScript', 'TypeScript', 'React', 'Vue', 'Svelte', 'Shopify', 'WordPress'],
   },
   features: {
     eyebrow: '01 / More than a timer',
@@ -36,36 +36,42 @@ const landing: LandingFactory = ({ identity, text, heading, code }) => ({
     titleAccent: 'Not just delay it.',
     items: {
       dependencies: {
+        icon: 'sliders',
         title: 'Three tools, one API',
         description: text(
           'debounce waits for quiet, throttle keeps a steady rate and rafThrottle runs once per animation frame.'
         ),
       },
       accessibility: {
+        icon: 'clock',
         title: 'Cancel, flush and pending',
         description: text(
           'Drop a pending call when a dialog closes, run it now on submit, or check whether one is scheduled.'
         ),
       },
       lifecycle: {
+        icon: 'curve',
         title: 'Predictable edges',
         description: text(
           'leading, trailing and maxWait follow the well-known lodash semantics, with this and the last result forwarded.'
         ),
       },
       entrypoints: {
+        icon: 'shield',
         title: 'Safe everywhere',
         description: text(
           'Invalid waits become 0 and rafThrottle falls back to a timer without requestAnimationFrame, so SSR never throws.'
         ),
       },
       frameworks: {
+        icon: 'branches',
         title: 'Idiomatic adapters',
         description: text(
           'React hooks, Vue composables and a Svelte store keep the latest callback and cancel on unmount.'
         ),
       },
       markup: {
+        icon: 'feather',
         title: 'Tiny and measured',
         description: text(
           'Every entry point has a gzip budget checked in CI. The core is under 1 KB.'

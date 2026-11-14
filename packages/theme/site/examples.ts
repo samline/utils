@@ -1,10 +1,13 @@
-// Copyable files are complete pages that load the published browser bundle
-// (window.Theme starts on its own). On your site, load it in <head> without
-// defer so the theme applies before the first paint. The previews in
-// examples/*.astro theme a box instead of this page.
+// Copyable files are complete pages that load the published browser bundle in
+// <head> without defer (cdnScript.head), so the theme applies before the first
+// paint and window.Theme starts on its own. The previews in examples/*.astro
+// theme a box instead of this page.
+
+// Runs before the first paint, like on a real site.
+const head = { head: true } as const
 const palette = `:root { --bg: #ffffff; --fg: #18181b; --card: #f4f4f5; --accent: #6b4fd8; }
 [data-theme='dark'] { --bg: #18181b; --fg: #f4f4f5; --card: #27272a; --accent: #b9aee0; }
-body { margin: 0; min-height: 100vh; background: var(--bg); color: var(--fg); font-family: system-ui, sans-serif; transition: background 0.3s, color 0.3s; }
+body { margin: 0; min-height: 100vh; background: var(--bg); color: var(--fg); font-family: system-ui, sans-serif; }
 main { display: grid; gap: 1rem; max-width: 32rem; margin: 0 auto; padding: 2rem 1rem; }
 .card { padding: 1rem; border-radius: 0.75rem; background: var(--card); }`
 
@@ -12,6 +15,7 @@ export default [
   {
     id: 'toggle',
     tab: 'Dark mode toggle',
+    cdnScript: head,
     title: 'One button for dark mode',
     description:
       'A data-theme-toggle button switches between light and dark from the theme in effect and reports its state with aria-pressed. The choice is remembered.',
@@ -32,6 +36,7 @@ export default [
   {
     id: 'picker',
     tab: 'Light, dark or system',
+    cdnScript: head,
     title: 'Let visitors follow their system',
     description:
       'Buttons with data-theme-set offer light, dark and system, a select offers the same, and both stay in sync. A themechange event reports every change.',
@@ -67,9 +72,14 @@ document.addEventListener('themechange', event => show(event.detail))`,
   {
     id: 'custom',
     tab: 'Custom themes',
+    // The script tag names the themes, so a stored sepia applies before the first paint.
+    cdnScript: {
+      head: true,
+      attributes: { 'data-themes': 'light dark sepia', 'data-default': 'light', 'data-attribute': 'class' },
+    },
     title: 'More than light and dark',
     description:
-      'Any number of named themes, written as a class, with a browser UI color for each one. color-scheme is set for light and dark only.',
+      'Any number of named themes, written as a class. The script tag names them so a stored choice applies before the first paint, and Theme.auto adds a browser UI color for each one. color-scheme is set for light and dark only.',
     files: {
       html: `<fieldset>
   <legend>Theme</legend>
@@ -85,11 +95,9 @@ body { margin: 0; min-height: 100vh; background: var(--bg); color: var(--fg); fo
 main { display: grid; gap: 1rem; max-width: 32rem; margin: 0 auto; padding: 2rem 1rem; }
 fieldset { display: flex; gap: 1rem; border-radius: 0.75rem; }
 .card { padding: 1rem; border-radius: 0.75rem; background: var(--card); }`,
-      js: `// Called with your options, this replaces the automatic start.
+      js: `// Restart with the options a script tag cannot hold. The data-* options
+// on the script tag still apply, so the theme on the page does not change.
 Theme.auto({
-  themes: ['light', 'dark', 'sepia'],
-  defaultMode: 'light',
-  attribute: 'class',
   themeColor: { light: '#ffffff', dark: '#18181b', sepia: '#f4ecd8' },
 })`,
     },

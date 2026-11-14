@@ -20,8 +20,8 @@ const landing: LandingFactory = ({ identity, text, heading, code }) => ({
       'Add data-counter to a number and it counts up when it scrolls into view, formatted for the language of the page.',
     descriptionContinuation: 'Install it, watch the live preview, then read the full reference.',
     footnotes: ['About 3 KB gzip', 'Zero dependencies', `${identity.license} licensed`],
-    compatibilityLabel: 'Works with',
-    platforms: ['Vanilla JS', 'TypeScript', 'Any framework', 'Plain HTML', 'Shopify and WordPress'],
+    compatibilityLabel: 'ONE SMALL SCRIPT. RIGHT AT HOME IN YOUR STACK.',
+    platforms: ['JavaScript', 'TypeScript', 'React', 'Vue', 'Svelte', 'Shopify', 'WordPress'],
   },
   features: {
     eyebrow: '01 / More than a loop',
@@ -29,36 +29,42 @@ const landing: LandingFactory = ({ identity, text, heading, code }) => ({
     titleAccent: 'The animation second.',
     items: {
       dependencies: {
+        icon: 'code',
         title: 'Final value in the HTML',
         description: text(
           'You render 12,480; the script counts to it. Search engines, screen readers and visitors without JavaScript always get the real number.'
         ),
       },
       accessibility: {
+        icon: 'pause',
         title: 'Reduced motion respected',
         description: text(
           'With prefers-reduced-motion, numbers never move: the rendered value stays, and turning it on mid-count jumps to the end.'
         ),
       },
       lifecycle: {
+        icon: 'globe',
         title: 'Formatted for the language',
         description: text(
           'Intl.NumberFormat with the closest lang attribute: 1.234,5 in German, 12,34,567 in India, currencies and compact notation.'
         ),
       },
       entrypoints: {
+        icon: 'hash',
         title: 'Decimals that make sense',
         description: text(
           'data-counter="99.95" counts with two decimals all the way; a target written with no decimals counts in whole numbers.'
         ),
       },
       frameworks: {
+        icon: 'curve',
         title: 'Time-based easing',
         description: text(
           'Counts by elapsed time, not frames, so it lasts the same on every screen, with ease-out, ease-in-out, linear or your own curve.'
         ),
       },
       markup: {
+        icon: 'repeat',
         title: 'Up, down, or again',
         description: text(
           'Start from any value to count down, and data-counter-repeat counts again every time the number comes back.'
@@ -184,9 +190,9 @@ const landing: LandingFactory = ({ identity, text, heading, code }) => ({
         ),
       },
       changes: {
-        question: text('How are releases documented?'),
+        question: text('Can it count currencies, percentages or compact numbers?'),
         answer: text(
-          'CHANGELOG.md is the single release history and is published in the docs. Breaking and behavior changes are called out explicitly.'
+          'Yes. Pass Intl.NumberFormat options as format, such as { style: \'currency\', currency: \'EUR\' } or { notation: \'compact\' }; every frame is formatted the same way. For full control, formatter(value, element) returns the text yourself.'
         ),
       },
       prefix: {

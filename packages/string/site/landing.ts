@@ -25,8 +25,8 @@ const landing: LandingFactory = ({ identity, text, heading, code }) => ({
       'Convert between every case, build URL slugs, remove accents, truncate and get initials, with words split the same way everywhere.',
     descriptionContinuation: 'Install it, type in the live preview, then read the full reference.',
     footnotes: ['About 1.2 KB gzip', 'Zero dependencies', `${identity.license} licensed`],
-    compatibilityLabel: 'Works with',
-    platforms: ['Vanilla JS', 'TypeScript', 'Node.js', 'Any framework', 'Plain HTML'],
+    compatibilityLabel: 'ONE SMALL SCRIPT. RIGHT AT HOME IN YOUR STACK.',
+    platforms: ['JavaScript', 'TypeScript', 'Node.js', 'React', 'Vue', 'Svelte', 'WordPress'],
   },
   features: {
     eyebrow: '01 / More than toUpperCase',
@@ -34,36 +34,42 @@ const landing: LandingFactory = ({ identity, text, heading, code }) => ({
     titleAccent: 'Every case agrees.',
     items: {
       dependencies: {
+        icon: 'scissors',
         title: 'Words split once, correctly',
         description: text(
           'XMLHttpRequest becomes XML, Http, Request; camel, Pascal, snake, kebab and any punctuation are understood the same way.'
         ),
       },
       accessibility: {
+        icon: 'globe',
         title: 'Unicode and locales',
         description: text(
           'Accents and any script are kept as letters, and every function takes a locale, so Turkish İ and ı convert correctly.'
         ),
       },
       lifecycle: {
+        icon: 'link',
         title: 'Slugs that read well',
         description: text(
           'slugify removes accents, transliterates ß, æ, ø, œ and ł, applies your replacements and cuts at a separator with maxLength.'
         ),
       },
       entrypoints: {
+        icon: 'keyboard',
         title: 'Safe while typing',
         description: text(
           'slugify with trim: false keeps a trailing separator, so live slug fields never fight the space key.'
         ),
       },
       frameworks: {
+        icon: 'type',
         title: 'Text that fits',
         description: text(
           'truncate cuts at a word boundary without splitting emoji or accents; initials builds avatar letters.'
         ),
       },
       markup: {
+        icon: 'feather',
         title: 'Pure and tiny',
         description: text(
           'Pure functions with no DOM, safe on the server and in workers, about 1.2 KB gzip for everything.'
@@ -185,9 +191,9 @@ const landing: LandingFactory = ({ identity, text, heading, code }) => ({
         ),
       },
       changes: {
-        question: text('How are releases documented?'),
+        question: text('Which locale is used for upper and lower case?'),
         answer: text(
-          'CHANGELOG.md is the single release history and is published in the docs. Breaking and behavior changes are called out explicitly.'
+          'The runtime\'s default locale, which can differ between your server and the browser. Pass locale, such as \'tr\' or \'de\', wherever the result must be the same everywhere; Turkish İ and ı need it.'
         ),
       },
       accents: {

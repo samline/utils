@@ -23,8 +23,8 @@ const landing: LandingFactory = ({ identity, text, heading, code }) => ({
       'Same-page links and data-scroll-to triggers glide to their target, stop below your fixed header and hand focus to what they reveal.',
     descriptionContinuation: 'Install it, try the live preview, then read the full reference.',
     footnotes: ['About 2.4 KB gzip', 'Zero dependencies', `${identity.license} licensed`],
-    compatibilityLabel: 'Works with',
-    platforms: ['Vanilla JS', 'TypeScript', 'Any framework', 'Plain HTML', 'Landing pages'],
+    compatibilityLabel: 'ONE SMALL SCRIPT. RIGHT AT HOME IN YOUR STACK.',
+    platforms: ['JavaScript', 'TypeScript', 'React', 'Vue', 'Svelte', 'Shopify', 'WordPress'],
   },
   features: {
     eyebrow: '01 / More than scrollIntoView',
@@ -32,36 +32,42 @@ const landing: LandingFactory = ({ identity, text, heading, code }) => ({
     titleAccent: 'The details it skips.',
     items: {
       dependencies: {
+        icon: 'ruler',
         title: 'Offsets that stay right',
         description: text(
           'Pixels, a percentage, or the header element itself, measured on each scroll, so a header that changes height still clears.'
         ),
       },
       accessibility: {
+        icon: 'keyboard',
         title: 'Focus follows',
         description: text(
           'Links move keyboard focus to their target once it arrives, so the next Tab continues from there, as a native jump would.'
         ),
       },
       lifecycle: {
+        icon: 'target',
         title: 'Lands on target',
         description: text(
           'The destination is measured on every frame, so images loading on the way never leave it short or past the section.'
         ),
       },
       entrypoints: {
+        icon: 'hand',
         title: 'You stay in control',
         description: text(
           'A wheel, a touch or a key stops it at once. Reduced motion jumps instead of animating.'
         ),
       },
       frameworks: {
+        icon: 'move',
         title: 'Any container, both axes',
         description: text(
           'Scroll the page or a box, align to the start, center, end or nearest edge, and center tabs in a horizontal strip.'
         ),
       },
       markup: {
+        icon: 'bell',
         title: 'Know when it arrives',
         description: text(
           'Every scroll returns a promise: true when it arrives, false when interrupted, ready for highlights and analytics.'
@@ -184,9 +190,9 @@ const landing: LandingFactory = ({ identity, text, heading, code }) => ({
         ),
       },
       changes: {
-        question: text('How are releases documented?'),
+        question: text('Can I change the speed and the easing?'),
         answer: text(
-          'CHANGELOG.md is the single release history and is published in the docs. Breaking and behavior changes are called out explicitly.'
+          'Yes. duration takes milliseconds, or \'auto\' for half a millisecond per pixel between 300 and 1000. easing takes ease-in-out, ease-out, linear or your own function. behavior: \'instant\' jumps, and reduced motion always jumps.'
         ),
       },
       header: {

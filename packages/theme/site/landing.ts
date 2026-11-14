@@ -1,18 +1,11 @@
 import type { LandingFactory } from '../../../site/landing/src/i18n/kit'
 
-const markup = `<head>
-  <script src="https://cdn.jsdelivr.net/npm/@samline/theme@1.0.0/dist/browser/theme.global.js"></script>
-</head>
-
-<button type="button" data-theme-toggle>Dark mode</button>`
+const markup = `<button type="button" data-theme-toggle>Dark mode</button>`
 
 const script = `import { createTheme } from '@samline/theme'
 
-const theme = createTheme()
-theme.set('dark')`
-
-const css = `:root { --bg: #fff; --fg: #111; }
-[data-theme='dark'] { --bg: #111; --fg: #eee; }`
+// Style [data-theme='dark'] in your CSS.
+createTheme()`
 
 const landing: LandingFactory = ({ identity, text, heading, code }) => ({
   hero: {
@@ -26,8 +19,8 @@ const landing: LandingFactory = ({ identity, text, heading, code }) => ({
       'The stored theme is on the page before it paints, follows the system while visitors want it to, and stays in sync across tabs and controls.',
     descriptionContinuation: 'Install it, try the live preview, then read the full reference.',
     footnotes: ['About 1.8 KB gzip', 'Zero dependencies', `${identity.license} licensed`],
-    compatibilityLabel: 'Works with',
-    platforms: ['Vanilla JS', 'TypeScript', 'Any framework', 'Plain HTML', 'SSR'],
+    compatibilityLabel: 'ONE SMALL SCRIPT. RIGHT AT HOME IN YOUR STACK.',
+    platforms: ['JavaScript', 'TypeScript', 'React', 'Vue', 'Svelte', 'Shopify', 'WordPress'],
   },
   features: {
     eyebrow: '01 / More than a class toggle',
@@ -35,36 +28,42 @@ const landing: LandingFactory = ({ identity, text, heading, code }) => ({
     titleAccent: 'The rest is not.',
     items: {
       dependencies: {
+        icon: 'zap',
         title: 'No flash on load',
         description: text(
           'A classic script in the head, or a small inline snippet for SSR, writes the theme before the first paint.'
         ),
       },
       accessibility: {
+        icon: 'accessibility',
         title: 'Accessible controls',
         description: text(
           'Buttons get aria-pressed, radios are checked and selects show the mode, with no extra code.'
         ),
       },
       lifecycle: {
+        icon: 'monitor',
         title: 'Follows the system',
         description: text(
           'In system mode, a change in the operating system appearance updates the page at once.'
         ),
       },
       entrypoints: {
+        icon: 'tabs',
         title: 'Every tab agrees',
         description: text(
           'A choice made in one tab reaches the others, and broken storage never throws.'
         ),
       },
       frameworks: {
+        icon: 'palette',
         title: 'Your themes, your CSS',
         description: text(
           'Any number of named themes, as data-theme or a class, with color-scheme and theme-color set for you.'
         ),
       },
       markup: {
+        icon: 'pause',
         title: 'No animated switch',
         description: text(
           'Transitions pause while the theme changes, so the page swaps at once instead of fading every element.'
@@ -111,18 +110,18 @@ const landing: LandingFactory = ({ identity, text, heading, code }) => ({
   },
   gettingStarted: {
     eyebrow: '03 / Install and switch',
-    heading: heading('One script.', 'One button.'),
+    heading: heading('One button.', 'One call.'),
     integrationDescription: 'Add a remembered dark mode to any page, without a flash.',
     integrationLabel: 'Read the installation guide',
-    steps: { install: 'Install', markup: 'Load it and add a control', initialize: 'Style it' },
+    steps: { install: 'Install', markup: 'Add a control', initialize: 'Start it' },
     installLabel: 'Installation method',
     installTabs: [],
     fullExampleLabel: 'Copy complete working files',
     markupDescription:
-      'Load the script in the head without defer, then add data-theme-toggle or data-theme-set controls anywhere.',
+      'A data-theme-toggle button switches dark mode and reports it with aria-pressed. Inline themeScript() in the head too, so the theme is on the page before it paints.',
     examples: {
       markup: code('index.html', markup, 'html'),
-      script: code('styles.css', css, 'css'),
+      script: code('main.js', script, 'javascript'),
     },
     docs: {
       description: 'Continue with every option, custom themes and server rendering.',
@@ -154,7 +153,11 @@ const landing: LandingFactory = ({ identity, text, heading, code }) => ({
         docsRoute: 'api' as const,
         docsLabel: 'Read the API',
         description: text('Inline the snippet in your head.'),
-        code: code('head.js', `const html = \`<script>\${themeScript()}</script>\``, 'javascript'),
+        code: code(
+          'head.js',
+          `import { themeScript } from '@samline/theme'\n\nconst head = \`<script>\${themeScript()}</script>\``,
+          'javascript'
+        ),
       },
       {
         title: 'React to changes',
@@ -164,7 +167,7 @@ const landing: LandingFactory = ({ identity, text, heading, code }) => ({
         description: text('Repaint a chart when the theme changes.'),
         code: code(
           'main.js',
-          `const theme = createTheme()\ntheme.subscribe(({ theme }) => chart.setTheme(theme))`,
+          `import { createTheme } from '@samline/theme'\n\nconst theme = createTheme()\ntheme.subscribe(({ theme }) => chart.setTheme(theme))`,
           'javascript'
         ),
       },
@@ -186,12 +189,6 @@ const landing: LandingFactory = ({ identity, text, heading, code }) => ({
           'Yes. Load dist/browser/theme.global.js in the head; it applies the theme and handles data-theme-* controls. Options go on the script tag, or add data-manual and call Theme.auto(). Pin the version in production.'
         ),
       },
-      changes: {
-        question: text('How are releases documented?'),
-        answer: text(
-          'CHANGELOG.md is the single release history and is published in the docs. Breaking and behavior changes are called out explicitly.'
-        ),
-      },
       header: {
         question: text('What does system mode do?'),
         answer: text(
@@ -201,7 +198,13 @@ const landing: LandingFactory = ({ identity, text, heading, code }) => ({
       observer: {
         question: text('Can I have more than two themes?'),
         answer: text(
-          'Yes. Pass any theme names; each can have a theme-color for the browser UI. color-scheme is only set for light and dark.'
+          'Yes. Pass any theme names; each can have a theme-color for the browser UI. color-scheme is only set for light and dark, and the toggle always switches between light and dark.'
+        ),
+      },
+      changes: {
+        question: text('Can I theme only part of a page?'),
+        answer: text(
+          'Yes. Pass target to write the theme on a widget instead of <html>, scope to limit which controls it listens to, and its own storageKey so it does not share the page choice.'
         ),
       },
       smooth: {

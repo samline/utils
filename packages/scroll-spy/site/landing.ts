@@ -24,8 +24,8 @@ const landing: LandingFactory = ({ identity, text, heading, code }) => ({
       'Add data-scroll-spy to a navigation and the link of the section being read gets aria-current, in the page or any scroll container.',
     descriptionContinuation: 'Install it, scroll the live preview, then read the full reference.',
     footnotes: ['About 2.4 KB gzip', 'Zero dependencies', `${identity.license} licensed`],
-    compatibilityLabel: 'Works with',
-    platforms: ['Vanilla JS', 'TypeScript', 'Any framework', 'Plain HTML', 'Docs and blogs'],
+    compatibilityLabel: 'ONE SMALL SCRIPT. RIGHT AT HOME IN YOUR STACK.',
+    platforms: ['JavaScript', 'TypeScript', 'React', 'Vue', 'Svelte', 'Shopify', 'WordPress'],
   },
   features: {
     eyebrow: '01 / More than an observer',
@@ -33,36 +33,42 @@ const landing: LandingFactory = ({ identity, text, heading, code }) => ({
     titleAccent: 'Not the one passing by.',
     items: {
       dependencies: {
+        icon: 'target',
         title: 'One activation line',
         description: text(
           'A section is active once its top crosses a line at 25% of the view, so short and very tall sections both behave.'
         ),
       },
       accessibility: {
+        icon: 'accessibility',
         title: 'aria-current built in',
         description: text(
           'The active link gets aria-current="true", which screen readers announce and your CSS can target, with an optional class.'
         ),
       },
       lifecycle: {
+        icon: 'pointer',
         title: 'Steady on click',
         description: text(
           'A clicked link lights up at once and stays lit while the page scrolls to it, instead of flickering through every section on the way.'
         ),
       },
       entrypoints: {
+        icon: 'flag',
         title: 'The end is reachable',
         description: text(
           'At the bottom of the page the last section in view becomes active, even when it is too short to reach the line.'
         ),
       },
       frameworks: {
+        icon: 'list',
         title: 'Long tables of contents',
         description: text(
           'When the navigation scrolls itself, the active link is kept in view by scrolling the navigation, never the page.'
         ),
       },
       markup: {
+        icon: 'scan',
         title: 'Any scroll container',
         description: text(
           'Watch the page or a scrolling panel with root, and optionally keep the URL hash in sync without history entries.'
@@ -184,9 +190,9 @@ const landing: LandingFactory = ({ identity, text, heading, code }) => ({
         ),
       },
       changes: {
-        question: text('How are releases documented?'),
+        question: text('Can I style the active link with a class?'),
         answer: text(
-          'CHANGELOG.md is the single release history and is published in the docs. Breaking and behavior changes are called out explicitly.'
+          'Yes. Set activeClass, or data-scroll-spy-class, and the class is added next to aria-current. aria-current stays on by default; set ariaCurrent to \'location\' or false to change it.'
         ),
       },
       header: {

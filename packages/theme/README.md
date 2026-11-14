@@ -34,12 +34,6 @@ Any modern browser; without JavaScript, your default CSS applies. On the server,
 
 ## Quick start
 
-```js
-import { createTheme } from '@samline/theme'
-
-const theme = createTheme()
-```
-
 ```html
 <button type="button" data-theme-toggle>Dark mode</button>
 ```
@@ -54,6 +48,22 @@ const theme = createTheme()
   --fg: #eee;
 }
 ```
+
+```js
+import { createTheme } from '@samline/theme'
+
+const theme = createTheme()
+
+theme.set('system')
+theme.subscribe(({ mode, theme }) => console.log(mode, theme))
+```
+
+What this does:
+
+- Reads the stored choice, or follows the system when there is none, and writes it on `<html>` as `data-theme`.
+- Sets `color-scheme`, so native scrollbars and form controls follow the theme.
+- Makes every `data-theme-toggle`, `data-theme-set` and `data-theme-select` control work and report its state, including controls added later.
+- Remembers each new choice, follows the system while in `'system'` mode and keeps other open tabs in sync.
 
 A bundled module runs after the first paint. To avoid a flash, inline the snippet in `<head>` too:
 
@@ -97,12 +107,13 @@ CSS transitions pause while the theme changes, so the page swaps at once. Listen
 
 ## API at a glance
 
-| API                                                        | Purpose                                                                                           |
-| ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| `createTheme(options?)`                                    | Apply, remember and follow the theme. Returns `{ mode, theme, set, toggle, subscribe, destroy }`. |
-| `themeScript(options?)`                                    | Inline `<head>` snippet that applies the stored theme before the first paint.                     |
-| `data-theme-set`, `data-theme-toggle`, `data-theme-select` | Controls handled without code.                                                                    |
-| `themechange`                                              | Event with `{ mode, theme }` on every change.                                                     |
+| API                                                                                                                               | Purpose                                                                                           |
+| --------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| [`createTheme(options?)`](https://samline.github.io/utils/docs/theme/reference/api/)                                              | Apply, remember and follow the theme. Returns `{ mode, theme, set, toggle, subscribe, destroy }`. |
+| [`themeScript(options?)`](https://samline.github.io/utils/docs/theme/reference/api/)                                              | Inline `<head>` snippet that applies the stored theme before the first paint.                     |
+| [`data-theme-set`, `data-theme-toggle`, `data-theme-select`](https://samline.github.io/utils/docs/theme/reference/configuration/) | Controls handled without code.                                                                    |
+| [`ThemeOptions`](https://samline.github.io/utils/docs/theme/reference/configuration/)                                             | Themes, default mode, attribute, target, theme color, storage and controls.                       |
+| `themechange`                                                                                                                     | Event with `{ mode, theme }` on every change.                                                     |
 
 ### Entrypoints
 

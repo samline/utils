@@ -404,12 +404,24 @@ test.describe('scroll-to copyable examples', () => {
 
 test.describe('theme copyable examples', () => {
   type Page = import('@playwright/test').Page
-  const openDocument = async (page: Page, example: Example) => {
+  // Like the copied index.html: the bundle in the head, with the example's
+  // script tag attributes, then the example script at the end of the body.
+  const openDocument = async (
+    page: Page,
+    example: Example & { cdnScript?: { attributes?: Readonly<Record<string, string>> } }
+  ) => {
     const script = readFileSync(bundle('theme'), 'utf8')
+    const attributes = Object.entries(example.cdnScript?.attributes ?? {})
+      .map(([name, value]) => ` ${name}="${value}"`)
+      .join('')
+    const body = `<!doctype html><html lang="en"><head><script${attributes}>${script}</script><style>${example.files.css ?? ''}</style></head><body><main>${example.files.html}</main><script>${example.files.js}</script></body></html>`
     await page.emulateMedia({ colorScheme: 'light' })
-    await page.setContent(
-      `<!doctype html><html lang="en"><head><style>${example.files.css ?? ''}</style></head><body><main>${example.files.html}</main><script>${script}</script><script>${example.files.js}</script></body></html>`
+    // A real origin, so the choice is stored like on a site.
+    await page.unroute('http://theme.test/')
+    await page.route('http://theme.test/', route =>
+      route.fulfill({ contentType: 'text/html', body })
     )
+    await page.goto('http://theme.test/')
   }
   const html = (page: Page) => page.locator('html')
 
@@ -451,5 +463,15 @@ test.describe('theme copyable examples', () => {
     await page.getByLabel('Dark').check()
     await expect(html(page)).toHaveClass('dark')
     await expect(html(page)).toHaveCSS('color-scheme', 'dark')
+  })
+
+  test('a stored custom theme is on the page before the example script runs', async ({ page }) => {
+    const example = find(themeExamples, 'custom')
+    await openDocument(page, example)
+    await page.getByLabel('Sepia').check()
+    // Reload without the example script: the script tag alone must restore sepia.
+    await openDocument(page, { ...example, files: { ...example.files, js: '' } })
+    await expect(html(page)).toHaveClass('sepia')
+    await expect(page.getByLabel('Sepia')).toBeChecked()
   })
 })

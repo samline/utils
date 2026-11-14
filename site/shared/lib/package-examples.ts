@@ -16,7 +16,19 @@ export interface PackageExample {
   readonly title: string
   readonly description: string
   readonly files: { readonly html: string; readonly css?: string; readonly js: string }
+  /**
+   * Where the copied pages load the package's CDN script. By default it goes
+   * at the end of <body>; `head: true` puts it in <head> without defer, for
+   * packages that must run before the first paint. `attributes` are written on
+   * that script tag, such as options the browser bundle reads from it.
+   */
+  readonly cdnScript?: {
+    readonly head?: boolean
+    readonly attributes?: Readonly<Record<string, string>>
+  }
 }
+
+const escapeAttribute = (value: string) => value.replace(/&/g, '&amp;').replace(/"/g, '&quot;')
 
 const records = {
   ...import.meta.glob<readonly PackageExample[]>('@collection/*/site/examples.ts', {
@@ -72,11 +84,17 @@ const documentFor = (
 ) => {
   const { cdnScript, cdnStylesheet } = slug ? findPackage(slug).delivery : project.delivery
   const css = example.files.css?.trim()
+  const attributes = Object.entries(example.cdnScript?.attributes ?? {})
+    .map(([name, value]) => ` ${name}="${escapeAttribute(value)}"`)
+    .join('')
+  const cdnTag = cdnScript ? `<script src="${cdnScript}"${attributes}></script>` : ''
+  const inHead = example.cdnScript?.head === true
   const head = [
     '<meta charset="utf-8">',
     '<meta name="viewport" content="width=device-width, initial-scale=1">',
     `<title>${example.title}</title>`,
     cdnStylesheet ? `<link rel="stylesheet" href="${cdnStylesheet}">` : '',
+    inHead ? cdnTag : '',
     css
       ? separate
         ? '<link rel="stylesheet" href="./style.css">'
@@ -84,7 +102,7 @@ const documentFor = (
       : '',
   ]
   const scripts = [
-    cdnScript ? `<script src="${cdnScript}"></script>` : '',
+    inHead ? '' : cdnTag,
     separate
       ? '<script src="./main.js" defer></script>'
       : `<script>\n${example.files.js}\n</script>`,

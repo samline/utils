@@ -24,8 +24,8 @@ const landing: LandingFactory = ({ identity, text, heading, code }) => ({
       'Run code when elements enter or leave the viewport, for one element or a whole selector, on observers shared across your page.',
     descriptionContinuation: 'Install it, scroll the live preview, then read the full reference.',
     footnotes: ['About 1 KB gzip', 'Zero dependencies', `${identity.license} licensed`],
-    compatibilityLabel: 'Works with',
-    platforms: ['Vanilla JS', 'TypeScript', 'React', 'Vue', 'Svelte', 'Plain HTML'],
+    compatibilityLabel: 'ONE SMALL SCRIPT. RIGHT AT HOME IN YOUR STACK.',
+    platforms: ['JavaScript', 'TypeScript', 'React', 'Vue', 'Svelte', 'Shopify', 'WordPress'],
   },
   features: {
     eyebrow: '01 / More than an observer',
@@ -33,36 +33,42 @@ const landing: LandingFactory = ({ identity, text, heading, code }) => ({
     titleAccent: 'Not one per element.',
     items: {
       dependencies: {
+        icon: 'target',
         title: 'Any target',
         description: text(
           'Pass an element, a selector, a NodeList or an array. One cleanup stops them all.'
         ),
       },
       accessibility: {
+        icon: 'eye',
         title: 'Content never stuck hidden',
         description: text(
           'Without IntersectionObserver every element is reported visible once, so reveal effects degrade to visible content.'
         ),
       },
       lifecycle: {
+        icon: 'refresh',
         title: 'Honest transitions',
         description: text(
           'visible fires once per entry and notVisible only after the element was visible: no false "left" events on load.'
         ),
       },
       entrypoints: {
+        icon: 'layers',
         title: 'Shared observers',
         description: text(
           'Calls with the same root, rootMargin and threshold share one IntersectionObserver that disconnects when unused.'
         ),
       },
       frameworks: {
+        icon: 'branches',
         title: 'Idiomatic adapters',
         description: text(
           'useIsVisible for React and Vue, an action and stores for Svelte, and a VisibilityObserver component.'
         ),
       },
       markup: {
+        icon: 'server',
         title: 'Safe on the server',
         description: text(
           'No DOM access at import time. Without a DOM every call returns a no-op cleanup.'

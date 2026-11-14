@@ -1,9 +1,11 @@
 ---
 // Collection mode: one package example — its live preview (rendered by the
-// package's site/examples/<id>.astro) above its copyable files.
+// package's site/examples/<id>.astro) above its copyable files, which stay
+// closed behind "Explore the code" like the Playground examples.
 import DemoStudio from './DemoStudio.astro'
 import DemoPanel from './DemoPanel.astro'
 import CodeFiles from './CodeFiles.astro'
+import Disclosure from './Disclosure.astro'
 import demo from '../i18n/translations/en/demo'
 import { filesFor, previewFor, type PackageExample } from '../lib/package-examples'
 interface Props {
@@ -31,11 +33,15 @@ const source = showCode ? await filesFor(slug, example) : null
     </DemoPanel>
   </DemoStudio>
   {source && (
-    <CodeFiles
-      class:list={['files']}
-      files={source.files}
-      complete={{ code: source.complete, copyLabel: demo.copyComplete }}
-    />
+    <Disclosure class:list={['code-disclosure']}>
+      <span slot="summary">{demo.openCode}</span>
+      <div class:list={['code-body']}>
+        <CodeFiles
+          files={source.files}
+          complete={{ code: source.complete, copyLabel: demo.copyComplete }}
+        />
+      </div>
+    </Disclosure>
   )}
 </div>
 
@@ -53,5 +59,16 @@ const source = showCode ? await filesFor(slug, example) : null
   }
   .stage {
     min-width: 0;
+  }
+  /* Same closed-by-default code panel as the Playground examples. */
+  .code-disclosure {
+    min-width: 0;
+    padding-block: var(--space-xs);
+  }
+  .code-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-md);
+    padding: var(--space-sm);
   }
 </style>

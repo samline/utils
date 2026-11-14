@@ -23,8 +23,8 @@ const landing: LandingFactory = ({ identity, text, heading, code }) => ({
       'Add data-reveal and content fades, slides, zooms or blurs in as it scrolls into view, in cascade when it enters together.',
     descriptionContinuation: 'Install it, scroll the live preview, then read the full reference.',
     footnotes: ['About 2.9 KB gzip', 'Zero dependencies', `${identity.license} licensed`],
-    compatibilityLabel: 'Works with',
-    platforms: ['Vanilla JS', 'TypeScript', 'Any framework', 'Plain HTML', 'Shopify and WordPress'],
+    compatibilityLabel: 'ONE SMALL SCRIPT. RIGHT AT HOME IN YOUR STACK.',
+    platforms: ['JavaScript', 'TypeScript', 'React', 'Vue', 'Svelte', 'Shopify', 'WordPress'],
   },
   features: {
     eyebrow: '01 / More than a fade-in',
@@ -32,36 +32,42 @@ const landing: LandingFactory = ({ identity, text, heading, code }) => ({
     titleAccent: 'Nothing else moves.',
     items: {
       dependencies: {
+        icon: 'zap',
         title: 'No flash on load',
         description: text(
           'Elements already in view, or above it, are never hidden, so the first paint and anchor links stay intact.'
         ),
       },
       accessibility: {
+        icon: 'shield',
         title: 'Safe by default',
         description: text(
           'Without JavaScript, with reduced motion or when printing, every element is visible. The CSS only hides what the script marked.'
         ),
       },
       lifecycle: {
+        icon: 'list',
         title: 'Cascades in order',
         description: text(
           'Items that enter together are delayed one after another in document order, per data-reveal-stagger container.'
         ),
       },
       entrypoints: {
+        icon: 'repeat',
         title: 'Repeat or once',
         description: text(
           'Reveal once by default, or hide again on leaving with data-reveal-repeat so it plays on every entry.'
         ),
       },
       frameworks: {
+        icon: 'sliders',
         title: 'Scrub with CSS only',
         description: text(
           'data-reveal-scrub ties the effect to the scroll position with animation-timeline: view(), no script running.'
         ),
       },
       markup: {
+        icon: 'brush',
         title: 'Your styles win',
         description: text(
           'Every rule uses :where(), and effects use translate and scale, so your own transform is never overwritten.'
@@ -184,9 +190,9 @@ const landing: LandingFactory = ({ identity, text, heading, code }) => ({
         ),
       },
       changes: {
-        question: text('How are releases documented?'),
+        question: text('How do I change the speed or the distance?'),
         answer: text(
-          'CHANGELOG.md is the single release history and is published in the docs. Breaking and behavior changes are called out explicitly.'
+          'Per element with data-reveal-duration, data-reveal-delay and data-reveal-distance, per call with the same options, or for the whole site with the --reveal-duration, --reveal-easing, --reveal-distance, --reveal-scale and --reveal-blur CSS variables.'
         ),
       },
       noscript: {
