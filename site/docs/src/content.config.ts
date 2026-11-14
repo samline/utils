@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url'
 import en from './i18n/translations/en'
 import { project } from '../../shared/lib/project.mjs'
 import { packagesDir, readCollection } from '../../shared/lib/collection.mjs'
-import { withoutEmptyUnreleased } from '../../shared/lib/changelog.mjs'
+import { withoutEmptyUnreleased, withoutTitle } from '../../shared/lib/changelog.mjs'
 
 type Context = Parameters<ReturnType<typeof glob>['load']>[0]
 
@@ -20,9 +20,7 @@ const loadChangelog = async (
   packageName?: string
 ) => {
   const load = async () => {
-    const body = withoutEmptyUnreleased(
-      (await readFile(source, 'utf8')).replace(/^# Changelog\s*\n/, '')
-    )
+    const body = withoutEmptyUnreleased(withoutTitle(await readFile(source, 'utf8')))
     const data = await context.parseData({
       id,
       data: {

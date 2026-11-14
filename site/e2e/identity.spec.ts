@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test'
+import { home } from './routes'
 import { project } from '../shared/lib/project.mjs'
 
 test('package identity and compatibility preserve the shared Hero composition', async ({
@@ -6,7 +7,7 @@ test('package identity and compatibility preserve the shared Hero composition', 
 }) => {
   for (const width of [320, 1440]) {
     await page.setViewportSize({ width, height: 900 })
-    await page.goto('./')
+    await page.goto(home)
     for (const theme of ['light', 'dark']) {
       await page.evaluate(theme => {
         document.documentElement.dataset.theme = theme

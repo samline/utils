@@ -5,8 +5,8 @@
   "themeReview": {
     "status": "verified",
     "source": "The maintainer asked for a new accent, not used by any sibling, in chat on 2026-11-13; vermilion (#e0533d) derived with npm run accent.",
-    "accentLight": "#c54936",
-    "accentDark": "#e15641"
+    "accentLight": "#bf4532",
+    "accentDark": "#ea6a55"
   },
   "iconReview": {
     "kept": ["package", "eye", "refresh", "branch", "layers", "wrench"],

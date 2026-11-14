@@ -5,8 +5,8 @@
 
 // Runs before the first paint, like on a real site.
 const head = { head: true } as const
-const palette = `:root { --bg: #ffffff; --fg: #18181b; --card: #f4f4f5; --accent: #c54936; }
-[data-theme='dark'] { --bg: #18181b; --fg: #f4f4f5; --card: #27272a; --accent: #e15641; }
+const palette = `:root { --bg: #ffffff; --fg: #18181b; --card: #f4f4f5; --accent: #bf4532; }
+[data-theme='dark'] { --bg: #18181b; --fg: #f4f4f5; --card: #27272a; --accent: #ea6a55; }
 body { margin: 0; min-height: 100vh; background: var(--bg); color: var(--fg); font-family: system-ui, sans-serif; }
 main { display: grid; gap: 1rem; max-width: 32rem; margin: 0 auto; padding: 2rem 1rem; }
 .card { padding: 1rem; border-radius: 0.75rem; background: var(--card); }`

@@ -30,7 +30,7 @@ body { margin: 0; font-family: system-ui, sans-serif; }
 .spacer { height: 80vh; display: grid; place-items: center; margin: 0; }
 .track { display: flex; gap: 1.5rem; height: 100vh; align-items: center; padding: 0 1.5rem; box-sizing: border-box; }
 .card { flex: 0 0 min(70vw, 28rem); height: 60vh; display: grid; place-items: center; border-radius: 1rem; background: #efeafd; font-size: 1.5rem; }
-.card:focus-visible { outline: 3px solid #c54936; outline-offset: 4px; }`,
+.card:focus-visible { outline: 3px solid #bf4532; outline-offset: 4px; }`,
       js: `// Nothing to call: the script sets up every [data-horizontal-scroll] on its own.`,
     },
   },
@@ -52,10 +52,10 @@ ${Array.from({ length: 8 }, (_, i) => `    <li class="step" tabindex="0">${2017 
       css: `${fallback}
 body { margin: 0; font-family: system-ui, sans-serif; }
 .bar-header { position: fixed; inset: 0 0 auto; z-index: 1; height: 64px; display: flex; align-items: center; padding: 0 1.5rem; background: #fff; border-bottom: 1px solid #ddd; }
-.progress { position: absolute; left: 0; bottom: -1px; width: 100%; height: 3px; background: #c54936; transform-origin: left; transform: scaleX(var(--progress, 0)); }
+.progress { position: absolute; left: 0; bottom: -1px; width: 100%; height: 3px; background: #bf4532; transform-origin: left; transform: scaleX(var(--progress, 0)); }
 .spacer { height: 80vh; display: grid; place-items: center; margin: 0; }
 .track { display: flex; gap: 1rem; height: calc(100vh - 64px); align-items: center; margin: 0; padding: 0 1.5rem; list-style: none; box-sizing: border-box; }
-.step { flex: 0 0 18rem; height: 12rem; display: grid; place-items: center; border-left: 3px solid #c54936; background: #fbf1ef; font-size: 2rem; }`,
+.step { flex: 0 0 18rem; height: 12rem; display: grid; place-items: center; border-left: 3px solid #bf4532; background: #fbf1ef; font-size: 2rem; }`,
       js: `// Called before the DOM is ready, this replaces the automatic start.
 HorizontalScroll.auto({
   top: 64,

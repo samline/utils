@@ -11,7 +11,7 @@ const parts = ['Features', 'Pricing', 'FAQ']
     </nav>
     {parts.map(part => (
       <section id={`scroll-to-header-${part.toLowerCase()}`}>
-        <h4>{part}</h4>
+        <p class="part-title">{part}</p>
         <p>Lands just below the bar, and focus moves here.</p>
       </section>
     ))}

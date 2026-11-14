@@ -43,7 +43,7 @@ const durations = [
     </nav>
     {parts.map(([title, text]) => (
       <section id={`scroll-to-demo-${title.toLowerCase()}`}>
-        <h3>{title}</h3>
+        <p class="part-title">{title}</p>
         <p>{text}</p>
       </section>
     ))}
@@ -156,9 +156,12 @@ const durations = [
   .last {
     min-height: 0;
   }
-  h3 {
+  /* Mock headings of the demo content: styled text, so they stay out of the page outline. */
+  section .part-title {
     margin: 0 0 0.5rem;
     font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text);
   }
   section p {
     margin: 0;

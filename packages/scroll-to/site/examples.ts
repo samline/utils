@@ -51,7 +51,7 @@ ${Array.from({ length: 12 }, (_, i) => `  <button type="button" role="tab" id="t
       css: `body { font-family: system-ui, sans-serif; }
 .tabs { display: flex; gap: 0.5rem; max-width: 32rem; overflow-x: auto; padding: 0.5rem; border: 1px solid #ddd; }
 .tabs button { flex: none; padding: 0.5rem 1rem; border: 1px solid #ccc; border-radius: 999px; background: #fff; }
-.tabs [aria-selected='true'] { background: #c54936; border-color: #c54936; color: #fff; }`,
+.tabs [aria-selected='true'] { background: #bf4532; border-color: #bf4532; color: #fff; }`,
       js: `const tabs = document.querySelector('#tabs')
 
 tabs.addEventListener('click', event => {

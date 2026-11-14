@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test'
+import { docs, docsPage, home } from './routes'
 import { customPreviews, customPreviewsReason } from './custom-previews'
 
 test('all destinations load only local WOFF2 faces and two heading preloads', async ({ page }) => {
@@ -29,7 +30,7 @@ test('all destinations load only local WOFF2 faces and two heading preloads', as
 
 test('icon-only header controls keep square icons on narrow screens', async ({ page }) => {
   await page.setViewportSize({ width: 375, height: 812 })
-  for (const path of ['./', 'docs/', 'docs/getting-started/']) {
+  for (const path of [home, docs, docsPage('getting-started/')]) {
     await page.goto(path)
     const header = page.locator('package-site-header, package-site-docs-header')
     const icons = header.locator('button:visible svg:visible')
@@ -115,7 +116,7 @@ test('copy reads live highlighted source and falls back to selecting it when den
   context,
 }) => {
   await context.grantPermissions(['clipboard-read', 'clipboard-write'])
-  await page.goto('./')
+  await page.goto(home)
   const frame = page
     // :visible skips frames in inactive tabs, such as the Installer's HTML / CDN panel.
     .locator('#how [data-copy-source]:visible')
@@ -194,7 +195,7 @@ test('scopes reconnect once and an open drawer releases its lock on same-batch r
 test('closing title stays centered in both themes', async ({ page }) => {
   for (const width of [390, 1440]) {
     await page.setViewportSize({ width, height: 900 })
-    await page.goto('./')
+    await page.goto(home)
     for (const theme of ['light', 'dark']) {
       await page.evaluate(theme => {
         document.documentElement.dataset.theme = theme
@@ -212,7 +213,7 @@ test('closing title stays centered in both themes', async ({ page }) => {
 for (const control of ['menu', 'search']) {
   test(`docs ${control} releases modal state and resets ARIA when remounted`, async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 900 })
-    await page.goto('docs/')
+    await page.goto(docs)
     const selector = `package-site-docs-${control}`
     const trigger = page.locator(`${selector} > button`)
     await trigger.click()

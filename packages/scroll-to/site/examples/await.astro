@@ -10,7 +10,7 @@ import './_shared.css'
   <div class="box" data-preview="await" tabindex="0" aria-label="Questions">
     {Array.from({ length: 6 }, (_, i) => (
       <article id={`scroll-to-q${i + 1}`}>
-        <h4>Question {i + 1}</h4>
+        <p class="part-title">Question {i + 1}</p>
         <p>Answer {i + 1}.</p>
       </article>
     ))}

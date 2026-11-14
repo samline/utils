@@ -14,7 +14,7 @@ const chapters = Array.from({ length: 12 }, (_, i) => i + 1)
     <div class="box" tabindex="0" aria-label="Scrollable book">
       {chapters.map(n => (
         <section id={`spy-long-${n}`}>
-          <h4>Chapter {n}</h4>
+          <p class="part-title">Chapter {n}</p>
         </section>
       ))}
     </div>

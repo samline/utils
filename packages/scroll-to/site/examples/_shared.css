@@ -35,9 +35,12 @@
 .preview article:focus {
   outline: none;
 }
-.preview h4 {
+/* Mock headings of the demo content: styled text, so they stay out of the page outline. */
+.preview .part-title {
   margin: 0 0 0.5rem;
   font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text);
 }
 .preview p {
   margin: 0;

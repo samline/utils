@@ -1,4 +1,5 @@
 import { test, expect, type Locator } from '@playwright/test'
+import { docs } from './routes'
 
 const currentIsVisible = async (region: Locator) =>
   region.evaluate(element => {
@@ -28,7 +29,7 @@ test('deep documentation links reveal the current page without scrolling the art
   page,
 }) => {
   await page.setViewportSize({ width: 1280, height: 360 })
-  await page.goto('docs/')
+  await page.goto(docs)
   const sidebar = page.locator('.sidebar')
   expect(await sidebar.evaluate(element => getComputedStyle(element, '::after').content)).toBe(
     'none'
@@ -82,7 +83,7 @@ test('opening the mobile docs menu reveals the current page while the dialog kee
   page,
 }) => {
   await page.setViewportSize({ width: 1280, height: 360 })
-  await page.goto('docs/')
+  await page.goto(docs)
   const target = await page.locator('.sidebar nav a').last().getAttribute('href')
   await page.setViewportSize({ width: 390, height: 500 })
   await page.goto(target!)

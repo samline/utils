@@ -70,7 +70,7 @@ note.addEventListener('input', save)`,
   <p style="height: 60rem">A long article.</p>
 </div>`,
       css: `#article { height: 12rem; overflow-y: auto; border: 1px solid #ccc; }
-#bar { height: 0.375rem; width: 0; background: #c54936; }`,
+#bar { height: 0.375rem; width: 0; background: #bf4532; }`,
       js: `const { rafThrottle } = window.Debounce
 const article = document.querySelector('#article')
 const bar = document.querySelector('#bar')

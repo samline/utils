@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test'
+import { home } from './routes'
 
 test('initial viewport content stays visible while reveal observers initialize', async ({
   page,
@@ -17,14 +18,14 @@ test('initial viewport content stays visible while reveal observers initialize',
       }
     }).observe(document, { attributes: true, attributeFilter: ['data-pending'], subtree: true })
   })
-  await page.goto('./')
+  await page.goto(home)
   await expect(page.locator('package-site-reveal').first()).toHaveAttribute('data-mounted', 'true')
   await expect(page.locator('package-site-reveal[data-pending]').first()).toBeAttached()
   expect(await page.evaluate(() => Reflect.get(window, 'initialHiddenReveals'))).toEqual([])
 })
 
 test('a tall block starts fading just before entering the viewport', async ({ page }) => {
-  await page.goto('./')
+  await page.goto(home)
   await expect(page.locator('package-site-reveal').first()).toHaveAttribute('data-mounted', 'true')
   await page.evaluate(() => {
     const reveal = document.createElement('package-site-reveal')

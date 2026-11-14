@@ -12,6 +12,7 @@ import { localBuilds } from './demo-builds'
 import { readBuild, routeExample } from './demo-routing'
 import type { Page } from '@playwright/test'
 import { customPreviews, customPreviewsReason } from './custom-previews'
+import { collection, docsPage, home, homePath, examples, registry, target } from './routes'
 const articles = (
   await readdir(new URL('../docs/src/content/docs/', import.meta.url), { recursive: true })
 )
@@ -25,18 +26,32 @@ const articles = (
         .replace(/\/$/, '') +
       '/'
   )
-const paths = [
-  ...new Set([
-    '',
-    'examples/',
-    'docs/',
-    'docs/changelog/',
-    ...articles.map(path => path.replace('docs//', 'docs/')),
+// Collection mode: the catalog pages plus every package's Home, Examples and Docs.
+const collectionPaths = [
+  '',
+  'examples/',
+  'docs/',
+  ...registry.packages.flatMap(item => [
+    `${item.slug}/`,
+    ...(item.hasExamples ? [`${item.slug}/examples/`] : []),
+    ...item.docs.map(route => `docs/${item.slug}/${route}`),
   ]),
 ]
+const paths = collection
+  ? [...new Set(collectionPaths)]
+  : [
+      ...new Set([
+        '',
+        'examples/',
+        'docs/',
+        'docs/changelog/',
+        ...articles.map(path => path.replace('docs//', 'docs/')),
+      ]),
+    ]
 test('all routes share readable metadata and fit both themes and enlarged mobile text', async ({
   page,
 }) => {
+  test.setTimeout(collection ? 600000 : 60000)
   await page.emulateMedia({ reducedMotion: 'reduce' })
   for (const path of paths) {
     await page.goto(path || './')
@@ -256,17 +271,18 @@ test('the package skill downloads unchanged from the footer and Examples', async
   page,
   request,
 }) => {
-  const source = await readFile(
-    new URL(`../skills/${project.skill}/SKILL.md`, import.meta.url),
-    'utf8'
-  )
+  // A collection package keeps its skill in <packagesDir>/<slug>/site/SKILL.md.
+  const sourcePath = target.slug
+    ? `../${project.collection!.packagesDir}/${target.slug}/site/SKILL.md`
+    : `../skills/${target.skill}/SKILL.md`
+  const source = await readFile(new URL(sourcePath, import.meta.url), 'utf8')
   for (const [path, scope] of [
-    ['./', 'footer'],
-    ['examples/', '.resources'],
+    [home, 'footer'],
+    [examples, '.resources'],
   ]) {
     await page.goto(path)
     const link = page.locator(`${scope} a[download="SKILL.md"]`)
-    await expect(link).toHaveAttribute('href', `${project.base}skills/${project.skill}/SKILL.md`)
+    await expect(link).toHaveAttribute('href', `${project.base}skills/${target.skill}/SKILL.md`)
     const response = await request.get(new URL(await link.getAttribute('href')!, page.url()).href)
     expect(response.ok()).toBe(true)
     expect(await response.text()).toBe(source)
@@ -275,7 +291,7 @@ test('the package skill downloads unchanged from the footer and Examples', async
 test('production Pagefind search returns meaningful links in a compact top drawer', async ({
   page,
 }) => {
-  await page.goto('docs/')
+  await page.goto(docsPage(''))
   await page.getByRole('button', { name: 'Search documentation', exact: true }).click()
   const input = page.getByRole('searchbox')
   // Every package site documents installation, whatever its article titles are.
@@ -289,7 +305,7 @@ test('production Pagefind search returns meaningful links in a compact top drawe
 })
 test('mobile menu closes without moving the background and keeps docs last', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 })
-  await page.goto('./#how')
+  await page.goto(`${home}#how`)
   const before = await page.evaluate(() => scrollY)
   const trigger = page.getByRole('button', { name: 'Open navigation menu' })
   await trigger.click()
@@ -308,7 +324,7 @@ test('no JavaScript preserves content, code, alternative installs and mobile nav
     viewport: { width: 320, height: 900 },
   })
   const page = await context.newPage()
-  await page.goto(new URL(project.base, test.info().project.use.baseURL as string).href)
+  await page.goto(new URL(homePath, test.info().project.use.baseURL as string).href)
   await expect(page.locator('h1')).toBeVisible()
   await expect(page.locator('code').filter({ hasText: 'pnpm add' })).toBeVisible()
   await page.locator('.menu-fallback summary').click()
@@ -316,7 +332,7 @@ test('no JavaScript preserves content, code, alternative installs and mobile nav
   await context.close()
 })
 test('all pages pass automated accessibility checks in both themes', async ({ page }) => {
-  test.setTimeout(120000)
+  test.setTimeout(collection ? 900000 : 120000)
   const axe = await readFile(
     new URL('../node_modules/axe-core/axe.min.js', import.meta.url),
     'utf8'
@@ -377,7 +393,7 @@ test('ToC follows the clicked section and anchors retain the 2.5rem header gap',
 }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' })
   await page.setViewportSize({ width: 1440, height: 500 })
-  await page.goto('docs/getting-started/')
+  await page.goto(docsPage('getting-started/'))
   const nav = page.locator('.desktop-toc').getByRole('navigation', { name: 'On this page' })
   // Use the article's second heading so adapted Getting started pages keep this check.
   const target = nav.getByRole('link').nth(1)

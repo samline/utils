@@ -1,11 +1,12 @@
 import { test, expect } from '@playwright/test'
+import { docsPage } from './routes'
 import { customPreviews, customPreviewsReason } from './custom-previews'
 
 test('long API page titles and descriptions wrap at enlarged mobile text without clipping', async ({
   page,
 }) => {
   await page.setViewportSize({ width: 320, height: 900 })
-  await page.goto('docs/getting-started/')
+  await page.goto(docsPage('getting-started/'))
   await page.locator('.page-title h1').evaluate(el => {
     el.textContent = 'configureDrawer(options?)'
   })

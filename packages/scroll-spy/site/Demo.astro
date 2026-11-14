@@ -23,7 +23,7 @@ const sections = [
   <div class="article" tabindex="0" aria-label="Scrollable article">
     {sections.map((section, i) => (
       <section id={section.id} class:list={['part', { short: i === sections.length - 1 }]}>
-        <h3>{section.title}</h3>
+        <p class="part-title">{section.title}</p>
         <p>
           {i === sections.length - 1
             ? 'A short last section still becomes active at the bottom.'
@@ -122,9 +122,12 @@ const sections = [
     min-height: 0;
     border-bottom: 0;
   }
-  h3 {
+  /* Mock headings of the demo content: styled text, so they stay out of the page outline. */
+  .part .part-title {
     margin: 0 0 0.5rem;
     font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text);
   }
   .part p {
     margin: 0;

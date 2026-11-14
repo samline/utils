@@ -19,7 +19,7 @@ const parts = [
     <div class="box" tabindex="0" aria-label="Scrollable article">
       {parts.map(([id, title, height]) => (
         <section id={`spy-toc-${id}`} style={`min-height: ${height}`}>
-          <h4>{title}</h4>
+          <p class="part-title">{title}</p>
         </section>
       ))}
     </div>

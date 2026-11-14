@@ -16,10 +16,10 @@ const parts = ['home', 'work', 'about', 'contact']
     </nav>
     {parts.map(id => (
       <section id={`spy-menu-${id}`}>
-        <h4>
+        <p class="part-title">
           {id[0]!.toUpperCase()}
           {id.slice(1)}
-        </h4>
+        </p>
       </section>
     ))}
   </div>

@@ -27,7 +27,7 @@ const modes = [
       <span class="chip">Pricing</span>
     </div>
     <div class="body">
-      <h3>Pick a theme, then reload</h3>
+      <p class="part-title">Pick a theme, then reload</p>
       <p>
         The choice is remembered. On System, changing your operating system's appearance updates
         this box live.
@@ -123,9 +123,12 @@ const modes = [
     gap: 0.75rem;
     padding: 1rem;
   }
-  h3 {
+  /* Mock headings of the demo content: styled text, so they stay out of the page outline. */
+  .body .part-title {
     margin: 0;
     font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text);
   }
   .body p {
     margin: 0;
