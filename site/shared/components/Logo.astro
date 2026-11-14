@@ -16,6 +16,9 @@ const {
   ...attributes
 } = Astro.props
 const i18n = getI18n(Astro)
+// A scoped name may wrap only after its scope (@scope/ + name), never mid-word.
+const name = i18n.common.packageName
+const slash = name.startsWith('@') ? name.indexOf('/') + 1 : 0
 ---
 
 <a
@@ -25,7 +28,11 @@ const i18n = getI18n(Astro)
   aria-label={format(i18n.common.brandHome, { name: i18n.common.packageName })}
 >
   <span class:list={['dot-mark']} aria-hidden="true"></span>
-  <span class:list={['logo-name font-mono text-[0.95rem]']}>{i18n.common.packageName}</span>
+  <span class:list={['logo-name font-mono text-[0.95rem]']}>
+    {slash ? name.slice(0, slash) : name}
+    {slash > 0 && <wbr />}
+    {slash > 0 && name.slice(slash)}
+  </span>
   {version && (
     <span
       class:list={[
@@ -47,7 +54,8 @@ const i18n = getI18n(Astro)
     border-radius: var(--radius-pill);
     background: var(--color-accent);
   }
-  /* Long scoped names (@scope/package) wrap instead of overflowing at 320px/200% text. */
+  /* Long scoped names (@scope/package) wrap after the scope instead of overflowing at
+     320px/200% text; breaking inside a word stays a last resort. */
   .logo-name {
     min-width: 0;
     overflow-wrap: anywhere;
