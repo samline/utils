@@ -2,7 +2,20 @@
   "title": "String",
   "category": "Text",
   "summary": "camelCase, kebab-case, slugify, accents, truncate and initials on one Unicode-aware word splitter.",
-  "tags": ["case", "slugify", "slug", "accents", "truncate", "text"],
+  "highlights": [
+    "Unicode-aware words",
+    "slugify, cases, truncate",
+    "Server and browser"
+  ],
+  "size": "1.2 KB gzip",
+  "tags": [
+    "case",
+    "slugify",
+    "slug",
+    "accents",
+    "truncate",
+    "text"
+  ],
   "delivery": {
     "cdnScript": "https://cdn.jsdelivr.net/npm/@samline/string@1.0.0/dist/browser/string.global.js"
   }

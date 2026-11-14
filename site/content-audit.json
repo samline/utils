@@ -4,13 +4,13 @@
   "notes": "Collection mode audit (see .agents/collection-mode.md). Reviewed 2026-11-12 against the package sources at the listed hashes.",
   "themeReview": {
     "status": "verified",
-    "source": "Confirmed by the maintainer in chat on 2026-11-12.",
-    "accentLight": "#5b4b8a",
-    "accentDark": "#b9aee0"
+    "source": "The maintainer asked for a new accent, not used by any sibling, in chat on 2026-11-13; vermilion (#e0533d) derived with npm run accent.",
+    "accentLight": "#c54936",
+    "accentDark": "#e15641"
   },
   "iconReview": {
     "kept": ["package", "eye", "refresh", "branch", "layers", "wrench"],
-    "reason": "Collection mode: Features icon slots are shared by every package Home; each card is about a capability, not a specific drawing."
+    "reason": "Features icons are named per item in each package landing.ts (landing/src/components/feature-icons.ts); these names stay in the shared library as the template defaults."
   },
   "packages": {
     "counter": {

@@ -2,6 +2,12 @@
   "title": "Is Visible",
   "category": "Viewport",
   "summary": "Enter and leave callbacks for many elements on shared IntersectionObservers.",
+  "highlights": [
+    "Enter and leave",
+    "Shared observers",
+    "React, Vue and Svelte"
+  ],
+  "size": "1 KB gzip",
   "tags": [
     "intersection-observer",
     "lazy",

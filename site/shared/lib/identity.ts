@@ -17,6 +17,12 @@ export interface CollectionPackage {
   category: string
   summary: string
   tags: string[]
+  /** Up to three short capabilities shown on the catalog card. */
+  highlights: string[]
+  /** Size shown on the catalog card, such as "1.8 KB gzip". */
+  size: string | null
+  /** Inline catalog preview from site/card.svg. */
+  art: string | null
   delivery: { cdnScript: string | null; cdnStylesheet: string | null }
   skill: string
   home: string

@@ -2,7 +2,20 @@
   "title": "Scroll Spy",
   "category": "Navigation",
   "summary": "Highlight the link of the section in view for tables of contents and one-page menus, with aria-current, click locking and scroll containers.",
-  "tags": ["scroll-spy", "table-of-contents", "toc", "navigation", "aria-current", "active-link"],
+  "highlights": [
+    "aria-current built in",
+    "Steady on click",
+    "Long tables of contents"
+  ],
+  "size": "2.4 KB gzip",
+  "tags": [
+    "scroll-spy",
+    "table-of-contents",
+    "toc",
+    "navigation",
+    "aria-current",
+    "active-link"
+  ],
   "delivery": {
     "cdnScript": "https://cdn.jsdelivr.net/npm/@samline/scroll-spy@1.0.0/dist/browser/scroll-spy.global.js"
   }

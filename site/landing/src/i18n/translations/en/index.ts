@@ -96,6 +96,7 @@ export const collection = {
   docs: 'Docs',
   examples: 'Examples',
   version: 'Version {version}',
+  highlights: '{name} highlights',
   examplesTitle: 'Examples. Pick a package.',
   examplesAccent: 'Pick a package.',
   examplesDescription: 'Every package with live previews and copyable files.',

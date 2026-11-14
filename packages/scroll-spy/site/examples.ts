@@ -31,7 +31,7 @@ ${sections(['faq'], '4rem')}
       css: `.layout { display: grid; grid-template-columns: 9rem 1fr; gap: 1rem; }
 nav { display: grid; align-content: start; gap: 0.25rem; }
 nav a { padding: 0.25rem 0.5rem; border-left: 2px solid #ddd; color: #555; text-decoration: none; }
-nav a[aria-current] { border-color: #6b4fd8; color: #111; font-weight: 600; }
+nav a[aria-current] { border-color: #c54936; color: #111; font-weight: 600; }
 #article { height: 16rem; overflow-y: auto; scroll-behavior: smooth; padding: 0 1rem; border: 1px solid #ccc; }`,
       js: `// The article scrolls instead of the page, so pass it as the root.
 // Called before the DOM is ready, this replaces the automatic start.

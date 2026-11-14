@@ -62,7 +62,7 @@ document.querySelector('#output').textContent = JSON.stringify({ forJs, back }, 
       html: `<ul id="people"></ul>`,
       css: `ul { list-style: none; padding: 0; display: grid; gap: 0.75rem; }
 li { display: flex; gap: 0.75rem; align-items: center; }
-.avatar { display: grid; place-items: center; width: 2.5rem; height: 2.5rem; border-radius: 50%; background: #5b4b8a; color: white; font-weight: 600; }`,
+.avatar { display: grid; place-items: center; width: 2.5rem; height: 2.5rem; border-radius: 50%; background: #c54936; color: white; font-weight: 600; }`,
       js: `const { initials, truncate } = window.SamlineString
 const people = [
   { name: 'Samuel Olvera', bio: 'Builds small, framework-agnostic utilities for the open web.' },

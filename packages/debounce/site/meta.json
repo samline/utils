@@ -2,6 +2,12 @@
   "title": "Debounce",
   "category": "Timing",
   "summary": "debounce, throttle and rafThrottle with cancel, flush and pending.",
+  "highlights": [
+    "debounce, throttle, rAF",
+    "cancel, flush, pending",
+    "React, Vue and Svelte"
+  ],
+  "size": "764 B gzip",
   "tags": [
     "events",
     "performance",

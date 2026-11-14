@@ -65,6 +65,23 @@ export function readCollectionPackage(slug) {
   const tags = meta.tags ?? []
   if (!Array.isArray(tags) || !tags.every(tag => typeof tag === 'string' && tag.trim()))
     throw new Error(`Collection package ${slug} needs site/meta.json tags as strings`)
+  const highlights = meta.highlights ?? []
+  if (
+    !Array.isArray(highlights) ||
+    highlights.length > 3 ||
+    !highlights.every(item => typeof item === 'string' && item.trim())
+  )
+    throw new Error(
+      `Collection package ${slug} needs at most 3 site/meta.json highlights as strings`
+    )
+  if (meta.size !== undefined) requireText(meta.size, 'site/meta.json size', slug)
+  // Optional catalog preview: an inline SVG drawn with the theme's art classes.
+  const cardPath = `${dir}/site/card.svg`
+  const art = existsSync(cardPath) ? readFileSync(cardPath, 'utf8').trim() : null
+  if (art !== null && !/^<svg[\s>][\s\S]*<\/svg>$/.test(art))
+    throw new Error(`Collection package ${slug} needs site/card.svg to be one <svg> element`)
+  if (art && /<script|\son[a-z]+=/i.test(art))
+    throw new Error(`Collection package ${slug} site/card.svg cannot contain scripts`)
   const delivery = { cdnScript: null, cdnStylesheet: null, ...meta.delivery }
   for (const value of Object.values(delivery))
     if (value !== null && !/^https?:\/\//.test(value))
@@ -81,6 +98,9 @@ export function readCollectionPackage(slug) {
     category: requireText(meta.category, 'site/meta.json category', slug),
     summary: requireText(meta.summary, 'site/meta.json summary', slug),
     tags,
+    highlights: highlights.map(item => item.trim()),
+    size: meta.size?.trim() ?? null,
+    art,
     delivery,
     skill: npmName.replace(/^@[^/]+\//, ''),
     home: `${project.base}${slug}/`,

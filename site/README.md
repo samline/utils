@@ -1,4 +1,4 @@
-# Samline Utils website
+# Utils website
 
 The website of the [samline/utils](../README.md) monorepo, built with [package-landing-docs](https://github.com/samline/package-landing-docs) in **collection mode**: a catalog Home, then one Home, one Examples page and one docs section per package. See `.agents/collection-mode.md` for the content contract.
 

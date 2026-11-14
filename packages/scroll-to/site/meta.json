@@ -2,7 +2,20 @@
   "title": "Scroll To",
   "category": "Navigation",
   "summary": "Smooth scrolling to anchors and elements with offsets for fixed headers, alignment, easing, focus and history, in the page or any container.",
-  "tags": ["scroll-to", "smooth-scroll", "anchor", "fixed-header", "scroll-into-view", "skip-link"],
+  "highlights": [
+    "Header offsets",
+    "Focus follows",
+    "Promise on arrival"
+  ],
+  "size": "2.4 KB gzip",
+  "tags": [
+    "scroll-to",
+    "smooth-scroll",
+    "anchor",
+    "fixed-header",
+    "scroll-into-view",
+    "skip-link"
+  ],
   "delivery": {
     "cdnScript": "https://cdn.jsdelivr.net/npm/@samline/scroll-to@1.0.0/dist/browser/scroll-to.global.js"
   }

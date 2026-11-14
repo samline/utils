@@ -68,7 +68,7 @@ window.isVisible(feed.querySelectorAll('[data-src]'), {
   <p style="height: 20rem"></p>
 </div>`,
       css: `#box { height: 12rem; overflow-y: auto; padding: 1rem; border: 1px solid #ccc; }
-#panel { margin-top: 14rem; padding: 1rem; border: 1px solid #5b4b8a; }`,
+#panel { margin-top: 14rem; padding: 1rem; border: 1px solid #c54936; }`,
       js: `const box = document.querySelector('#box')
 const panel = document.querySelector('#panel')
 const ticks = document.querySelector('#ticks')

@@ -2,6 +2,12 @@
   "title": "Theme",
   "category": "Interface",
   "summary": "Light, dark and system themes without a flash, with a remembered choice, live system changes, other tabs and accessible controls.",
+  "highlights": [
+    "No flash on load",
+    "Light, dark or system",
+    "In sync across tabs"
+  ],
+  "size": "1.8 KB gzip",
   "tags": [
     "theme",
     "dark-mode",
