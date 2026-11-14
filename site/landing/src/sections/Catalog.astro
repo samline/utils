@@ -50,7 +50,13 @@ const options: (readonly [value: string, label: string])[] = [
           autocomplete="off"
           data-catalog-search
         />
-        <Select id="catalog-category" label={t.category} options={options} data-catalog-category />
+        <Select
+          id="catalog-category"
+          label={t.category}
+          options={options}
+          hideLabel
+          data-catalog-category
+        />
       </div>
       <p
         class:list={['sr-only']}
@@ -161,6 +167,13 @@ const options: (readonly [value: string, label: string])[] = [
     align-items: end;
     gap: var(--space-md);
     margin-bottom: var(--space-lg);
+  }
+  /* Both controls share one height so they read as a single toolbar. */
+  .filters :global(input),
+  .filters :global(select) {
+    height: 3.25rem;
+    min-height: 0;
+    padding-block: 0;
   }
   /* Six rows per card on a subgrid, so previews, titles, summaries and
      footers line up across every card of a row. */
@@ -403,6 +416,7 @@ const options: (readonly [value: string, label: string])[] = [
   @media (width < 40rem) {
     .filters {
       grid-template-columns: 1fr;
+      gap: 0.5rem;
     }
   }
 </style>
