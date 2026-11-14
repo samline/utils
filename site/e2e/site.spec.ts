@@ -26,10 +26,9 @@ const articles = (
         .replace(/\/$/, '') +
       '/'
   )
-// Collection mode: the catalog pages plus every package's Home, Examples and Docs.
+// Collection mode: Home and Docs plus every package's Home, Examples and Docs.
 const collectionPaths = [
   '',
-  'examples/',
   'docs/',
   ...registry.packages.flatMap(item => [
     `${item.slug}/`,

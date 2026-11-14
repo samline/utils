@@ -68,9 +68,9 @@ The package `CHANGELOG.md` and `README.md` stay the release and npm sources.
   package docs overview when the package has no such article; site-level pages
   of a collection link the docs overview.
 - Site-level pages hide package-only links (skill, changelog, npm).
-- `/examples/` lists the packages that have examples.
+- `/examples/` is not generated in collection mode; Home owns the catalog.
 - Collection-level navigation offers Packages and Docs. Examples are linked from
-  catalog cards and package menus; the global examples index repeats the catalog.
+  catalog cards and package menus.
 - `scripts/test-collection.mjs` builds `tests/fixtures/collection` (alpha with
   examples and docs, beta minimal) and runs the combined link check.
 
@@ -84,3 +84,15 @@ embedded package imports itself by npm name (Vite alias to the site root, which
 resolves through its exports: build it first). Scenario-only browser specs skip
 themselves through `e2e/custom-previews.ts`; such a package tests its copied
 files in its own spec. First consumer: samline/autocomplete.
+
+## Collection examples index removal (2026-11-14)
+
+Home is the only collection catalog. The global Examples route and its footer
+and Docs links are omitted; package Examples routes remain available from cards.
+Verified: Astro checks, 57 site unit tests, collection fixture build, combined
+build (3,166 links across 90 pages), identity/content audits, three browser
+checks covering every route's metadata/layout, package downloads and no-JS,
+and 174 package e2e tests across Chromium, Firefox and WebKit. Package typecheck,
+coverage, build and size budgets passed. Browser tests required execution outside
+the filesystem sandbox. The auxiliary adaptation test cannot build its copied
+collection because its temporary directory lacks the sibling packages.

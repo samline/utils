@@ -1,12 +1,13 @@
-import { identityFor } from '../../../shared/lib/identity'
+import { identityFor, isCollection } from '../../../shared/lib/identity'
 import { docsHref, type DocsRoute } from './docs'
 type Item = { href: string } | { docsRoute: DocsRoute } | { page: 'examples' }
 type AstroLike = Parameters<typeof identityFor>[0]
 /** The Home of the page's identity: a package Home in collection mode, else the site. */
 export const homeHref = (astro?: AstroLike) => identityFor(astro).home
-/** Examples page of the identity; a collection package without examples falls back to its docs. */
+/** Collection discovery uses Home; packages without examples fall back to their docs. */
 export const examplesHref = (astro?: AstroLike) => {
   const identity = identityFor(astro)
+  if (isCollection && !identity.slug) return `${identity.home}#catalog`
   if ('hasExamples' in identity && !identity.hasExamples) return identity.docsHome
   return `${identity.home}examples/`
 }

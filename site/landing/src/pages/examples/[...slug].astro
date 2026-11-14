@@ -1,0 +1,14 @@
+---
+import Main from '../../layouts/Main.astro'
+import ExamplesGallery from '../../sections/ExamplesGallery.astro'
+import { getI18n } from '../../i18n/utils'
+import { isCollection } from '../../../../shared/lib/identity'
+
+// Collection examples are reached from the Home catalog, one page per package.
+export const getStaticPaths = () => (isCollection ? [] : [{ params: { slug: undefined } }])
+const t = getI18n(Astro).examples
+---
+
+<Main title={t.seoTitle} description={t.seoDescription}>
+  <ExamplesGallery />
+</Main>

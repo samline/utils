@@ -11,12 +11,21 @@ interface Props extends HTMLAttributes<'select'> {
 // Native select with a visible label, custom chevron and pointer cursor. Never
 // ship an unstyled native <select>: the browser arrow sits against the edge and
 // the control reads as unfinished beside the shared buttons and fields.
-const { label, id, options, value, hideLabel = false, class: className, ...attributes } =
-  Astro.props
+const {
+  label,
+  id,
+  options,
+  value,
+  hideLabel = false,
+  class: className,
+  ...attributes
+} = Astro.props
 ---
 
 <div data-ui class:list={['select-field', className]}>
-  <label for={id} class:list={[{ 'sr-only': hideLabel }]}>{label}</label>
+  <label for={id} class:list={[{ 'sr-only': hideLabel }]}>
+    {label}
+  </label>
   <span class:list={['control']}>
     <select {...attributes} id={id}>
       {options.map(([optionValue, optionLabel]) => (

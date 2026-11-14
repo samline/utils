@@ -2,7 +2,7 @@
 
 Small, framework-agnostic JavaScript, CSS and HTML utilities. Each one is published to npm on its own and documented with live examples in one place.
 
-[Demo](https://samline.github.io/utils/) · [Examples](https://samline.github.io/utils/examples/) · [Documentation](https://samline.github.io/utils/docs/) · [Changelog](CHANGELOG.md)
+[Demo](https://samline.github.io/utils/) · [Examples](https://samline.github.io/utils/#catalog) · [Documentation](https://samline.github.io/utils/docs/) · [Changelog](CHANGELOG.md)
 
 ## Table of contents
 
@@ -118,7 +118,7 @@ The [website](https://samline.github.io/utils/) has a Home, live examples and co
 | [Scroll To docs](https://samline.github.io/utils/docs/scroll-to/)                 | Installation, options, layouts and frameworks of `@samline/scroll-to`.           |
 | [String docs](https://samline.github.io/utils/docs/string/)                       | Every function, the options and how words are split in `@samline/string`.        |
 | [Theme docs](https://samline.github.io/utils/docs/theme/)                         | Installation, controls, options and the no-flash script of `@samline/theme`.     |
-| [Examples](https://samline.github.io/utils/examples/)                             | Live previews with complete and separate source files.                           |
+| [Examples](https://samline.github.io/utils/#catalog)                              | Package cards linking to live previews with complete source files.               |
 
 ### Repository map
 

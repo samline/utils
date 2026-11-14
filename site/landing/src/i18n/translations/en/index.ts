@@ -97,16 +97,10 @@ export const collection = {
   examples: 'Examples',
   version: 'Version {version}',
   highlights: '{name} highlights',
-  examplesTitle: 'Examples Pick a package.',
-  examplesAccent: 'Pick a package.',
-  examplesDescription: 'Every package with live previews and copyable files.',
-  examplesSeoTitle: 'Examples',
-  examplesSeoDescription:
-    'Live previews and copyable example files for each package of the collection.',
 } as const
 
 // Collection-level navigation separates package discovery from documentation.
-// Examples stay on each package: the global examples index repeats the catalog.
+// Examples stay on each package, reached from the Home catalog.
 const collectionNavigation = {
   ...navigationFor(project),
   mobile: {

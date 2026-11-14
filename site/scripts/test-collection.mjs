@@ -60,6 +60,9 @@ try {
   assert.match(home, /Fixture Kit/)
   assert.match(home, /href="\/kit\/alpha\/"/)
   assert.match(home, /href="\/kit\/beta\/"/)
+  assert.equal(await exists(join(dist, 'examples/index.html')), false)
+  assert.doesNotMatch(home, /href="\/kit\/examples\//)
+  assert.match(home, /href="\/kit\/alpha\/examples\//)
   assert.equal(title(home), 'Utilities, examples and documentation — @fixture/kit')
 
   const alpha = await page('alpha/index.html')

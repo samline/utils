@@ -31,7 +31,7 @@ const packageLinks = !isCollection || Boolean(identity.slug)
           <h2>{t.explore}</h2>
           <a href={docsHref('overview', Astro)}>{i18n.common.links.docs}</a>
           <a href={docsHref('setup', Astro)}>{t.setup}</a>
-          <a href={examplesHref(Astro)}>{t.examples}</a>
+          {packageLinks && <a href={examplesHref(Astro)}>{t.examples}</a>}
         </div>
         <div class:list={['footer-group']}>
           <h2>{t.project}</h2>

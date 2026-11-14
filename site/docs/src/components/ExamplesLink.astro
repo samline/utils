@@ -1,13 +1,15 @@
 ---
 import { packageLandingHref } from '../lib/routes'
-import { identityFor, packageSlug } from '../../../shared/lib/identity'
+import { identityFor, isCollection, packageSlug } from '../../../shared/lib/identity'
 import LinkCard from '../../../shared/components/LinkCard.astro'
 import { getI18n } from '../i18n/utils'
 const t = getI18n(Astro)
 const url = packageLandingHref(packageSlug(Astro), 'examples/')
-// A collection package without examples has no Examples page to link.
+// Only packages with examples have an Examples page in collection mode.
 const identity = identityFor(Astro)
-const show = !('hasExamples' in identity) || identity.hasExamples
+const show =
+  (!isCollection || Boolean(identity.slug)) &&
+  (!('hasExamples' in identity) || identity.hasExamples)
 ---
 
 {show && (

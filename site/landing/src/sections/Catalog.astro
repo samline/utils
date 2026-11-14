@@ -11,15 +11,8 @@ import HeroBackdrop from '../components/HeroBackdrop.astro'
 import { getI18n } from '../i18n/utils'
 import { format } from '../../../shared/i18n/format'
 import { collectionPackages } from '../../../shared/lib/identity'
-interface Props {
-  /** /examples/ lists only packages that have examples. */
-  examplesOnly?: boolean
-}
-const { examplesOnly = false } = Astro.props
 const t = getI18n(Astro).collection
-const packages = examplesOnly
-  ? collectionPackages.filter(item => item.hasExamples)
-  : collectionPackages
+const packages = collectionPackages
 const categories = [...new Set(packages.map(item => item.category))].sort()
 const options: (readonly [value: string, label: string])[] = [
   ['', t.allCategories],
@@ -32,9 +25,9 @@ const options: (readonly [value: string, label: string])[] = [
   <Box size="narrow">
     <PageTitle
       headingId="catalog-title"
-      title={examplesOnly ? t.examplesTitle : t.title}
-      accent={examplesOnly ? t.examplesAccent : t.accent}
-      description={examplesOnly ? t.examplesDescription : t.description}
+      title={t.title}
+      accent={t.accent}
+      description={t.description}
       eyebrow={t.eyebrow}
       align="center"
     />
