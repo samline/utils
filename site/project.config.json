@@ -5,7 +5,7 @@
     "npmName": "@samline/utils",
     "version": "1.0.0",
     "description": "Small, framework-agnostic JavaScript, CSS and HTML utilities, each published on its own and documented with live examples in one place.",
-    "author": "Samuel Olvera",
+    "author": "Samuel Olvera (samline)",
     "license": "MIT",
     "keywords": ["utilities", "javascript", "debounce", "throttle", "intersection-observer"]
   },
