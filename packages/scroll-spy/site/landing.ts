@@ -19,7 +19,8 @@ const landing: LandingFactory = ({ identity, text, heading, code }) => ({
       'Highlight the navigation link of the section in view with aria-current, keep clicked links steady while scrolling, and follow along in long tables of contents.',
     kicker: 'Know where the reader is.',
     title: identity.name,
-    titleAccent: 'The right link, lit at the right time.',
+    // A non-breaking space keeps the last two words together, so no word wraps alone.
+    titleAccent: 'The right link, lit at the right\u00a0time.',
     description:
       'Add data-scroll-spy to a navigation and the link of the section being read gets aria-current, in the page or any scroll container.',
     descriptionContinuation: 'Install it, scroll the live preview, then read the full reference.',

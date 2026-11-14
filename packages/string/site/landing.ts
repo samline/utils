@@ -20,7 +20,8 @@ const landing: LandingFactory = ({ identity, text, heading, code }) => ({
       'camelCase, kebab-case, snake_case, Title Case, slugify, accent removal, truncate and initials for JavaScript, built on one Unicode-aware word splitter.',
     kicker: 'Every case. One splitter.',
     title: identity.name,
-    titleAccent: 'Text in the shape you need.',
+    // A non-breaking space keeps the last two words together, so no word wraps alone.
+    titleAccent: 'Text in the shape you\u00a0need.',
     description:
       'Convert between every case, build URL slugs, remove accents, truncate and get initials, with words split the same way everywhere.',
     descriptionContinuation: 'Install it, type in the live preview, then read the full reference.',

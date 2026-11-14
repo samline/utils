@@ -19,7 +19,8 @@ const landing: LandingFactory = ({ identity, text, heading, code }) => ({
       'Know when elements enter and leave the viewport, on shared IntersectionObservers, for vanilla JS, React, Vue, Svelte and plain HTML.',
     kicker: 'See it. React to it.',
     title: identity.name,
-    titleAccent: 'Know what is on screen.',
+    // A non-breaking space keeps the last two words together, so no word wraps alone.
+    titleAccent: 'Know what is on\u00a0screen.',
     description:
       'Run code when elements enter or leave the viewport, for one element or a whole selector, on observers shared across your page.',
     descriptionContinuation: 'Install it, scroll the live preview, then read the full reference.',

@@ -83,8 +83,8 @@ export const collection = {
   seoTitle: 'Utilities, examples and documentation',
   seoDescription: project.description,
   eyebrow: 'Catalog',
-  // PageTitle requires the accent to end the title.
-  title: `${project.name}. Pick what you need.`,
+  // PageTitle requires the accent to end the title; the catalog sets it on its own line.
+  title: `${project.name} Pick what you need.`,
   accent: 'Pick what you need.',
   description: project.description,
   search: 'Search packages',
@@ -97,7 +97,7 @@ export const collection = {
   examples: 'Examples',
   version: 'Version {version}',
   highlights: '{name} highlights',
-  examplesTitle: 'Examples. Pick a package.',
+  examplesTitle: 'Examples Pick a package.',
   examplesAccent: 'Pick a package.',
   examplesDescription: 'Every package with live previews and copyable files.',
   examplesSeoTitle: 'Examples',

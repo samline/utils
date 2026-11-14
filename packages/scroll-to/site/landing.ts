@@ -18,7 +18,8 @@ const landing: LandingFactory = ({ identity, text, heading, code }) => ({
       'Smooth scrolling to anchors, elements and positions with fixed header offsets, alignment, easing, focus, history and a promise for when it arrives.',
     kicker: 'Get there, and land right.',
     title: identity.name,
-    titleAccent: 'Smooth scrolling that stops where it should.',
+    // A non-breaking space keeps the last two words together, so no word wraps alone.
+    titleAccent: 'Smooth scrolling that stops where it\u00a0should.',
     description:
       'Same-page links and data-scroll-to triggers glide to their target, stop below your fixed header and hand focus to what they reveal.',
     descriptionContinuation: 'Install it, try the live preview, then read the full reference.',

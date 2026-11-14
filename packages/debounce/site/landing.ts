@@ -22,7 +22,8 @@ const landing: LandingFactory = ({ identity, text, heading, code }) => ({
       'Debounce, throttle and rafThrottle for JavaScript with cancel, flush and pending, React, Vue and Svelte adapters and a browser global.',
     kicker: 'Fewer calls. Same result.',
     title: identity.name,
-    titleAccent: 'Call less, do more.',
+    // A non-breaking space keeps the last two words together, so no word wraps alone.
+    titleAccent: 'Call less, do\u00a0more.',
     description:
       'Debounce input, throttle work and run layout code once per frame with one small, dependency-free package.',
     descriptionContinuation: 'Install it, try the live counter, then read the full reference.',

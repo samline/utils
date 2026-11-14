@@ -18,7 +18,8 @@ const landing: LandingFactory = ({ identity, text, heading, code }) => ({
       'Scroll reveals with CSS effects, cascades, repeat and a CSS-only scrub mode. Content in view on load is never hidden, and stays visible without JavaScript.',
     kicker: 'Reveal on scroll. Never flash.',
     title: identity.name,
-    titleAccent: 'Motion that respects the page.',
+    // A non-breaking space keeps the last two words together, so no word wraps alone.
+    titleAccent: 'Motion that respects the\u00a0page.',
     description:
       'Add data-reveal and content fades, slides, zooms or blurs in as it scrolls into view, in cascade when it enters together.',
     descriptionContinuation: 'Install it, scroll the live preview, then read the full reference.',

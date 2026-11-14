@@ -15,7 +15,8 @@ const landing: LandingFactory = ({ identity, text, heading, code }) => ({
       'Count numbers up as they scroll into view, with easing, decimals and Intl formatting. The final value stays in the HTML for search and visitors without JS.',
     kicker: 'Count up. Keep the number.',
     title: identity.name,
-    titleAccent: 'Numbers that land on the truth.',
+    // A non-breaking space keeps the last two words together, so no word wraps alone.
+    titleAccent: 'Numbers that land on the\u00a0truth.',
     description:
       'Add data-counter to a number and it counts up when it scrolls into view, formatted for the language of the page.',
     descriptionContinuation: 'Install it, watch the live preview, then read the full reference.',

@@ -14,7 +14,8 @@ const landing: LandingFactory = ({ identity, text, heading, code }) => ({
       'Light, dark and system themes applied before the first paint, with a remembered choice, live system changes, other tabs and accessible controls.',
     kicker: 'Dark mode, done once.',
     title: identity.name,
-    titleAccent: 'Themes that never flash.',
+    // A non-breaking space keeps the last two words together, so no word wraps alone.
+    titleAccent: 'Themes that never\u00a0flash.',
     description:
       'The stored theme is on the page before it paints, follows the system while visitors want it to, and stays in sync across tabs and controls.',
     descriptionContinuation: 'Install it, try the live preview, then read the full reference.',

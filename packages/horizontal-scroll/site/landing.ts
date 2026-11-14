@@ -19,7 +19,8 @@ const landing: LandingFactory = ({ identity, text, heading, code }) => ({
       'Pin a section and move its content sideways as the page scrolls down, with keyboard focus, media queries, reduced motion and a native scroll fallback.',
     kicker: 'Scroll down, travel sideways.',
     title: identity.name,
-    titleAccent: 'A row that crosses the screen as you scroll.',
+    // A non-breaking space keeps the last two words together, so no word wraps alone.
+    titleAccent: 'A row that crosses the screen as you\u00a0scroll.',
     description:
       'Add data-horizontal-scroll to a section and its row pins to the top while the page scroll moves it sideways, then lets the page carry on.',
     descriptionContinuation: 'Install it, scroll the live preview, then read the full reference.',
